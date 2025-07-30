@@ -11,10 +11,10 @@
 
 /* Custom styles for Feather social icons */
 .social-icons svg {
-  width: 28px;  /* 定义图标的宽度 */
-  height: 28px; /* 定义图标的高度 */
-  stroke: #333; /* 定义线条的颜色 */
-  stroke-width: 2; /* 定义线条的粗细 */
+  width: 28px;
+  height: 28px;
+  stroke: #333;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
@@ -25,14 +25,18 @@
   opacity: 0.6;
 }
 
-.wrapper {
-  width: 900px;
-  margin: 0 auto;
-}
+@media (min-width: 992px) {
 
-section {
-  width: 540px;
-  float: right;
-  padding-bottom: 10px;
+  .wrapper {
+    width: 900px;
+    margin: 0 auto;
+  }
+
+  section {
+    width: 540px;
+    float: right;
+    padding-bottom: 10px;
+  }
+
 }
 
