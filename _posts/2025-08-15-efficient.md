@@ -4,8 +4,6 @@ title: Efficient
 date: 2025-08-15 05:00:00 +0800
 ---
 - [Choosing typeface](https://imperavi.com/books/ui-typography/basis/choosing-typeface/)
-- [Introducing Gemma 3 270M: The compact model for hyper-efficient AI](https://developers.googleblog.com/en/introducing-gemma-3-270m/)
-- [It All Comes Down to the Mitochondria](https://www.science.org/content/blog-post/it-all-comes-down-mitochondria)
 
 > You should obsess over risks that do permanent damage and care little about risks that do temporary harm, but the opposite is more common.  
 > The only way to build wealth is to have a gap between your ego and your income.  
