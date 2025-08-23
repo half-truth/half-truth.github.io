@@ -1,87 +1,74 @@
 ---
 ---
 
-
 @import "{{ site.theme }}";
 
-
-
-body {
-  font-family: 
-    -system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, 
-    "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-}
-
-
-
-:root {
-  --font-size-base: 16px;
-  --font-size-body: 1rem;
-  --font-size-h1: 1.5rem;
-  --font-size-h2: 1.25rem;
-  --line-height-body: 1.6;
-  --line-height-heading: 1.3;
-}
-html { font-size: var(--font-size-base); }
-body {
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-}
-h1, h2, h3, h4, h5, h6 { line-height: var(--line-height-heading); }
-h1 { font-size: var(--font-size-h1); }
-h2 { font-size: var(--font-size-h2); }
-@media (max-width: 600px) {
-  :root { --font-size-base: 15px; }
-}
-
-
-
-
+/* --- Hide default elements --- */
 .author,
 .tags {
   display: none;
 }
 
-/* Custom styles for Feather social icons */
+/* --- Custom styles for Feather social icons (Consolidated) --- */
 .social-icons svg {
   width: 28px;
   height: 28px;
-  stroke: #333;
+  stroke: #333; /* Default color */
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
-  transition: opacity 0.2s ease-in-out;
+  /* Transition both opacity and stroke color smoothly */
+  transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
 }
 
 .social-icons a:hover svg {
-  opacity: 0.6;
+  stroke: #007bff; /* Hover color */
 }
 
-
+/* --- Responsive layout for desktop (Original Float method) --- */
 @media (min-width: 992px) {
   .wrapper {
     width: 900px;
     margin: 0 auto;
   }
-  
+
   section {
     width: 540px;
     float: right;
     padding-bottom: 10px;
   }
-  
- 
-  section ul li a {
-  
-    white-space: nowrap;     
-    overflow: hidden;        
-    text-overflow: ellipsis;  
-    
-
-    display: inline-block; 
-    max-width: 100%;        
-    vertical-align: middle;
-  }
 }
 
+/* --- Homepage post list styles --- */
+.posts .post li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.posts .post h2 {
+  margin-bottom: 0.1em;
+}
+
+.posts .post .entry {
+  margin-top: 1em;
+}
+
+.post-date {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+
+.social-icons {
+  margin-top: 15px; 
+}
+
+
+.sidebar-quote {
+  margin-top: 30px; 
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}

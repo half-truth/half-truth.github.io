@@ -23,23 +23,31 @@
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
+      
+        <div class="social-icons">
+          <!-- RSS Feed Icon -->
+          <a href="{{ "/feed.xml" | relative_url }}" title="Subscribe via RSS">
+            <i data-feather="rss"></i>
+          </a>
+          <!-- About Page Icon -->
+          <a href="/about.html" title="About" style="margin-left: 15px;">
+            <i data-feather="user"></i>
+          </a>
+        </div>
+
         {% if site.github.is_project_page %}
         <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
         {% endif %}
 
-
-        <!-- Social and Feed Links (Feather Icons) -->
-<div class="social-icons">
-  <!-- RSS Feed Icon (now in the first position) -->
-  <a href="{{ "/feed.xml" | relative_url }}" title="Subscribe via RSS">
-    <i data-feather="rss"></i>
-  </a>
-  <!-- About Page Icon (in the second position) -->
-  <a href="/about.html" title="About" style="margin-left: 15px;">
-    <i data-feather="user"></i>
-  </a>
-</div>
-        
+      
+        <div class="sidebar-quote">
+            <p>
+              <strong>"Being focused</strong> requires tuning out the noise. <strong>Being informed</strong> requires reading as much as you can to ensure you don’t miss something important."
+            </p>
+            <p>
+              - <a href="https://collabfund.com/blog/conflicting-skill-sets/" target="_blank" rel="noopener noreferrer">Conflicting Skill Sets</a>
+            </p>
+        </div>
 
         {% if site.show_downloads %}
         <ul class="downloads">
@@ -62,5 +70,9 @@
       </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+      <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+      feather.replace()
+    </script>
   </body>
 </html>
