@@ -1,0 +1,30 @@
+
+name: Archive External Links
+
+
+on:
+  # This new trigger waits for the GitHub Pages deployment to finish
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types:
+      - completed
+
+jobs:
+  archive:
+
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+
+      - name: Archive links with Wayback Machine
+        uses: gautamkrishnar/blog-post-workflow@master
+        with:
+          feed_list: "https://unlockinsight.github.io/feed.xml"
+          archive_links_in_feed: 'true'
+          max_post_count: 9999
+          committer_name: "GitHub Actions Bot"
+          committer_email: "actions@github.com"
+          commit_message: "chore: update blog post list [skip ci]"
