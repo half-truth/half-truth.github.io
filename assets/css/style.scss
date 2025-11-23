@@ -1,4 +1,38 @@
 ---
 ---
 
-@import "jekyll-theme-minimal";
+
+@import "{{ site.theme }}";
+
+.author,
+.tags {
+  display: none;
+}
+
+/* Custom styles for Feather social icons */
+.social-icons svg {
+  width: 28px;  /* 定义图标的宽度 */
+  height: 28px; /* 定义图标的高度 */
+  stroke: #333; /* 定义线条的颜色 */
+  stroke-width: 2; /* 定义线条的粗细 */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.social-icons a:hover svg {
+  opacity: 0.6;
+}
+
+.wrapper {
+  width: 900px;
+  margin: 0 auto;
+}
+
+section {
+  width: 540px;
+  float: right;
+  padding-bottom: 10px;
+}
+
