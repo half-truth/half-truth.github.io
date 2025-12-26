@@ -22,7 +22,7 @@ jobs:
       - name: Archive links with Wayback Machine
         uses: gautamkrishnar/blog-post-workflow@master
         with:
-          feed_list: "https://unlockinsight.github.io/feed.xml"
+          feed_list: "https://half-truth.github.io/feed.xml"
           archive_links_in_feed: 'true'
           max_post_count: 9999
           committer_name: "GitHub Actions Bot"
