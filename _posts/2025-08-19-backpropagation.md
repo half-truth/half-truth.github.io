@@ -21,10 +21,10 @@ date: 2025-08-19 07:00:00 +0800
 [Scraping training data for your mind](https://www.henrikkarlsson.xyz/p/training-data)  
 [On limitations that hide in your blindspot](https://www.henrikkarlsson.xyz/p/limitatons)  
 
+[What problem should you be working on now?](https://www.henrikkarlsson.xyz/p/problem-selection)  
 [Sometimes the reason you can’t find people ...](https://www.henrikkarlsson.xyz/p/friends-missed)  
 [Cultivating a state of mind where new ideas ...](https://www.henrikkarlsson.xyz/p/good-ideas)  
-[What problem should you be working on now?](https://www.henrikkarlsson.xyz/p/problem-selection)  
 
-[Everything that turned out well in my life ...](https://www.henrikkarlsson.xyz/p/unfolding)  
 [Becoming perceptive](https://www.henrikkarlsson.xyz/p/perceptive)  
+[Everything that turned out well in my life ...](https://www.henrikkarlsson.xyz/p/unfolding)  
 [Rationality is an underrated way to be authentic](https://www.henrikkarlsson.xyz/p/autenticity)  
