@@ -22,7 +22,6 @@ date: 2026-01-17 22:06:00 +0800
 [On becoming a researcher](https://muratbuffalo.blogspot.com/2019/09/on-being-researcher.html)  
 [Thoughts on Go vs. Rust vs. Zig](https://sinclairtarget.com/blog/2025/08/thoughts-on-go-vs.-rust-vs.-zig/)  
 [Book Notes. Steal Like an Artist](https://muratbuffalo.blogspot.com/2019/05/book-notes-steal-like-artist-10-things.html)  
-[Cognitive dimensions of notations](https://en.wikipedia.org/wiki/Cognitive_dimensions_of_notations)  
 [The New Code — Sean Grove, OpenAI](https://www.youtube.com/watch?v=8rABwKRsec4)  
 [21 Lessons From 14 Years at Google](https://addyosmani.com/blog/21-lessons/)  
 [Agentic AI and The Mythical Agent-Month](https://muratbuffalo.blogspot.com/2026/01/agentic-ai-and-mythical-agent-month.html)  
