@@ -25,7 +25,11 @@ date: 2026-01-17 22:06:00 +0800
 [The New Code — Sean Grove, OpenAI](https://www.youtube.com/watch?v=8rABwKRsec4)  
 [21 Lessons From 14 Years at Google](https://addyosmani.com/blog/21-lessons/)  
 [Agentic AI and The Mythical Agent-Month](https://muratbuffalo.blogspot.com/2026/01/agentic-ai-and-mythical-agent-month.html)  
-[The Four Hobbies, and Apparent Expertise](https://brooker.co.za/blog/2023/04/20/hobbies.html)  
 [Building A Big Company: Non-Obvious Insights](https://www.youtube.com/watch?v=I-vCH6wwysM)  
 [Software upgrade economics: some real numbers](https://successfulsoftware.net/2025/08/21/software-upgrade-economics-some-real-numbers/)  
 [Common misunderstandings about large software companies](https://philipotoole.com/common-misunderstandings-about-large-software-companies/)  
+
+[Kindness, Wickedness and Safety](https://brooker.co.za/blog/2019/08/12/kind-wicked.html)  
+[Heuristic Traps for Systems Operators](https://brooker.co.za/blog/2015/11/05/heuristics.html)  
+[The Four Hobbies, and Apparent Expertise](https://brooker.co.za/blog/2023/04/20/hobbies.html)  
+[CALISDO: Threat Modeling for Distributed Designs](https://brooker.co.za/blog/2015/06/20/calisto.html)  
