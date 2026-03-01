@@ -1,0 +1,22 @@
+---
+layout: post
+title: Rationality
+date: 2026-03-01 18:36:00 +0800
+---
+> So in a way, self-help is most useful for people who don’t actually need self-help. It’s for the OK-to-Great people, not the Bad-to-OK people, although those are most of the people who get caught in its net and spend their money on it.  
+>
+> \- [5 Problems With the Self-Help Industry](https://markmanson.net/self-help)  
+
+> “It’s important to distinguish between what’s scientifically true (traditional idea of rationality) and what’s empirically useful (the deeper view).”  
+> “Many ‘unscientific’ techniques are placebos and, like placebos, they actually help people. We need to be aligned what is empirically known to help people, instead of what is scientifically known to be true.”  
+> “The important aspect here is that a startup has to differentiate from the mainstream on clearly marked attributes, attracting customers who appreciate those attributes.”  
+>
+> \- [The two views of rationality - Inverted Passion]()
+
+[The Early History Of Smalltalk](https://worrydream.com/EarlyHistoryOfSmalltalk/)  
+[Divine Discontent: Disruption’s Antidote](https://stratechery.com/2018/divine-discontent-disruptions-antidote/)  
+[How to Make a Good Secret Sauce](https://medium.com/swlh/how-to-make-a-good-secret-sauce-8773cd0216ce)  
+[How to Make a Profit in Software: The Exclusivity Curve](https://bessiambre.medium.com/how-to-make-a-profit-in-software-the-exclusivity-curve-eef0d85694da)  
+[What can a technologist do about climate change? A personal view.](https://worrydream.com/ClimateChange/)  
+
+[The Secret Sauce of Silicon Valley](https://stvp.stanford.edu/the-secret-sauce-of-silicon-valley/)  
