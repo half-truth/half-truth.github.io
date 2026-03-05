@@ -15,8 +15,5 @@ date: 2026-03-01 18:36:00 +0800
 
 [The Early History Of Smalltalk](https://worrydream.com/EarlyHistoryOfSmalltalk/)  
 [Divine Discontent: Disruption’s Antidote](https://stratechery.com/2018/divine-discontent-disruptions-antidote/)  
-[How to Make a Good Secret Sauce](https://medium.com/swlh/how-to-make-a-good-secret-sauce-8773cd0216ce)  
-[How to Make a Profit in Software: The Exclusivity Curve](https://bessiambre.medium.com/how-to-make-a-profit-in-software-the-exclusivity-curve-eef0d85694da)  
-[What can a technologist do about climate change? A personal view.](https://worrydream.com/ClimateChange/)  
+[What can a technologist do about climate change?](https://worrydream.com/ClimateChange/)  
 
-[The Secret Sauce of Silicon Valley](https://stvp.stanford.edu/the-secret-sauce-of-silicon-valley/)  
