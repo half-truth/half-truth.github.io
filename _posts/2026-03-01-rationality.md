@@ -11,9 +11,7 @@ date: 2026-03-01 18:36:00 +0800
 > “Many ‘unscientific’ techniques are placebos and, like placebos, they actually help people. We need to be aligned what is empirically known to help people, instead of what is scientifically known to be true.”  
 > “The important aspect here is that a startup has to differentiate from the mainstream on clearly marked attributes, attracting customers who appreciate those attributes.”  
 >
-> \- [The two views of rationality - Inverted Passion]()
+> \- [The two views of rationality - Inverted Passion](https://invertedpassion.com/the-two-views-of-rationality/)  
 
-[The Early History Of Smalltalk](https://worrydream.com/EarlyHistoryOfSmalltalk/)  
-[Divine Discontent: Disruption’s Antidote](https://stratechery.com/2018/divine-discontent-disruptions-antidote/)  
-[What can a technologist do about climate change?](https://worrydream.com/ClimateChange/)  
+[Tech's empiricism problem](https://deadsimpletech.com/blog/tech_empiricism_problem)  
 
