@@ -13,5 +13,10 @@ date: 2026-03-01 18:36:00 +0800
 >
 > \- [The two views of rationality - Inverted Passion](https://invertedpassion.com/the-two-views-of-rationality/)  
 
+[Science of habit building](https://invertedpassion.com/science-of-habit-building/)  
+[Making a product that Marl loves](https://invertedpassion.com/making-a-product-that-marl-loves/)  
+[How does behavior change happen](https://invertedpassion.com/how-does-behavior-change-happen/)  
+[Making the Fogg Behavior Model actionable](https://ui-patterns.com/blog/making-the-fogg-behavior-model-actionable)  
+
 [Tech's empiricism problem](https://deadsimpletech.com/blog/tech_empiricism_problem)  
 
