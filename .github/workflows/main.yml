@@ -1,0 +1,85 @@
+name: Download and Release File
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '要下载的文件 URL'
+        required: true
+        type: string
+      release_tag:
+        description: '上传到哪个 Release（tag），不存在会自动创建'
+        required: false
+        default: 'v0.1'
+        type: string
+      filename:
+        description: '保存的文件名（留空则自动从 URL 提取）'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Resolve filename
+        id: filename
+        env:
+          INPUT_URL: ${{ inputs.url }}
+          INPUT_FILENAME: ${{ inputs.filename }}
+        run: |
+          set -e
+          if [ -n "$INPUT_FILENAME" ]; then
+            FILE="$INPUT_FILENAME"
+          else
+            # 从 URL 末段提取文件名，去掉查询参数
+            FILE="${INPUT_URL%%\?*}"   # 去掉 ?后面的查询串
+            FILE="${FILE##*/}"         # 取最后一段
+          fi
+          if [ -z "$FILE" ] || [ "$FILE" = "/" ]; then
+            echo "无法从 URL 中提取文件名，请手动指定 filename" >&2
+            exit 1
+          fi
+          echo "file=$FILE" >> "$GITHUB_OUTPUT"
+          echo "目标文件名: $FILE"
+
+      - name: Create release if not exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+        run: |
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "$TAG" --notes "Downloaded from: ${{ inputs.url }}"
+          fi
+
+      - name: Download and upload file
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+          URL: ${{ inputs.url }}
+          FILE: ${{ steps.filename.outputs.file }}
+        run: |
+          set -e
+          echo "==== 下载 $FILE ===="
+
+          # 如果 release 中已存在该文件，跳过（方便重跑）
+          if gh release view "$TAG" --json assets --jq '.assets[].name' | grep -qx "$FILE"; then
+            echo "$FILE 已存在于 release 中，跳过"
+            exit 0
+          fi
+
+          echo "下载 $URL ..."
+          curl -fL --retry 5 --retry-delay 5 -o "$FILE" "$URL"
+
+          echo "上传 $FILE 到 release $TAG ..."
+          gh release upload "$TAG" "$FILE" --clobber
+
+          echo "删除本地文件释放空间 ..."
+          rm -f "$FILE"
+
