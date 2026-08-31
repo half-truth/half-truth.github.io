@@ -1,0 +1,48 @@
+name: Download and Release Videos
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create release if not exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! gh release view v0.1 >/dev/null 2>&1; then
+            gh release create v0.1 --title "v0.1" --notes "MacKay ITPRNN lecture videos"
+          fi
+
+      - name: Download and upload videos one by one
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          BASE_URL="https://www.inference.org.uk/itprnn_lectures"
+          for i in $(seq -w 1 16); do
+            FILE="${i}_mackay.mp4"
+            echo "==== 处理 $FILE ===="
+
+            # 如果 release 中已存在该文件，跳过（方便重跑）
+            if gh release view v0.1 --json assets --jq '.assets[].name' | grep -qx "$FILE"; then
+              echo "$FILE 已存在于 release 中，跳过"
+              continue
+            fi
+
+            echo "下载 $FILE ..."
+            curl -fL --retry 5 --retry-delay 5 -o "$FILE" "$BASE_URL/$FILE"
+
+            echo "上传 $FILE 到 release v0.1 ..."
+            gh release upload v0.1 "$FILE" --clobber
+
+            echo "删除本地文件释放空间 ..."
+            rm -f "$FILE"
+          done
