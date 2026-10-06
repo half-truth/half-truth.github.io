@@ -1,0 +1,164 @@
+<!DOCTYPE html> <html lang=en class><!--
+ Page saved with SingleFile 
+ url: https://blog.kowalczyk.info/article/11n/principle-of-good-design-discoverability.html 
+ saved date: Sun Aug 02 2026 22:25:38 GMT+0800 (中国标准时间)
+--><meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<link rel=alternate type=application/atom+xml title="RSS 2.0" href=https://blog.kowalczyk.info/atom.xml>
+<link rel=alternate type=text/markdown href=https://blog.kowalczyk.info/article/11n/principle-of-good-design-discoverability.md>
+<link rel=canonical href=https://blog.kowalczyk.info/article/11n/principle-of-good-design-discoverability.html>
+<meta name=twitter:card content=summary_large_image>
+<meta name=twitter:site content=@kjk>
+<meta name=twitter:title content="Principle of good design: discoverability">
+<meta name=twitter:creator content=@kjk>
+<meta name=twitter:image content=https://blog.kowalczyk.info/gfx/head-bw-sq-240.png>
+<meta property=og:site_name content="Krzysztof Kowalczyk">
+<meta property=og:title content="Principle of good design: discoverability">
+<meta property=og:type content=article>
+<meta property=og:url content=https://blog.kowalczyk.info/article/11n/principle-of-good-design-discoverability.html>
+<meta property=og:image content=https://blog.kowalczyk.info/gfx/head-bw-sq-240.png>
+<meta property=article:published_time content=2002-07-26T00:00:00Z>
+<meta property=article:modified_time content=2023-02-12T00:00:00Z>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Krzysztof Kowalczyk","url":"https://blog.kowalczyk.info/resume.html"},"dateModified":"2023-02-12T00:00:00Z","datePublished":"2002-07-26T00:00:00Z","description":"","headline":"Principle of good design: discoverability","image":"https://blog.kowalczyk.info/gfx/head-bw-sq-240.png","keywords":"ui","mainEntityOfPage":"https://blog.kowalczyk.info/article/11n/principle-of-good-design-discoverability.html","publisher":{"@type":"Person","name":"Krzysztof Kowalczyk","url":"https://blog.kowalczyk.info/resume.html"},"url":"https://blog.kowalczyk.info/article/11n/principle-of-good-design-discoverability.html"}</script>
+<title>Principle of good design: discoverability</title>
+<style>:root{--bg-col:#f6f6f6;--bg-light:#f0f2f0;--bg-light-hi:#e1e5e1;--text-color:#111;--text-color-light:#777;--bg-banner-notice:#f0f2f0}body{background-color:var(--bg-col);color:var(--text-color);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";margin:0;padding:0;font-size:1rem;line-height:1.4rem}h1,h2{letter-spacing:-0.01em;line-height:1.2;font-weight:600;margin-bottom:0px}td{padding-right:1rem}.title{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-around;column-gap:4px;row-gap:8px;margin-block-end:0.5em!important}a{background:transparent;text-decoration:underline;text-underline-offset:4px;color:var(--text-color)}a:hover{color:var(--text-color-light)}a.hdr{text-decoration:none}.hdr-image:hover{filter:grayscale(100%)}.wrap{width:calc(100% - 2rem);max-width:80ch;margin-left:auto;margin-right:auto}a.for-nav-icon:hover{fill:#555;background-color:hsl(0,0%,95%)}div#post div{min-height:1em;margin-block-start:0;margin-block-end:1rem}#post{margin-top:1rem}.absolute{position:absolute}.notion-page{margin-left:1.5rem}details.notion-toggle>summary::-webkit-details-marker:hover{color:gray;cursor:pointer}.hdr{padding-top:2px}.hdr-with-anchor:hover .header-anchor{display:block}.banner-notice{background-color:var(--bg-banner-notice);padding:0.5rem 1rem;margin-top:1.5rem;.bhdr{font-weight:bold;position:absolute;padding:0.2rem 1rem;top:-1.1rem;background-color:var(--bg-banner-notice)}div{background-color:transparent;max-width:80ch}a{font-weight:bold;font-size:120%;line-height:150%;margin-top:0.5rem;text-decoration:underline}}.edit-link{color:transparent}.edit-link:hover{color:#0894f1}#contact-form{padding:1em 2em;width:75vw;position:fixed;right:8px;bottom:2em;z-index:99;background-color:var(--bg-light);border:1px solid lightgray;box-shadow:0 4px 4px rgba(0,0,0,0.3),0 0 4px rgba(0,0,0,0.2)}form>button:hover{background-color:lightgray}.relative{position:relative}.flex{display:flex}.flex-1{flex:1 1 0%}.flex-none{flex:0 0 auto}.items-center{align-items:center}.justify-center{justify-content:center}.justify-end{justify-content:flex-end}.gap-2{gap:0.5rem}.flex-col{display:flex;flex-direction:column}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.search-trigger{color:gray;&:hover{cursor:pointer}kbd{font-size:0.75rem;background-color:white;border:1px solid #ccc;padding:0px 4px;border-radius:4px}}</style>
+<style>body{padding-bottom:4px}.tnav{margin-bottom:-0.5rem;align-items:baseline;flex-wrap:wrap;justify-content:space-around;column-gap:4px;row-gap:8px}.title{font-size:18pt;font-weight:bold}.tagtop{font-size:10pt;margin-left:1em;color:var(--text-color);text-decoration:none}.tagtop:hover{color:var(--text-color-light)}h1,h2{transition:background-color 1s ease}.toc-wrapper{position:fixed;left:0.25rem;top:50%;transform:translateY(-50%);z-index:50;max-height:calc(100vh - 2rem);overflow-y:auto;&::-webkit-scrollbar{width:6px}&::-webkit-scrollbar-thumb{background-color:#d3d3d3;border-radius:8px}&::-webkit-scrollbar-track{background-color:#fafafa}}.toc-mini{display:flex;flex-direction:column;font-size:6pt;cursor:pointer;background-color:transparent;padding:0 8px 8px 8px;max-height:90vh;overflow:hidden}.toc-list{flex-direction:column;font-size:11pt;padding-left:8px;padding-right:8px;padding:12px 12px;background-color:white;box-shadow:rgba(15,15,15,0.04) 0px 0px 0px 1px,rgba(15,15,15,0.03) 0px 3px 6px,rgba(15,15,15,0.06) 0px 9px 24px;border:1px solid rgba(55,53,47,0.26);border-radius:8px}.toc-wrapper:hover>.toc-mini{display:none}.toc-wrapper:hover>.toc-list{display:flex}.toc-item-mini{margin-top:-8px}.toc-light{color:lightgray}</style>
+<style>.VIpgJd-ZVi9od-l4eHX-hSRGPd:active,.VIpgJd-ZVi9od-l4eHX-hSRGPd:hover,.VIpgJd-ZVi9od-l4eHX-hSRGPd:link,.VIpgJd-ZVi9od-l4eHX-hSRGPd:visited{font-size:12px;font-weight:700;color:#444;text-decoration:none}.VIpgJd-ZVi9od-LgbsSe button:active{background:none repeat scroll 0 0#CCC}.VIpgJd-ZVi9od-xl07Ob-ibnC6b:link{color:#00C;background:#FFF}.VIpgJd-ZVi9od-xl07Ob-ibnC6b:visited{color:#551A8B}.VIpgJd-ZVi9od-xl07Ob-ibnC6b:hover{background:#C3D9FF}.VIpgJd-ZVi9od-xl07Ob-ibnC6b:active{color:#00C}.VIpgJd-ZVi9od-vH1Gmf-ibnC6b:active div,.VIpgJd-ZVi9od-vH1Gmf-ibnC6b:link div,.VIpgJd-ZVi9od-vH1Gmf-ibnC6b:visited div{color:#00C;background:#FFF}.VIpgJd-ZVi9od-vH1Gmf-ibnC6b:hover div{color:#FFF;background:#36C}.VIpgJd-ZVi9od-vH1Gmf-ibnC6b-gk6SMd:active div,.VIpgJd-ZVi9od-vH1Gmf-ibnC6b-gk6SMd:hover div,.VIpgJd-ZVi9od-vH1Gmf-ibnC6b-gk6SMd:link div,.VIpgJd-ZVi9od-vH1Gmf-ibnC6b-gk6SMd:visited div{color:#000;font-weight:700}@-webkit-keyframes spinner-rotator{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(270deg);transform:rotate(270deg)}}@keyframes spinner-rotator{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(270deg);transform:rotate(270deg)}}@-webkit-keyframes spinner-dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;-webkit-transform:rotate(135deg);transform:rotate(135deg)}to{stroke-dashoffset:187;-webkit-transform:rotate(450deg);transform:rotate(450deg)}}@keyframes spinner-dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;-webkit-transform:rotate(135deg);transform:rotate(135deg)}to{stroke-dashoffset:187;-webkit-transform:rotate(450deg);transform:rotate(450deg)}}.VIpgJd-yAWNEb-L7lbkb input::-moz-focus-inner{border:0}.VIpgJd-yAWNEb-L7lbkb{color:#222;background-color:#fff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,.2);-moz-box-shadow:0 4px 16px rgba(0,0,0,.2);-webkit-box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:10pt;width:420px;position:absolute;z-index:10000}.VIpgJd-yAWNEb-L7lbkb textarea:focus{box-shadow:inset 0 1px 2px rgba(0,0,0,.3);border:1px solid #4d90fe;outline:none}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:hover{border:1px solid #c6c6c6;color:#222;-webkit-transition:all 0s;transition:all 0s;background-color:#f8f8f8;background-image:-webkit-gradient(linear,left top,left bottom,from(#f8f8f8),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f8f8f8,#f1f1f1);background-image:-o-linear-gradient(top,#f8f8f8,#f1f1f1)}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:active{border:1px solid #c6c6c6;color:#333;background-color:#f6f6f6;background-image:-webkit-gradient(linear,left top,left bottom,from(#f6f6f6),to(#f1f1f1));background-image:-webkit-linear-gradient(top,#f6f6f6,#f1f1f1);background-image:-o-linear-gradient(top,#f6f6f6,#f1f1f1)}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:focus .VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input.AHmuwe .VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:active,.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:focus:active{box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);-webkit-box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);-moz-box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:focus{outline:none;border:1px solid #4d90fe;z-index:4!important}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf.AHmuwe .VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf:active,.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf:hover .VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf:focus{border-color:#3079ed;background-color:#357ae8;background-image:-webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#357ae8));background-image:-webkit-linear-gradient(top,#4d90fe,#357ae8);background-image:-o-linear-gradient(top,#4d90fe,#357ae8)}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf:hover{box-shadow:inset 0 0 0 1px #fff,0 1px 1px rgba(0,0,0,.1);-webkit-box-shadow:inset 0 0 0 1px #fff,0 1px 1px rgba(0,0,0,.1);-moz-box-shadow:inset 0 0 0 1px #fff,0 1px 1px rgba(0,0,0,.1)}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf:active,.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf:focus,.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input .VIpgJd-yAWNEb-Z0Arqf-sFeBqf:hover,.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:active,.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:focus,.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-L4Nn5e-I9GLp .VIpgJd-yAWNEb-Z0Arqf-I9GLp input:hover{border-color:#3079ed}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-IFdKyd-xl07Ob .VIpgJd-yAWNEb-VIpgJd-j7LFlb:hover{background:#ddd}.VIpgJd-yAWNEb-L7lbkb span:focus{outline:none}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-IFdKyd-YPqjbf-fmcmS:hover{border:1px solid #b9b9b9;border-top:1px solid #a0a0a0;box-shadow:inset 0 1px 2px rgba(0,0,0,.1)}.VIpgJd-yAWNEb-L7lbkb .VIpgJd-yAWNEb-IFdKyd-YPqjbf-fmcmS:focus{box-shadow:inset 0 1px 2px rgba(0,0,0,.3);outline:none;border:1px solid #4d90fe}.VIpgJd-yAWNEb-hvhgNd .VIpgJd-yAWNEb-hvhgNd-bgm6sf:hover{background:#e8ebec}</style><meta name=referrer content=no-referrer><link rel=icon href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A9vz9B7Lt/Utu3v6OStf+skjW/rVo3f6UrOz+UPT7/Qn///8A////AP///wD///8A////AP///wD8/f4Asu3+SiTO/toAx/79AMj//wDI//8Aoc3/AIar/wDA9f0gzf7druz+TdbW1iaoqKhV1tbWJv///wD8/f0AjuX+bwTH/voAyP//AMj//wDI//8AyP//AFRr/wAEBf8AseL/AMj//wS/8/oUJSrpFBQU6uDg4B3///8Aruz+TQTH/voAyP//AMj//wDI//8AyP//AMj//wBUa/8ABAX/ALHi/wDI//8AX3n/AAAA/3iTm4T///8A8vv9ChpGUuMAWXH/AMj//wDI//8Awvj/AEtf/wA8Tf8ASV3/AAAB/wCCpv8An8v/AAME/wA6S/8cyvvg8vv9CqTq/lkAERb9ADA+/wDI//8AyP//AG2L/wAAAf8Aa4j/AFRr/wAAAP8ADhL/ACAq/wANEf8Ard3/AMf+/aTq/llc2v6gABEW/wAsOP8Ax/7/AKjW/wAKDf8AKzf/AML3/wBUa/8AAgL/ABEW/wAAAP8AcI//AMj//wDI//9e2/6fONP+xQARFv8AAwT/AIyz/wAyQP8ABwn/AKDN/wDI//8AVGv/AAQF/wCIrv8ABgj/AEdb/wDG/f8AyP//PNP+wTbS/scAERb/AAAA/wAFBv8AAAD/AGSA/wDI//8AyP//AFRr/wAEBf8AseL/AHKR/wAAAP8AfJ7/AMj//zrT/sJW2f6oABEW/wAhK/8AGiH/AAgK/wC05v8AyP//AMj//wBUa/8ABAX/ALHi/wDG/P8APU7/AA0R/wCo1v9Y2v6mmuj+YwARFv0AMD7/AJfB/wADBP8ATmT/AMb9/wDI//8AY3//AB4m/wC05v8AyP//ALTm/wAoM/8AR1r9mub7Y+r5/RIMExXyADA+/wDI//8AZH//AAIC/wCDqP8AyP//AMj//wDI//8AyP//AMj//wDI//8AyP//Esr+6ur5/RL///8AFhYW6AAwPv8AyP//AMP5/wA0Qv8ADxP/AK3d/wDI//8AyP//AMj//wDI//8AyP//AMf+/Zbn/mX///8A////AIyMjHFYkJ+mAMf+/QDI//8AsOH/AGaC/wCPt/8AyP//AMj//wDI//8AyP//AMj+/W7e/o76/f0B////AP///wD///8A+v39AZbn/mcQyv7tAMf+/QDI//8AyP//AMj//wDI//8Ax/7/Dsr+7pDm/mv6/f0D////AP///wD///8A////AP///wD///8A5vj9FZDm/mtM1/6xKtD+0yjP/tVG1v62jOX+ceT4/Rj///8A////AP///wD///8A/D8AAPAPAADgAQAAwAEAAIABAACAAQAAAAAAAAAAAAAAAAAAAAAAAIABAACAAQAAgAMAAMADAADwDwAA/D8AAA==" sizes=any><style>.sf-hidden{display:none!important}</style><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"></head>
+<body>
+ 
+ <div class="wrap flex items-center mt-4">
+ 
+ <div class="flex gap-2 flex-1 search-trigger items-center">
+ <kbd>Ctrl + K</kbd>
+ <div>to search...</div>
+ </div>
+ <div class="flex flex-none gap-2" style=color:var(--text-color-light)>
+ <a class=hdr href=https://blog.kowalczyk.info/ title=Home>Home</a>
+ <div>•</div>
+ <a class=hdr href=https://blog.kowalczyk.info/software/ title=Software>Software</a>
+ <div>•</div>
+ <a class=hdr href=https://blog.kowalczyk.info/contactme>Contact Me</a>
+ </div>
+ <div class="flex flex-1 justify-end gap-2">
+ <a class=flex href=https://github.com/kjk target=_blank title="my GitHub account">
+ <svg xmlns=http://www.w3.org/2000/svg class="icon icon-tabler icon-tabler-brand-github" width=1em height=1em viewBox="0 0 24 24" stroke-width=2 stroke=currentColor fill=none stroke-linecap=round stroke-linejoin=round>
+ <path stroke=none d="M0 0h24v24H0z" fill=none></path>
+ <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+ </svg>
+ </a>
+ <a class=flex href=https://x.com/kjk target=_blank title="my Twitter musings">
+ <svg xmlns=http://www.w3.org/2000/svg class="icon icon-tabler icon-tabler-brand-twitter" width=1em height=1em viewBox="0 0 24 24" stroke-width=2 stroke=currentColor fill=none stroke-linecap=round stroke-linejoin=round>
+ <path stroke=none d="M0 0h24v24H0z" fill=none></path>
+ <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z"></path>
+ </svg>
+ </a>
+ <a class=flex href=https://blog.kowalczyk.info/atom.xml title="RSS / Atom feed">
+ <svg xmlns=http://www.w3.org/2000/svg class="icon icon-tabler icon-tabler-rss" width=1em height=1em viewBox="0 0 24 24" stroke-width=2 stroke=currentColor fill=none stroke-linecap=round stroke-linejoin=round>
+ <path stroke=none d="M0 0h24v24H0z" fill=none></path>
+ <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+ <path d="M4 4a16 16 0 0 1 16 16"></path>
+ <path d="M4 11a9 9 0 0 1 9 9"></path>
+ </svg>
+ </a>
+ </div>
+</div>
+ <div class="flex tnav wrap relative mt-4">
+ <div class="relative hdr">
+ 
+ <h1 class=title>Principle of good design: discoverability</h1>
+ 
+ 
+ <div class=absolute style=right:-2.3em;top:0px>
+ <a class=edit-link href=https://github.com/kjk/blog/tree/master/www/md/2002-07-26-principle-of-good-design-discoverability.md rel=nofollow target=_blank>edit</a>
+ </div>
+ 
+ </div>
+ </div>
+ 
+ <div id=post class=wrap>
+ <div class=notion-page id=11n>
+<div>One of the principles of good design is discoverability: it should be easy for users to discover what the program can do just by fooling around.</div>
+<div>Menus and toolbars add discoverability: they don’t interfere if users don’t care about them but they’re always there, visible, for users to&nbsp;try out&nbsp;new features of the program.</div>
+<div>Emacs has poor discoverability. Most of the work is being done with arbitrary keystrokes and obscure lisp functions. The only way to find out what a given keystroke or lisp function does is by reading manuals.</div>
+<div>This is efficient for experienced users but presents a very high barrier to entry for new users.</div>
+<div>There are two problems:</div>
+<ul>
+<li>it’s hard to find out what a given keystroke does</li>
+<li>it’s hard to find out what is a keystroke that does what I want</li>
+</ul>
+<div>It would help discoverability if users could easily find those 2 things out. Here enters my idea: we need to add a new window that will list all keystrokes that are reachable from a given point.</div>
+<div>Normally it would be empty. When users presses “Alt” key it would list all keystrokes that start with “Alt” key. Entries should be sorted in the order of usefulness.</div>
+<div>That way users could see what a given keystroke does and with time learn other useful keystroke by looking at the list of available options.</div>
+<div>This window could be small, permanent window (with the ability to hide/show it) or something that only pops-up when needed (similar to how the auto-completion usually works). This idea is not limited to Emacs - many programs implement key bindings as a short-cut for frequently used functions and could benefit from a system like this.</div>
+</div>
+ </div>
+ 
+ <div class="flex justify-center">
+ 
+ <a href=https://blog.kowalczyk.info/tag/ui class=tagtop>#ui</a>
+ 
+ </div>
+ 
+ 
+ <div class="flex justify-center mt-2">
+ <div style=font-size:12px;color:#666>
+ Feb 12 2023
+ </div>
+ </div>
+ 
+ 
+<div class=wrap style=margin-top:2rem>
+ <h2 style=font-size:1.1rem;margin-bottom:0.75rem>Related articles</h2>
+ <ul style=margin:0;padding-left:1.25rem;line-height:1.8>
+ 
+ <li><a href=https://blog.kowalczyk.info/article/d-2025-07-09/evolving-edna-ask-ai-ui.html>Evolving Edna Ask AI UI</a></li>
+ 
+ </ul>
+</div>
+ <div class=wrap style=margin-top:2rem;font-size:1rem;line-height:1.4rem>
+ <div class="banner-notice flex flex-col items-center" style=position:relative;display:flex>
+ <div class=bhdr>
+ try my software
+ </div>
+ <table style="border-spacing:0 0;border-collapse:separate;width:100%;padding:1rem 1rem">
+ <tbody>
+ <tr>
+ <td valign=top>
+ <a target=_blank href="https://edna.arslexis.io/?utm_source=blog">Edna</a>
+ </td>
+ <td>
+ <div class=flex-col>
+ <div>
+ speedy note taking app with super powers
+ </div>
+ </div></td>
+ </tr>
+ <tr class=for-win2>
+ <td valign=top>
+ <a target=_blank href="https://www.sumatrapdfreader.org/free-pdf-reader?utm_source=blog">SumatraPDF</a>
+ </td>
+ <td>
+ <div class=flex-col>
+ <div>
+ small, fast, free PDF / ePub / comic book reader for Windows
+ </div>
+ </div>
+ </td>
+ </tbody>
+ </table>
+ </div>
+</div>
+ <form name=blog-article-feedback netlify id=contact-form class=sf-hidden>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </form>
+ <p></p>
+ <p></p>
+<div id=goog-gt-tt class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style='display:none;border-radius:12px;margin:0 0 0-23px;padding:0;font-family:"Google Sans",Arial,sans-serif' data-id></div><div class=toc-wrapper><div class=toc-mini><div class=toc-item-mini>▃</div><div class="toc-item-mini toc-light">▃</div></div><div class="toc-list sf-hidden"></div></div>

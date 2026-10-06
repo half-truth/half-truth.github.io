@@ -1,0 +1,593 @@
+<!DOCTYPE html> <html lang=en style=position:relative;min-height:100dvh><!--
+ Page saved with SingleFile 
+ url: https://interconnected.org/home/2021/08/12/notation 
+ saved date: Mon Aug 03 2026 00:01:11 GMT+0800 (中国标准时间)
+--><!--
+
+       .....           .....
+   ,ad8PPPP88b,     ,d88PPPP8ba,
+  d8P"      "Y8b, ,d8P"      "Y8b
+ dP'           "8a8"           `Yd
+ 8(              "              )8
+ I8                             8I
+  Yb,          T h e          ,dP
+   "8a,      W o r l d      ,a8"
+     "8a,     W i d e     ,a8"
+       "Yba    W e b    adP"
+         `Y8a         a8P'
+           `88,     ,88'
+             "8b   d8"
+              "8b d8"
+               `888'
+                 "
+
+--><meta charset=utf-8>
+<title>Collecting my thoughts about notation and user interfaces (Interconnected)</title>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<style>/*! TACHYONS v4.12.0 | http://tachyons.io *//*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}a{background-color:transparent}strong{font-weight:bolder}button,input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button{text-transform:none}[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}[type=checkbox]{box-sizing:border-box}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}a,article,aside,blockquote,body,div,footer,form,h1,h2,h5,html,input[type=text],li,main,p,ul{box-sizing:border-box}.bl{border-left-style:solid;border-left-width:1px}.b--black{border-color:#000}.b--orange{border-color:#ff6300}.bw2{border-width:.25rem}.br-0{border-right-width:0}.bb-0{border-bottom-width:0}.bl-0{border-left-width:0}.cf:after,.cf:before{content:" ";display:table}.cf:after{clear:both}.cf{*zoom:1}.dib{display:inline-block}.fl{float:left}.fl{_display:inline}.i{font-style:italic}.normal{font-weight:400}.b{font-weight:700}.input-reset{-webkit-appearance:none;-moz-appearance:none}.button-reset::-moz-focus-inner,.input-reset::-moz-focus-inner{border:0;padding:0}.tracked{letter-spacing:.1em}.lh-solid{line-height:1}.lh-title{line-height:1.25}.lh-copy{line-height:1.5}.link{text-decoration:none}.link,.link:active,.link:focus,.link:hover,.link:link,.link:visited{transition:color .15s ease-in}.link:focus{outline:1px dotted currentColor}.list{list-style-type:none}.w3{width:4rem}.w-100{width:100%}.black-80{color:rgba(0,0,0,.8)}.black-50{color:rgba(0,0,0,.5)}.black-40{color:rgba(0,0,0,.4)}.white-70{color:hsla(0,0%,100%,.7)}.white-40{color:hsla(0,0%,100%,.4)}.black{color:#000}.white{color:#fff}.orange{color:#ff6300}.bg-black-90{background-color:rgba(0,0,0,.9)}.bg-white{background-color:#fff}.bg-orange{background-color:#ff6300}.hover-black:focus,.hover-black:hover{color:#000}.hover-near-black:focus,.hover-near-black:hover{color:#111}.hover-dark-gray:focus,.hover-dark-gray:hover{color:#333}.hover-mid-gray:focus,.hover-mid-gray:hover{color:#555}.hover-gray:focus,.hover-gray:hover{color:#777}.hover-silver:focus,.hover-silver:hover{color:#999}.hover-light-silver:focus,.hover-light-silver:hover{color:#aaa}.hover-moon-gray:focus,.hover-moon-gray:hover{color:#ccc}.hover-light-gray:focus,.hover-light-gray:hover{color:#eee}.hover-near-white:focus,.hover-near-white:hover{color:#f4f4f4}.hover-white:focus,.hover-white:hover{color:#fff}.hover-black-90:focus,.hover-black-90:hover{color:rgba(0,0,0,.9)}.hover-black-80:focus,.hover-black-80:hover{color:rgba(0,0,0,.8)}.hover-black-70:focus,.hover-black-70:hover{color:rgba(0,0,0,.7)}.hover-black-60:focus,.hover-black-60:hover{color:rgba(0,0,0,.6)}.hover-black-50:focus,.hover-black-50:hover{color:rgba(0,0,0,.5)}.hover-black-40:focus,.hover-black-40:hover{color:rgba(0,0,0,.4)}.hover-black-30:focus,.hover-black-30:hover{color:rgba(0,0,0,.3)}.hover-black-20:focus,.hover-black-20:hover{color:rgba(0,0,0,.2)}.hover-black-10:focus,.hover-black-10:hover{color:rgba(0,0,0,.1)}.hover-white-90:focus,.hover-white-90:hover{color:hsla(0,0%,100%,.9)}.hover-white-80:focus,.hover-white-80:hover{color:hsla(0,0%,100%,.8)}.hover-white-70:focus,.hover-white-70:hover{color:hsla(0,0%,100%,.7)}.hover-white-60:focus,.hover-white-60:hover{color:hsla(0,0%,100%,.6)}.hover-white-50:focus,.hover-white-50:hover{color:hsla(0,0%,100%,.5)}.hover-white-40:focus,.hover-white-40:hover{color:hsla(0,0%,100%,.4)}.hover-white-30:focus,.hover-white-30:hover{color:hsla(0,0%,100%,.3)}.hover-white-20:focus,.hover-white-20:hover{color:hsla(0,0%,100%,.2)}.hover-white-10:focus,.hover-white-10:hover{color:hsla(0,0%,100%,.1)}.hover-inherit:focus,.hover-inherit:hover{color:inherit}.hover-bg-black:focus,.hover-bg-black:hover{background-color:#000}.hover-bg-near-black:focus,.hover-bg-near-black:hover{background-color:#111}.hover-bg-dark-gray:focus,.hover-bg-dark-gray:hover{background-color:#333}.hover-bg-mid-gray:focus,.hover-bg-mid-gray:hover{background-color:#555}.hover-bg-gray:focus,.hover-bg-gray:hover{background-color:#777}.hover-bg-silver:focus,.hover-bg-silver:hover{background-color:#999}.hover-bg-light-silver:focus,.hover-bg-light-silver:hover{background-color:#aaa}.hover-bg-moon-gray:focus,.hover-bg-moon-gray:hover{background-color:#ccc}.hover-bg-light-gray:focus,.hover-bg-light-gray:hover{background-color:#eee}.hover-bg-near-white:focus,.hover-bg-near-white:hover{background-color:#f4f4f4}.hover-bg-white:focus,.hover-bg-white:hover{background-color:#fff}.hover-bg-transparent:focus,.hover-bg-transparent:hover{background-color:transparent}.hover-bg-black-90:focus,.hover-bg-black-90:hover{background-color:rgba(0,0,0,.9)}.hover-bg-black-80:focus,.hover-bg-black-80:hover{background-color:rgba(0,0,0,.8)}.hover-bg-black-70:focus,.hover-bg-black-70:hover{background-color:rgba(0,0,0,.7)}.hover-bg-black-60:focus,.hover-bg-black-60:hover{background-color:rgba(0,0,0,.6)}.hover-bg-black-50:focus,.hover-bg-black-50:hover{background-color:rgba(0,0,0,.5)}.hover-bg-black-40:focus,.hover-bg-black-40:hover{background-color:rgba(0,0,0,.4)}.hover-bg-black-30:focus,.hover-bg-black-30:hover{background-color:rgba(0,0,0,.3)}.hover-bg-black-20:focus,.hover-bg-black-20:hover{background-color:rgba(0,0,0,.2)}.hover-bg-black-10:focus,.hover-bg-black-10:hover{background-color:rgba(0,0,0,.1)}.hover-bg-white-90:focus,.hover-bg-white-90:hover{background-color:hsla(0,0%,100%,.9)}.hover-bg-white-80:focus,.hover-bg-white-80:hover{background-color:hsla(0,0%,100%,.8)}.hover-bg-white-70:focus,.hover-bg-white-70:hover{background-color:hsla(0,0%,100%,.7)}.hover-bg-white-60:focus,.hover-bg-white-60:hover{background-color:hsla(0,0%,100%,.6)}.hover-bg-white-50:focus,.hover-bg-white-50:hover{background-color:hsla(0,0%,100%,.5)}.hover-bg-white-40:focus,.hover-bg-white-40:hover{background-color:hsla(0,0%,100%,.4)}.hover-bg-white-30:focus,.hover-bg-white-30:hover{background-color:hsla(0,0%,100%,.3)}.hover-bg-white-20:focus,.hover-bg-white-20:hover{background-color:hsla(0,0%,100%,.2)}.hover-bg-white-10:focus,.hover-bg-white-10:hover{background-color:hsla(0,0%,100%,.1)}.hover-dark-red:focus,.hover-dark-red:hover{color:#e7040f}.hover-red:focus,.hover-red:hover{color:#ff4136}.hover-light-red:focus,.hover-light-red:hover{color:#ff725c}.hover-orange:focus,.hover-orange:hover{color:#ff6300}.hover-gold:focus,.hover-gold:hover{color:#ffb700}.hover-yellow:focus,.hover-yellow:hover{color:gold}.hover-light-yellow:focus,.hover-light-yellow:hover{color:#fbf1a9}.hover-purple:focus,.hover-purple:hover{color:#5e2ca5}.hover-light-purple:focus,.hover-light-purple:hover{color:#a463f2}.hover-dark-pink:focus,.hover-dark-pink:hover{color:#d5008f}.hover-hot-pink:focus,.hover-hot-pink:hover{color:#ff41b4}.hover-pink:focus,.hover-pink:hover{color:#ff80cc}.hover-light-pink:focus,.hover-light-pink:hover{color:#ffa3d7}.hover-dark-green:focus,.hover-dark-green:hover{color:#137752}.hover-green:focus,.hover-green:hover{color:#19a974}.hover-light-green:focus,.hover-light-green:hover{color:#9eebcf}.hover-navy:focus,.hover-navy:hover{color:#001b44}.hover-dark-blue:focus,.hover-dark-blue:hover{color:#00449e}.hover-blue:focus,.hover-blue:hover{color:#357edd}.hover-light-blue:focus,.hover-light-blue:hover{color:#96ccff}.hover-lightest-blue:focus,.hover-lightest-blue:hover{color:#cdecff}.hover-washed-blue:focus,.hover-washed-blue:hover{color:#f6fffe}.hover-washed-green:focus,.hover-washed-green:hover{color:#e8fdf5}.hover-washed-yellow:focus,.hover-washed-yellow:hover{color:#fffceb}.hover-washed-red:focus,.hover-washed-red:hover{color:#ffdfdf}.hover-bg-dark-red:focus,.hover-bg-dark-red:hover{background-color:#e7040f}.hover-bg-red:focus,.hover-bg-red:hover{background-color:#ff4136}.hover-bg-light-red:focus,.hover-bg-light-red:hover{background-color:#ff725c}.hover-bg-orange:focus,.hover-bg-orange:hover{background-color:#ff6300}.hover-bg-gold:focus,.hover-bg-gold:hover{background-color:#ffb700}.hover-bg-yellow:focus,.hover-bg-yellow:hover{background-color:gold}.hover-bg-light-yellow:focus,.hover-bg-light-yellow:hover{background-color:#fbf1a9}.hover-bg-purple:focus,.hover-bg-purple:hover{background-color:#5e2ca5}.hover-bg-light-purple:focus,.hover-bg-light-purple:hover{background-color:#a463f2}.hover-bg-dark-pink:focus,.hover-bg-dark-pink:hover{background-color:#d5008f}.hover-bg-hot-pink:focus,.hover-bg-hot-pink:hover{background-color:#ff41b4}.hover-bg-pink:focus,.hover-bg-pink:hover{background-color:#ff80cc}.hover-bg-light-pink:focus,.hover-bg-light-pink:hover{background-color:#ffa3d7}.hover-bg-dark-green:focus,.hover-bg-dark-green:hover{background-color:#137752}.hover-bg-green:focus,.hover-bg-green:hover{background-color:#19a974}.hover-bg-light-green:focus,.hover-bg-light-green:hover{background-color:#9eebcf}.hover-bg-navy:focus,.hover-bg-navy:hover{background-color:#001b44}.hover-bg-dark-blue:focus,.hover-bg-dark-blue:hover{background-color:#00449e}.hover-bg-blue:focus,.hover-bg-blue:hover{background-color:#357edd}.hover-bg-light-blue:focus,.hover-bg-light-blue:hover{background-color:#96ccff}.hover-bg-lightest-blue:focus,.hover-bg-lightest-blue:hover{background-color:#cdecff}.hover-bg-washed-blue:focus,.hover-bg-washed-blue:hover{background-color:#f6fffe}.hover-bg-washed-green:focus,.hover-bg-washed-green:hover{background-color:#e8fdf5}.hover-bg-washed-yellow:focus,.hover-bg-washed-yellow:hover{background-color:#fffceb}.hover-bg-washed-red:focus,.hover-bg-washed-red:hover{background-color:#ffdfdf}.hover-bg-inherit:focus,.hover-bg-inherit:hover{background-color:inherit}.pa2{padding:.5rem}.pl0{padding-left:0}.pl2{padding-left:.5rem}.pb1{padding-bottom:.25rem}.pt4{padding-top:2rem}.pv5{padding-top:4rem;padding-bottom:4rem}.ph0{padding-left:0;padding-right:0}.ph2{padding-left:.5rem;padding-right:.5rem}.ml0{margin-left:0}.mb0{margin-bottom:0}.mb2{margin-bottom:.5rem}.mb3{margin-bottom:1rem}.mb4{margin-bottom:2rem}.mt0{margin-top:0}.mt1{margin-top:.25rem}.mt2{margin-top:.5rem}.mt3{margin-top:1rem}.mt4{margin-top:2rem}.mt5{margin-top:4rem}.mt6{margin-top:8rem}.mv5{margin-top:4rem;margin-bottom:4rem}.nb2{margin-bottom:-.5rem}.underline{text-decoration:underline}.ttu{text-transform:uppercase}.f2{font-size:2.25rem}.f3{font-size:1.5rem}.f4{font-size:1.25rem}.f5{font-size:1rem}.f6{font-size:.875rem}.f7{font-size:.75rem}.measure{max-width:30em}.measure-wide{max-width:34em}.center{margin-left:auto}.center{margin-right:auto}.nowrap{white-space:nowrap}.dim:focus,.dim:hover{transition:opacity .15s ease-in}.dim:focus,.dim:hover{opacity:.5}.dim:active{opacity:.8;transition:opacity .15s ease-out}.glow:focus,.glow:hover{transition:opacity .15s ease-in}.glow:focus,.glow:hover{opacity:1}.hide-child:active .child,.hide-child:focus .child,.hide-child:hover .child{opacity:1;transition:opacity .15s ease-in}.underline-hover:focus,.underline-hover:hover{text-decoration:underline}.grow:focus,.grow:hover{-webkit-transform:scale(1.05);transform:scale(1.05)}.grow:active{-webkit-transform:scale(.9);transform:scale(.9)}.grow-large:focus,.grow-large:hover{-webkit-transform:scale(1.2);transform:scale(1.2)}.grow-large:active{-webkit-transform:scale(.95);transform:scale(.95)}.pointer:hover{cursor:pointer}.shadow-hover:after{content:"";box-shadow:0 0 16px 2px rgba(0,0,0,.2);border-radius:inherit;opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;transition:opacity .5s cubic-bezier(.165,.84,.44,1)}.shadow-hover:focus:after,.shadow-hover:hover:after{opacity:1}.bg-animate:focus,.bg-animate:hover{transition:background-color .15s ease-in-out}.nested-links a:focus,.nested-links a:hover{color:#96ccff;transition:color .15s ease-in}@media screen and (min-width:30em){.pb0-ns{padding-bottom:0}.pb4-ns{padding-bottom:2rem}.ph0-ns{padding-left:0;padding-right:0}.ph2-ns{padding-left:.5rem;padding-right:.5rem}.ph3-ns{padding-left:1rem;padding-right:1rem}.mb5-ns{margin-bottom:4rem}.mt3-ns{margin-top:1rem}}@media screen and (min-width:30em) and (max-width:60em){.mw6-m{max-width:32rem}.f1-m{font-size:3rem}}@media screen and (min-width:60em){.mw9-l{max-width:96rem}.w5-l{width:16rem}.w-70-l{width:70%}.ph3-l{padding-left:1rem;padding-right:1rem}.mb4-l{margin-bottom:2rem}.mt1-l{margin-top:.25rem}.f-subheadline-l{font-size:5rem}.f4-l{font-size:1.25rem}.f5-l{font-size:1rem}.f6-l{font-size:.875rem}}</style>
+<style>body.container{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Ubuntu","Roboto","Noto Sans","Droid Sans",sans-serif}body.container.blog{background:#cdecff;animation:changingbg 600s infinite}h1,h2{font-family:Archivo,-apple-system,BlinkMacSystemFont,"Segoe UI","Ubuntu","Roboto","Noto Sans","Droid Sans",sans-serif}@keyframes changingbg{from{background:hsl(203deg 100% 90%)}8%{background:hsl(233deg 68% 92%)}17%{background:hsl(293deg 52% 90%)}25%{background:hsl(323deg 100% 90%)}33%{background:hsl(344deg 98% 92%)}42%{background:hsl(16deg 97% 92%)}50%{background:hsl(38deg 96% 90%)}58%{background:hsl(78deg 44% 87%)}67%{background:hsl(137deg 50% 84%)}75%{background:hsl(158deg 66% 77%)}83%{background:hsl(185deg 62% 84%)}92%{background:hsl(191deg 87% 84%)}to{background:hsl(203deg 100% 90%)}}*{text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}.container{display:flex;min-height:100vh;flex-direction:column}.content{flex:1}article#post .bulleted-list{list-style-type:square;list-style-position:inside}@media only screen and (min-width:30em){article#post .bulleted-list{list-style-position:outside}}@media only screen and (min-width:60em){.sticky-l{position:sticky;top:1em}}hr.invisible{clear:both;visibility:hidden}article#post q{color:#d73e00}article#post p a,article#post blockquote a{color:rgba(0,0,0,.9);background-color:rgba(251,241,169,.75);text-decoration:underline}article#post a:hover{background-color:white}.streak-badge{width:2.5rem;height:2.5rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}.slider:before{position:absolute;content:"";height:1.6rem;width:1.6rem;left:0.2rem;bottom:0.2rem;background-color:white;-webkit-transition:.3s;transition:.3s}input:checked+.slider{background-color:#19a974}input:focus+.slider{box-shadow:0 0 1px #19a974}input:checked+.slider:before{-webkit-transform:translateX(1.7rem);-ms-transform:translateX(1.7rem);transform:translateX(1.7rem)}.slider.round:before{border-radius:50%}::highlight(highlight-party){background:rgba(52,199,89,0.3)}</style>
+<style>@font-face{font-family:"Archivo";font-style:normal;font-weight:700;font-stretch:100%;src:url(data:font/woff2;base64,d09GMgABAAAAADiYAA8AAAAAoFwAADg5AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGmQbuWIcij4GYD9TVEFUWgCFLhEICoHRPIGhdQuEXgABNgIkA4k4BCAFhRQHjH0bK4UlbJtWs9tBJF6j7DcSEWwcAfQMmyMR9mKTiiT7/48JSo5tj9uDqkCCouxJLM9w9nacm+1Y2b44PWtaQjfTvJFFwwuIT9LAcH5l1bAzfnr8CV25xOl35EE+JUGiGaFGPQPcyREJO3l4fhzvuW8yo4ik+tPSTwPYVvIaiDbf4fm59f4i2YCxsWAsmrFkowajRm3NgA3pAQNGpoGRmCdg1J2FeifmmRinnGLeGXdn1CnXnFGXCk//3IfemZcvnohFs1PSFWTfuELlAlnP45++e/bu7B+gOh4ABK5pe/x+7q6+VyciLQ2YeUi09nWmliD9Y08b4F8g4OWYfmz+anu1SANgGxiQn3CdNESqABxI8BwAE03XTomRS/SFj51WGjs7K37v2r8zCx/mbgpov1AVqqeungLvbQoMWZvYB1hExZwCAwRD8/qQ4xY69fINxt+barb78AUJEDU67KVIXqTOSaFowtCUU+xchVhUi//+csPnasFdwCIABQZJB5AXCIKaw2UusViAHFyKGVSkdDnR55Rj73F7ld1eqs6uzq7clC5dVCFX1/UuSzeF52obvviL8e2zPfpZQNjNUWOdzVoBJQFQPLzd+MHNA7tvHR5rmP215rcwoCzlwBLJMxnvfC8BnG9GGi2lyOrYf1obRt6s93yChwQJqYhYEWuXsIikYr/vGHNF5Y/lj90kWaL0kqiHQJJ9UJVb1S8+pC9qQXrALvIBK8AQATAGDAbECGI2C2S2eWCeeQbyk59AgYICggcdL3jIyINAYIC2gLpgYIGC/AFI6rhEuPfuQ4DaJBxg424tOYC47UVbAyBCAOQU+CegblvftDQA3kffAphfapdagAwosuLQduVA1RpHYgorHJQAUIsPEP/6F2QXP2RDVlpinpm6tKhTqVS+HDlsMqWIF0VFCuKcNpD1YwQ5JAt/BXCJKfBKsmXlbfB/bETwAcWJLNi3BVWwUV9ZEHZYNMIuqOsI4avB2nwnadt602QAUBMCj/wTcAdu+q/CBTg7tcMwArv8W2HjgENyK3IAIiAyMSH4qiAIkMRNAwHVR3YFENc1YEDVc45FYNX28DPn6DiajhqGCig28nxwgmWw9CPp0K12FSvBRrxlbnB1wOKQs0QEER+Nv4/lv37yn3/yvW9//fHPAUaNI7ii/e95+5tf+ycvfUGO1kc1PbfdANVGGdEQCgd37dh06gnHHLFJyxbNiXMZkyciMAgYB+H/N75XNKetl/3OLQM+0aPucPJmV2PqBdCaC3S2Ex2GMeJgF2wdbGNDrWxJ85qJJXXVUl2VlZZvjRyK28qs7TCl+KJSJSW/wGT5VHEapUn5wVG0XeBfb4vyHJv86qkHxveKhvDtoi73u7HqnH4PbtoxB31hp08nW2/AcovMUcZ0LL9DkxoVijshj5MFkD5hEh0tBYnAq0v1f5mCBcDRF4kOoKDmcIsyxZYeKCdmRlEXrqvARlwIAECYmYa5DgAwLaS1AvBKggTJ8gLkyEv+cgHt8yuSAdWUBAu4g8IqYmI0c3hjtC50QITSSso5gA7cze9IRAEceJu/CuwdrQsNnDVEz3lZe6jyGaCkHN6YcGSERxUgpcO9dpzNlCCRxNwGSLEJmcPgLaN1oQNKr8KpTAYAFbs0oITSTACkYzqmGDirsgElnEwk20VuIGq9DLdCQCC3ct8lH4Bis3RcoBjnVpllAJSmO4cBUuA0ERlKO0A6UNT4x5opBs6tMkMAlEWXu8FKVmLEaA8jPHjw4HEjaMystW8NiPDh47X/oKkZF7GcYpyYqrKBR+/AIFcvwMaly0zPWrT/+lAAFwCnnGzgiH2l0t5lFSA9gJ122FTWWPYQfcEKHN0R1OQQSSFbyLZkIrD2CNFHRBAjWUd2wja2kvwBHP9lxU8d1ugLcGD1ZSGAhqfEjcJJASBfMrF8HiTlz/fm++gAE6jCfFvilXlRcxLWU9oxfiy08xXgd2HEznswv3gtd389Y/39zn/uff4EcP8QNY+anEThUpL/FK/wQmNVz701r222AHlVaU/Mak/i86aOvp5Qstd7WmHA/89Rlf+Yk4mCeRjvXO31Pe9II21AnuOGDDNvN9nZtvoFd/Y9kKOZW8fcmV3n72DEfFqMLB7UvSy8X97Xmma3UbrUy/y+eyrPDXVyUKSA752iHaNsbvsYYRl5Wjg9B/Lj0eevfZhau8uuS8gynWcSHwJb3+lkfVXH5tYZufNsZk2RsXNyGRvvtYyKfme0I/m/oDP+Yozl6OWbsM5LgmknsdKu+/u5E32hAQAnKsZHI7M2J+ds8norX2Wv7/7wiVLy3ouZQKs9BI28Mvh1J1Pv2d/vuXzYkfJO0Ism75OexTEovjYuwnXZz7zQiU4DUNhhH3FvI7/Xsi5ZchKl5+aFOYHOfaegNm/bNE9yoNocjUfO/yt/PhkdDxhZCRg1PuA57E0+GGblCxLv140ykvwJNV5yeJBJR55575WPfSmx938zWOIGL2pe5z1I+2LD/Wg+/NTD8fFe1N9iOXnuvc8XM2k3WT8ouCIKm7bBvFLSfp6wtUM11RgU07guPz7yfS76MqUOTR9eRnN3rE34TUzqeZP9rA1Csi90pTQA4Cbcpi7PFXBElMLSO98glf58gYpo/te/IIFQAO2wUPDoUOnpqaRJp2bioFGokI5HjTh16qVp1ChDu16ZZuljt9BKWc44q8A13ypy0y0ed91V7r6HKsAkgWAh4PmBoaCAYWKi4wkDIyMDo6DgR0kpgIoWSqQoBNGiicWIhaejE0RPDyZBGqR06TAy2EEcHIiyZAnk5IRRqAhGsVJoHtUgPj5oNWpg1KoFqVMHrV49fw0aYDRqRNKkDVy7DlidOkl06RKmWw+sXr3IppsJbpZZIH3mIZpvAYqFFgq2yCI8iy0mssQSQv36sSy1VKhllhFYbjmqFVZgWmklriOOojnmuBAnnEBzxlkMX/kKxVVXUV3zLZw77mC76y6Oe+5hu+8+jgce4nvnHbQpMAUoYCJBMGCwsBBwcBjw/GD4C4JARhaCggIvVCgqFpYAYcIgSIWjkJML7BEhTQ4nYQQ7x19ad2ogJibNDILktNECulaVE6tVz/Kp6QUJ4sQucLL8BAVStSeg8CZO8oPuQxObSIiYsAmLiIjQH0ql5Uw5OXp0DQF6C4nsZT5DADpO/lubMykjObzKPKQDbrCPk9Mnvadnb/fyj4e/Mb3eRGyeWA7CAYGB/5L4hEG+hqvAh1K0fP84FKrTqM9Cy5123pjbvvODRwmKLGO/kCmMTATMLKxs7DzKlKvgValKtVr1Zm0hs89hllMgIrFEKlPkBSXlvbqW1LNBmkbG0nX61ZF7XexscACiaqcbKNeDgUNAQkHDwEbGjslkZGJmYWVj77P2sOKdVKI0PDumTLkKXpWqVKevrjbrVH307mOz8l18hTuy1x1lJ1ocKHeAgUNAQkHDwL4xdyMCCBlMwCEgoaBhYCNm74iN5Tvp6oAwtxMTPv2AgodPQEhETCKMjFKkKDFi6Tmifd/r0K0n+nbSbHPMNW/AjGfzMtzFewOKoFgg41BgfkD2aCchnUI2jukyZgRHbbsI5/eO2/u0Hr8+oDrMQ82huA7dt0I55ePnsSpd23y3G/0gCwx8/AkR0cZ6Om8OTE1mixOQ/qewQ9uRh08WBGobS8UvN/2fVpwOMfYihwMVd7nJfk3LY4tZ1D53cuYvPQHLrpWGCSeF4wcfqwu6LqgpkathQA33sxCAnhroSVj7qr4JDG03+HVDYz1Y+bbFUw4WfPZVeUDf58byOtBzQ9pIw3aqv7bXt4Cy73b7oPBnR0sDcP0+Eg5gZaMiVEImBIImWIIhOAjOrsJfgECfEKnNRKFNaidd6JOWXqu839OMZnPKkpP0KHD4cWtjjmBJm61kEQECVsgsHNgvqjthnvlJag5ZHuVuO5IICw2Jn3lgiswFk60PjMMccJcsMhvV2SCQUvmEkO1wXhqV78FwwlXWAzFI4CjBlyyCAwchgSjSvEm+uMF2Ggemn0QaizuMQPQ/2Ii/CCc7TxejI2lhleIXPqUgdkABlLdJMDQUs0CMQ84wD84CFttEoO5qRaADAnVk/m76gdOblfAgcHxlCUpoAVh0nHjTzTATBLk6eNeXKA6+IhIksYkId+iCEC8CjVUIERw7uPOrgwgTTK8Jg7NDhQQLVhoIo4iAFYkQWsRBGII/IxTkB9Gx+bUGLVJyzxlCMIViYePg4uETEBIRkwgjlSoT5meZImSHMEBDMGQNEAeAamYEetVLh7+uT0MRiOp5uFAa7CrSSXvpc1+BLEcBlzQMUvYiAks4VJ3AiB8PYnvRq6rjJEUcP1JWg+gnJ5mhCSC4ZCB4nMefF2SNoDwWAVHOA7sXIajuOAgP+UHEk+P1qpQPUVgzCgn4Hl0CqHRnHE9E+Jf5AK4ANgK2AGoCzLy3GcGnCP+D71hFoOq0rD8F0H6AUh82AugIDgLBgAOaggP6gu153VYNQQDseVfdBgEQ/yGVDo6NN+g6XIZtRUgA3luDqAkbFWmZQa0CQAGqcsiJiLL+A3OMJEgwBEqxZpqCCqSW3dFe6L0+GAiOgGPh/A+W8+YwOCwOjyPiaDg6Tiqn5eZxV7lXe0g8ysepqQTUw6Gi82n5KOdGAF4FjtnoxaFxmC8sghP7EXgbsBAgoeQH/k9mE0cHBwD/vvjhyWiA5/8M+ObJZxqe6B4/fFz52Pvo7qPb0DMQYBRgmQmAOMXMi0NZu5MDrvD/r0+d9MA5P3nvXw9dNO4rvzvqmiPOO+a4l5574ZR/QHDwCPyRUQSjYgrFwsbBIyUjp6CkEilKtBg6V4y56q0bIZUgXQYjM4csTtnyFSpSrISHT6069Ro1adehU5delwIHl7322KhnfjHh1yDA/xHYB/Pd8cZ1H4MKgB/2O5Cg3vnPmdDaZ4G7DjvkS6ehwCBgIKFh+QkSIBBJCBo6BiIuET4BCaFJYlpqETRihWuQIlGSVMkM0mSys7CymSaXi5tJKa8y5apU+FOlNs1atOpWo0eY6vhBRAgF+YPv/eCm275zCwTKKf6ACEWAsgwozQKd/gLo/ecHFZ3VwMBfDIQF2IEhMJeAgSifjw9KKYHLyk027ix0tMQHhLMaQAD1orJhjR1Jd9qEO6zNUvlKCFSsUAGyYtF8jdC5fyMwWSv5iumbtx/qo/JA3LXSG0+BYhWO+ODOOTPy3/tYf84s1S4qWSEWlA28EzHGVvTiUuZWy2sHkhKVts0GuAvyuIaggNzU5AYheMkWlaygJMZdQK4vZ5YL/J1Jl6dKU0ptBNhuV0aOmXg47GimlVvCrCprA3vEGJvrb46zpNv1XLsXV7nKpCpuArja7wq2JH9wfMiBiMGsVNqGYomFWIhRCcjxw5izpJhIhfRn6UOgoEJFDe3OLHrgajWqATwe05i2ZTIB1qDH0DMrLo3dZF/ptyWqGOP7WpZqKdffhWbQhJ5RxYRdLtB3cAG7dbQFgTozVBKvzLYUGQ7VPky3zyNzg6HbEfwcWj0YS1FOPm9QyeVrz1ELVIH5z53jX0lbNkfclygxxAKQjtNUslnkPRB+zqYyxsPvkOeUU+2an9E/miz+rX3Hamf35nqNq3AYB8VW2sH2qExGJgNBkGxR62jvV2rsDyEftypBlxzTpDflCIFiVg2XsT5Va7IIb/mFS8k+WQ25lSfSzJhGCMN+eoQ17yRey7jl37UBW5rMuQxyUSN8VyRW2dYdKeTwYqqMQjJDeBZl0smRoFRp1dCbfvlAbS9DLIpaJB+b94II22q7i43XsjNuBtaOhBFpQoTGpmagMEhT624JnlJgZorFLIB89RdsMCIOC/fVOoTnbFQ8k9uy1yzhL6KtaqjkrGjPjmyUi6ki9eZY8EO16FxjteJM5YPhQHxbHURL9ZTIdsZ9oQkm8ffiYs1xcp1rhIVVJvbRorBEpnIUkldZ0Is3vq0M+I2y2UKWSZFeysIKWzyDQotpJzmykNNE+7Fnr9SadPWxsPZQzCsx5otqX8T1a3ZLpCP8uQJSj6SCSoarhmK3v7d7Y6VoYCzLObuv95ZJgLaWs81g5ANJE9S7KhyZCdMGDewHE02BWvCEDPXkSSpr0gPEH3Rd+NNx8HgZF+aF6m4Pa2heh2QRvxXSu/n3EMqR5tZ3ApQgbB3FJ3HUdhBSvkPBzC6xRzpti70Of0Ca5MJydCAI7j9tR582eWy8R44PH2TTbyLpVh/HjOQFgnlPmJXYHpbCi0kKIWi4JWsDzruJjSDvVrl95k+VGs6LaH2uWG1Du0uyUvRpXu6xBaujWRET51PbFql71jLQYRbSgq9h4NCqlBat8n19J4DHnuyHdeCd8v6KF9MeRW01FG7nndX/yPJsoZ1XGNXeEt5tFJFXLQMftzQx61ZrZdnccAsSlRqQ9GBW2je0gDpKdvlWQyWPCiWT3ewix6Vvd9cx7+4eKgFzk7sv8mgwi6IidL5FfXLVUxc1z14ufcqHhDpv0XBz1kHV9Hf3W/Ss+9XHJphK1BolkpJl/oOl0XCNCYnFT7KUIFog5wBj+2qMvJ+rQ7Oy0cqVDppr48Q1SoY3cz7wGFBSwQTufALTy7i0NKMEoxArz8phSmIc6PtMta4evV2a3QPLthrdU1nqSH9SPw9PXh2Z19XhBQn3d2IP6AyfrfMklZu4J0pQU65BLgx1dGxVy1L6N+wCBJJsT+etc7Dy9q9bWWh3cf4lkCN8X4v1n5thXqaUVfwu68KbM0uaw6l3tBLbIbzm7in51H4+zM4kL0M2ZNsZtCUUKjQcchCim6ZrXS5EbSLjoemBGWnYqz5fpWHSEznottgw2gye+moY8a8GdYQKGI4FoxywV9o9tpezr8vDvam5z0RgLZgENVdwKuu1QITwV+DTsWWHcUBmgfrZZ1tdaNq77ZW4XqnuPSzmy4IvEo1ZViXkqXPF9tw7iwzjP79LKsWOnZBlYJx8qc9DnDoUdbK7RQXQJELjz5K2J+SlQwR7WA2ghCAOb2e16dqty/IEZ8UjlDGoQIAkTNVPKCUGcCPWVyetYmkIJftZ6FMlT+mfquzYSxiW/AdhN3aisfiAwsTuD3NhOBBIMuehH+ESg6IkWx+HHDwHzEP2qGlvxfboNgMbmdtUNi53CDvxlWAbzPDXV2IsD9UuOIOhFIf4rFy+kwLeBeyotkoCk1NoYn2aBgrcWQWa+qXwWEhqR95T0ZosY5XBn/fR/e7p6WHZiXm/sAr0/OMtHjk3upf+Mj56RcbTj17Ryip5AR15bX5eFxCRXDyjMw5Ds2f0ZShazJKh3h3SMLT4mBVvjweeFrmhKrEjE9yETVZZAQqoySdItEImXXQOi18PTw6aLIc1pQGjRiYdAIXfrxETTDChCfGFInESBcoz9U1D+wYtsIfq7F5dPqQDJ9ryaUlMyrdBAVuvloyapNFgmI9HWuaj9SpceMXiLsJKTVW9dUg5uOIft1olJstc7aI8/vRQIwOJOAsBKPXaHkj02USjJrFeUaX7QZrzT1F/C/5NgyqPfBoCUNCVUWGUsttBxYo+ypwOjWxPF++1F1u9M/LZArUPEMYAgC2mt2UT5j1iKzvGzZI6KrfkutS0yF+X8wPwSM1OfnWNyVxv7EzHQ7eT0xfpg9y8S4EnLPpFGSz8UF/akVV8x2frftqHgHI3FDDauwba3+xna2bpXCVuAKuc38JF2mpnCP8yHnYVLD+3Z6GTCwPnJqXLy32BDr5ztgTcp7Nyt4ai2hDIsseHUnMl1oFkoa8bKEuWIUJiBMmc99X0bXw/ccI0XNd3YL3rs0VBgOA5geqPf4Jg81MW7b7f0/c2K/UvsCT0T3UCfccgzAq8OOjLD1fplOF68PXv63TzVPn6uJlauL59fYQfKpWWZudxxshusFtC/1NKUab+9QbfWwdT9zIy75VzJw69sVZ+aHeLOqrvJG8Y1NoC96V463A1Wpog4dHGd3PcgO0SKi2qkWTVBAiQFGgbgUeb6BT6oCnNc1tAOjhJdIsDFthajB2B2Sw3kPU5TXYz63TsLEp4tHf9osFHXfSRJUPn0s3UjdPWLbWNhXZGZ1uz3gnjrQq6iiQgTvOkU6x2nlyCz40bo01IfDXGuave2x4bteSHw5Dy+r6KksEwXGdPnfkX15+iUlPoWwOlZLa1Zngb0+1p7fzCHWboYL5c0V97tbs7I0ero7Oj+4SYWZAUoO0zRCOiqvM6XYnMqnMpHXhxxY8culzq+UT3jB7ALfUTqLwb+vIeSLKlddAGHy2HjZaYC2I4vn2R7S2DNKYMneqds5ixcZs2uW7zE4r26Nfmjaea1LBaGx5ruiPkWbvp0UDOivjHfuRzQXTOueDiDpfQvaqeSgI9WEj4Er27n8Sw4XyWpluMknSg5hrmxTwfNaY8CMekPytBDKVEQgFqUFFFWTTXbd4qCxNXznDQg6ekrtMbtQ1cUXGsdjpW5IyW3dCptiPPa4OkC5rrZ797F++kxbt4N+3YuZvTt8PmfvfWO4FFW0lOyPGAWs3S+etf5NNcscq8R1vqlikHWfqArkOzDVk4v7j3B+rAV+cAnN7vit9dlb2lZgdDtjCWH8xF4ehoxRmmRfoKiepNNmimg2p1cGyM45DQ8DNmHN/EiLdiAjgiGArCkV+DgsoZPe+zj0ge+YT/m9rRvZEHCiMdrzuCtMFGK/huY7h4XGPy311RkczIrDQMyi2EWH0MPziygZg2sLU/MbNRFiBJVSpR1Nbg3jVhSKg/hiQJ1s1DztaPWS6VDv711r6ro1K5nJCl7WXsb75XinWE/Dn0lW2LPAaXCFa9524E5o/U3p+PUNBB1jgtqSXbFVGkeY57VN8IHq0uPX58iO8+0G6Y9jn66AMrlFlIqN8trHZ2HOkv0V0D+OnIJcrVgDrLIAIoyUCMm6iPq0fN9Uwdya1C2cQaaLbLa14zPEz6l/Hfnew6LAAAwgM5DhlyTKKckni7K1mANHNPNE+5s8j7W5fh+hsu3r5OfRiZ8R2P3sNSOKgbJYTFBulKltG3o9vUObs/XrzBkmta8WGvPnC1cgAKvffYmp+pFoR/Mxd8/C5+l27ky+02VMrrjzb8Jeyvc84bCOrsy/7hrIqNzZAQ2Ln0v9h0BpuKzWGHpkuIU7N1jfMW8jnc5fb25VUQZTSZ2jvap4lrgnO+V9fS0QcfUG57KsW4TDauUH6M/zt5QRBpITloYfkLFHzc60xu1Q0+89UNmr+Sn8GpuskPgc7R/Lk8gEjb29izVLJW200O3xnau5q3UBG/sOnjg+SpMjxcSkFS8uMKKMAysijKFaY2a8Ieh/2DcH/OS1UmxGQXhenedP8g/E3GiGxjf9t2ISSVRxUP86+AmfjaNSbbpp7D+0c+y+uPc3QWDKlEyek8ZZJTLSpNZ2eKSx2qpAgjV5ysWllg6+zXkf9SsGBfyPZsTQk5z9/vP1o4sdTpadq3iU5f6bkALCO02kGjY6ij3bFm0Fg7p2eOPI1+k2rRsDRUy800hnwOENX11MmFNJ+zZUTQs3xdaXfp8EDv0oW6nmbPG4B39G353MefNs5b1DCvy+VtcldgM46+bu9sz/vdOzGZl582d/bBB9373b893j2J3YmBYC5+68gXR7qzN26xNBnaQ/P1EYVJa9j7ph63tFaGiJ4VxTKHl7gVyVFOzp9y9LUWT2uZn/FBqjCbBCwjgwGqgMGRQY6Ks8RH3tP9T53zBj8kTo0PpUNTxY3Y5OsmiSv6s6Z3uwYBHW9vUOiKMtmfsBUyjVqdpD83dC47tqEhkmIFMfzoY8hg3NDBM8qG8qsbcWX+rLtfJD/zFDsPndNgAjZ/We0pejyyOk0O8mEGHIbxe0ByVU3PnNrunF+v5mJwkAmycdOAZWRxULOL9pcIGcgltCwbWUzv2ZSVifQPJfTiLdJLQxZDXv0oBN0q900BA7pJI6pJoB9fv8mavamzO3vjJkt940aLRro74yE3Whu61cYQKt2hZUfSs4KniFp1GD+YlhXJ1tIc1OIwWQFtehU6i8K8xzltdVGcHGLN8+qvONx2TxvoFOchQ7pB8AxfLUXSwsnO4Vb9yIOnnwfm4uvXWe2bOrvtG9dZ6hOrQ+rkgp4V6zzdnuHBXqm8tpoZJXY4gGXEayqLiihLTdVWeKNNV174jiqFKm7BMPcosI8M1Z01VtbSlBvSKkWZT8z9f1gpUrMLN1/LMAia3dhZ+hJdu97m3NSxP5fWjIIt2cJ1g8YXhf7XcpelIlJdmmiIq1zST9rR9c+Zf5u+kQcrWfmD7G+ACx9fS3VqFQ4dEg8bgOEQnHADRR56QeYZ9g/hXjQH2clm1km+QaWRGq1Kb3B8THmwWS01a/1WYULeDYql+55TaIoL5kA7xRw6yk9W2M0lc8PBO/WDGfYZD9WgDV+8IC6jK//zoWGT1WY02mym4aHP8zO6FsTho1ue2zXX2bMCnzf1ehTm3BI1TX2kUF57p1uCCqTnLZ19QQMA8dd4r63+Urd5UzhKt3RZ/OojG/7eC04d2ru5fK3EmctCMsJNGajCtQeL14ZlLQ+T0eSmla1dcXjvnood8orsUERoWrmsfAfAvq9+lHpk2R3k0jufP051319Htn9AbvsAgsjYdXt3ByF3BW1DryMjYwlI5gBmUvkbc4/M31f+uq4XWPH2NkGSJc5viLLXKpSd/FWmRa13i3QZFREar+n/odexS6IUd1iO+P1DB9PEZaakGha93fFccpGsyH+kgdoY8+aIlDPAZTzj8wScIlqZkSfp9TeLqT8auNwVGH+/hQgsWhGd4uWnGsuEWmPMC1ISgVswsJ4VevZRLhrhnxSIqGbuf4Clhca4iXwOiR6azx8Y4ivn3JWwzr78KrS/apo7o3Fuq7siecRUCLV9AEyFzgeLwN83c1/Vd/TBVl5lxEzI1srk63iL5LJFF8mLgwLkoEcNeZGEGd3/eo5JDi/d1TbDblDDPeCDP/DsdPyjWmW0Oq1A0udvE1N/bBXyz9AKeHzdan6GflrI5f9yGVF2X0xUR7GgKnRWgpRacPQWdVEEz/jERYtMrRC8zT1rJjEqQ18QsIyQuCJCGYcstQgnvmfd3xBPFWA+AV68JkeyDo1Lb7nVP4V6/3gzL6EwVtNVUhLRXayra5YCSnIENYKSAqSsgZ13+SQl1RAERPicZp2up6hE19USlx3lor/j2KL6BUUXeZIgapqWqqGlRUh5F2fx5mk49p/cIcRl6oPPe/kffHKxTtNdUqLtKozV80a+eY+aSrMWXDp6XbYE3SyGUw1KEv/SkYFQaQAlRe37OycHgBi8u1MX31WUG9lZmWCkrKFqbv8M/4yQUYb2l+E16wcT7evW+mW4Uctja9k9GUX6rg6dq1beTDNoqBqaoVmu8NANGoqWnuoBCry7XRfXXVwS19Wmy3XUx0R3FAsaQ1fYZLTao2+oiyL4xpd5tH3mR6w/NlioIslW6suw5Bfn3BWkzj6utP6Xxrkz/2ex3/CYNaZ+3zI9ZrNO/tL+/hiuAHnbzLVmXTgz5V2kP/znbYURtCqq1lPr2QYGT/IfuMUywf91l5jivvR0SbosNsZaIzGGCtPTtvvPFu4giQdPCWIibWVhaQ5aUwAhhXY/xeZIVKmN7rDYM4XHSaPv/Rn/0M7Q/qBSJ1ua1TKpVKZWyaQh7kMg6Vb/FBrx/DO+1iqUZqWU9pvoByvpFHboIZ4GJOZ39XctySf2E0HSu7XcZjGFDrrU5a2tce7Mhl8Zeoq4Yf9WNKCQpE/GNritrtPO4Lbvc8wzKpEfvL0ggtpFU/THShjJF0D8yfUVJ93u/+zovW2Hro0mbul6aDYOlHXIWyCJ2IrLQGN/2saLyBTHXULvbvGvmB/mSPL2W+hbtXcDmafm8jSLtS6RQq7J5EdLF74R/UX3GV+VLY/r+pEf8vIpzZ9DyuC4PPtKaryrU6fvKSrRd+marrwO3ZolRfqeXHetwkNP09A0u3llCnlZutt6iKOM53r2lmmPfc/rxFvOWPuH+vOWy+58foC9fUg9WHa2Nmf1FkXn/V0vcFPgJSrPCfxzCSEekIttuvhQfFfbIhJL+LA3RbwERx3c16ohrLBJaeRZhZduWlRiMQ8OLynm1MqS6WmaYO25m0EW7qSl2bDO9Cz143ug//oQ0raCxANnW/Dp6PXZYk1KcWxEd2mRprtQl8Db/Pg9arKRuhmToh5EHEQ1qAL5d4YHnrC95f1E1K8H9vMdhHIXHPlGaPAHvL0CpKGrj4wLApXUVDIYODCJev9oC09fqNN2F5VquotjkzU5ksVofHrL2X+orIHhcX6gimqAi3nFCKoaG/FfAVnodf/+wwk8UjYznP3kzTM+GpDx0W7qPbwIgYEWwBAwzCNCCG38lyCa74WRaiB7gqVh8b/kkNQKO+lwMA/tB83HkPKWhZKRvWf9Asc+XIy1kQzs9REqQXKy2B0IjFC8JDstsoCqiXJTP3JTZNFx2QDxOr0iKSGmuFKTml9n5DxayWKv+sDJaDEw8nwMiVbLk5zh4cADfMStUWFYcm06fbBuqLS2lETLo6sLD73Xgt/wjiJ3WWm/kXHQ2+m+6A9zI/qJLdgMtET4dkdUmm/x3RPscVU+uLunis332XH3FNGqfMh+HIDx84TVlocOdGgesvJ/jNPycOkYAQxvJ3ySDBmWtVLRmiUL6AlTq3aBvmutAhU6f2FiEnzBNsKK2N8jTi/joLBtW2fF/Q6wpwP2/z9cvglZsWnTgf9OBm5vPohsPgj6TwpxnmI9veN2xTXC6mmvHU/fpyL1g8Pb9aY3Sw++/UNk0aVz0CxoNR4VTjobwWdo4L5uahyoelV7Ihaq9qsD4pOp5dzIlAjiInJeDU0avzhMgQx+ekjgKHaVG/rD6Qdd/5C5iq8F/ku/S+AVJMUVs8jb0dn47Nr0mi/p94YxrNuNu+zWJYB6HjJ3hlA1ox/mW9fWjCLCv4+p6W75uFyybes2UvOaQ/SSSb/u9NwFCF+En+V3LelanE9cQsx+L916a8ktsNRIZeskgic9VpySRZxfRKH0r8Th8iAcXGGLTFb8CvG3E/5AB8c6d5Lp3nYEmYZJDkaQgskB0/4OJmw1gjFjlFksykpMFDnMoqhok0jDYdiyTOKoVMWkkhCBlcmwaqLiAwjDJxQJEpysheUVrAUJ2UX8hMQCPiREKspTKacW5FdcK3sUWJKZYAwsfSyTvQgsNv4+tvYcVDRtH9yRA3PR3AJBQuK6JqARyNnGGYbo2OWZcfJUKTl6j0D491KuYAEikGBMKWqRG1PyBIXB6Vwl1xprsCdcb1x2ebqhF4Tjc5o1sQXxgQuDZJ/FRB3Qiv/hsvS+eObYbi570fnQ0GdrWP7z6TG6nFpFRkZNuC5HJ77y95+IktQcAz7e3agCzqHIxnrDYt26IOeKfSKfuioiX5726qudn1gSCIYkd15j3hCQ4m0tUXpv+mL+zng+j3BMKt6O4zJKj26a7h8yfWOvBLd+WG3jxxero8ssxnhfQwyIwieW8g1Wbl+Rj7siyVUiTLRURKtKkxbyVes4ShBQBFLW9d8WZJTGKMtTMhIq66IstcKPHTxB+0ehgNgu4HcQwGCWaINhRU7f+ZzpH5xhGZ6kOk1baE9CJAjDu5s0UfmxuihH5/9Siyom0uVTm03V6mhXjEpm/WNhpEMXG5XfpMmtidyhVB/WRh5WK3dEauSzFIpShdKhUJQADt5SEa32JC3iq9dylC8DikHy4v4xYUZJtMqblKn31kdlJHp4KVae8kOVivTVQmIlX+AlCgVT7XrG7R9BOD6x8NBPWMhPTCjk67PZ47IX6p2FAr0vwBcQmAqgs+RHUIp+00m5E5i2XlHq4tiVVVUa4dyrJN72ITtx5Th8AuFBcnWCtTxaPWIR+FuLN2jajlEhCUlzrQCt9Vwo/ChUwsYRKb6PI5NfiAzveiYm88qumqjRkdqVtRrF74RSmTQZ4ihe/pbtNKSyHW/ligkfSTVEj2FMyFM5tihOtI3DsUZzouxAn5l/wh3J/eM1XcJwZgINnXXqdvNfeqZ/Jj0w/3AAyQFnooX2HyTKrGYaI+xJoWx81e4tRnAMb0iPi8A4ceQdjMCeQwGBNzuJ3BQuIfoQkbg1hkjIO0DAZhFZhLUi8ZoPbOZ3PYhLeI4/8Ti4aNqSNKpo9s8r2jL55LpLX/fiRmL4RlmqzARO4JOMCTHOgIvTA2inQ5knaKQZvkws4asfMzeYBxkUrnRCEpeRAk7glckcjjXFyMlNFihTHkdkBdcwhCLi9ZVUSd1qfow1OSGZcSaYMcpgnAyhngaVkSHFEW7qLiM54kZ8rqRIiyZhwBG84v5ZNnPPaGNuMPv6eknYkuvsYNfM0ctM9rdXFMn0o8HUI3T6TmrwMG0DtTKIUkkN7qAEdYDD+BR9kjqL0kMXConXV9LEhdu4OmtygiqpPELSt+rXjCsh1NMMxnUafRQczTgAexGfnewnEdlJ/WSMXft/gOi/Ty9kJ/WQUY8Ze+/NTqZFRn1m7FX8Uf3Wy9Fp8XnqLh7xtXttAiv0lLngXyfjpT2txzPQX4Ygs+55d8m2G1iTbfo06aqieapdv2XyyWmXvu7xjUTZwWug3h/k2aXeh19niK2QtWLVCmDapZvLalYzwnZn68PMqWJQPPOWtXImXsh/nlaW0uJy79SsoWnFKdFHl4aqGedObORNNI8vXb4UZHx6VV14+63mLlu+DLy4ohSUiWYqvDR8gdTB5s21efzRBNRiJNePb51z2x6klmYSl/dO48s2Lr3RNxgSOv8K/9tD/rk003/ZdCM/fNmGc1sWMFizVPxy4XJlOQNfG5bE4a5OaCFgCYjFKBJWYJ1zy05ukLMMVUJdumwpuH9NclMuCZPfktt1Sx8m0d8E29JxcypN4tTmqOZocWqlCTfbjpu9tk5LdEvUkHPAff4Bc4UnZI7dWyG96Dvwjg/VEUmP0zkVPuEBVrvKoVhKZ2YXUPvdCiiRBAhX3eaWAEJC+7x2wDdCd85vm5yFeb/09lJFZ35eoX6Au9lq4X46zCsCsx9jN/ezsyCvLn64rdwt8YN1IHuz2oorPCq7Frx7fbA7eMkJylX5kXorVmUJWnsHg74ISeJxkr8bwZCDGV9LBtpHqlaoWzxlzx6Km7L+ePBV2cWiSeAu+mkCaVe3iAK8n/Y9nOa75ssHfz1CW4lv9Hzo+Wi9733rNcKv398bC1GFIGU4psUfMFOX9M+Il5iTRWux3ci5sBTC5oDtexHdeSLxbkRM2bQHSOmNaSVyQ5wgpggRxIXE4FYB1AsHV3s/ufTJxarOi52X2n98lSnQQvhkfAlVdY6H2leP65XIQbcAGPJffWn19SKyB4Lnr160mjm/42sPIfM3Fg5IWv9Y/5CunOa42O64sNAsRIsTXPva9Uf5YjV4K6Pq+Rqu/bvhA0XFU60ZNEtYGM3eU8lbeNRMl0gs9KGFho4lVJtUQrUud09dPGGlFyUZ//JqtixNJjGFq5kqysLTJSfFElngX8mPGlZXNOFaHcLH+VhufcK0PxwOAzoAg/XHGK6f9L8n5LvifSw95+LCOhEmROVkncQ9c7xHBWKwgaj3jme4K1lsVQhWVLvmEpA2pYw4a5w1yRF55fLMtDJZZG5ywJIgRqqBwXBqaO1DNWsIeyObwM8D57POJ513rK1btGrhy0+Ljs/881gMIvP4o7r840Ozfr2woXDQcTbpbNbZAfAHiF134Hf1VM2pa75rp2tOXwW2q74JH9jNMpmG5majcc1ZXROu29o1awZNxsEhYLtSM1Ejv9jU0dS+BHFgi2ptevY9UiCvrWPFLrd94uuZIGxibKbq7asrBPiBS6dqTl3yXTpdc/qScIDq+sZfbD3z2RE+K1niYXF23rzeOnJwpyA062HIoR/B1WO7ltf/QwGVii0zW9cdN/n8qvxA4snLJyjWJnMIY9A2HJfaIFZwP14tp3SAr5/tLZ/Yq8iKNPFF1pQUkc3Ei4wy8pQuBOPXbpIMyAJD94wzRDvCA2XbEbuIRBNPqAtRwigeRFW7QirtAJe/ubJUHXNgjLJ2jVmmvgJefEN/E8f2qy+XXF6qjt0/Bu6sm3fWVXlsZZdxx5yqXYqSkk+lHfkpy72poRXK1LvJJJZUMl2MfL10pogSd/87qWqLTVTjnyQM2v8jm514FE9sQWBRYf+7ObEp2bwwg+oB1RPEquQXZtXkz9mk97XvsRVs7tm1c9c+ZiYmlZDp7Ez3y0AFYphNG08wAlRW3BN24J2HIB8/bbYqza1PM2ZtQZCT0uLjDTkzZLnZvQpDTgx9QQALdV7OtUrI1NA78FCzz8buw4j4zORglSaJ9phzcdLnzU/Re2ZEAmjHtlKPKq40zZxQWidLCTcl4IpwZhwQfalwBH4t5KP8oMUI4peNaAq71OhPVZ/MCEnnjOql7NauGe9nyKS6JHEOSaWwB35HV2sJknC48a+xs2KDX1hX6pw5HExbyHISC1eazEjAzQwK/c+TwgCz8dbZ2pJi7WyrNXJ2cTE0a0yKiTbXvCLRKRMXZWaIpMOWGGsS8oxRLu5vfLZGnpRMUsR+zmXn4lhOBc+UGR6XkzvHYp7vykWFOebc3Hlm0/xcF+/LuRYZ+8SiY2tJyd84NrzVU2Mk4SBnd7FxvXvDj4X0KWZlklEIvqMPzJrGReZzpw/k8hCFXHuRECFyg/TF1mrr4nRwcXmYQSw2hEnFBpUcXVRJw26ZmbWHxd7NYu1mh34OuPDAs30kw6kbo3g1ZT6/1ruWM1wzvDMqGObqgDCKN8GMn95XpmWPguLTWTFY0ei/7docw1Ow0d83nyBT1nYUf9itdYNntnOkhj2jnGlnA9xt7a444Na4gff9nqpsMX6kcRweGRAnP3juhl9ghdwdFFQVl8wAY12zugrtW2KjPZ4vurxN3bwpsrUy2RirIGu5ELSOvPKgD5dqYcF27cnRwUBQ9TPAU6e/uVgnBl7/bNu9paWjDzaATT/b4pw7+DGUNSt+RDPRX5/+P8t4dqlA/BXXTXn+CZV/K07H3+3SuMAbl9YFT4WLI1FBr0yoNukS+y7KfHZxm5C3T2ru/BPRXcFMqvHsMgXDHgH8MktS7kl4r+1ZrTjwgV7236B/B7c2vFq19719pCdYU8ec8bfD/i4EAYqUM8eqTol//A8Dh/8K8Oh/ZQA8Pk8MnCJf1TPjhBoEBQYggP8rqt6oBP4bDgyivoij//Sz9DaUzagyuf+Xmz3Jh+QQn7G8dFCuswgNSxlemr5midwG7zN4m/l3KcDtdwR2sZoF8RINPXng5GBTd0M8zi4FuKcN61mfjd5JmWrCI/yqjMGWc/6T8WWYOd0ILD9EqbgIzNpJWiqp+kRQ+tq2kDeT6BqShlBK+Jd8ScFbIT449X3jj363qT+GmXqM6HXpyPSC5iNeJC9RYL5GHgxxUabz11uWuD2McQnoNPFYGD9EFVawEh/2UPDkaEBtEyPW37IZocp0jCn25cZynCzGbDZVc5QLaNKy5gpNQQZqUGjhcTqsLhEEJaABmSFwEAVaUKbD0iocoAcNKEECaiNMgcKzHCW9E8MrOp30qkYZTVk15tiVxAvmGsflGVGTWa+465cWq9Icl501OM1DjSxgB3UG0VcEqZMgNdIsJqmJTLHKjUJiJUm8Ba7gZ1mqAxAtM+RXjKCt1SS6GnW8dOOqM07vwypjgHArUBZNAGU+FZf3Nu5Gx5IZzYY1b8kzm92WlhyQ508FPSR2VrVI0lkTbyVQhfmNvP/TtVppP9oHAVgk5SoZspLGLry4sI4PLLH5zIurih4xAfAagVgecDMY608wJODL+xRWA8bDB/gAG/33YCicaTwhD5XmiwwERP+qIOtOWN8IOKgqdtaVJBybQDhhbQKDieBN4BLcmYMgLdsEiWFgExSJuo2JtGIWgACoS4ZNIIDD45jaDOtT8wMMP04LcXcUmKNRPY8GRm086viUs2nUot7frptPhTbVqPHyqeJtVnI1TXSUma3KtfCx1hZEhdZkHUWFt1wVJbt0FslalKvm06FRNq96Pika1akgf+108Wp5/Xo1asARQUFFRX0/MAcjOb3zv9zEsbOyMYprLrvCWmkGbN2kW4skyJSrbJwjJwFvnxXiDi2aXcOrXFuKt4vJG088h0MirNH6kKziS8bblREv7xcV9PutXgOfMu1ayeXo1sRL2cwIW8gnL+vIRh/6v2e6uhQYuKjMXuVGrCQkUkHsNxJe4y67IoxUOJmrrrnum7WhpG++WqUI37qhyi2r7LOfxp+0QaYxkPJNrfa9WDpx4v1BHziEgJAgNaj0p2qNBvU+lSZdowy/y9SkRatmRiZmFj9o06EzKNDOGjSwsXPI0sWpW6/penxmhgOyPZcjl8tibnlm6jPbLNPkK1Bo0glFwUDYsOrLJkBEcNZXNtksKHQ2Czv9ozoEM/5QgEAkQcgoglHRQsv/CyucjJyCslFvvfNeIH+hWD6HsA3PVuctRIBCkhgVdXh+ipVKkCQgER10SIoxXzvsS0cctdsep52BhAMPDa1IUc1zCjqim28oMRG98NIxHFxsP2c1j+2SExuGTlx82BZZoN8SS81NPH0lfpUgUZJkKQxSpUmXIZOx5QyWudPD7navR0zMLKxs7ByyOGXLkcvFLc80+QoUKuL6YlRyWYu3w4udpqhrLK/LyE0mTvOUt7d5JyezdzosZqxvuOwcpxnd3uBTRWiisd2bke6GyokDuyt83tySKyv7Nx4nDa8sqURau8TXtOrQ2V/q1laJamzw1q22zimOsZRMmzraaQL2bV/HupVbfV3oqIF20R4D7doNvp059lg0xQ8dIxxQUThOKI4VdlC4DRWCYiMU24gKYaJphVBwQEEYKAQ7CELBjgwKQRDs4FOepUqJ7fsjopoQQw1GuY8KfKQJQ3JOgRmUEbyc7RZLTq36VNRhRgJmcLY70tPS0xHeUHHZrAh15GkknsTT0tLY2d6EpfYaGlFWJxpRfh/Yh2CnGFhPo4rBh22pajy5OkOLrWrxdBQm68uwnwQO12nz1VXIW/k08hGztITqxsZa79Codr+KxjbLEDghHxRvvDTgzH3OTFVNtCbxQliPXY2CckmOPUdp5DMTbX/SFaJMwl9AI447DxvhOZD+/rmXbCglLox0rDUMtgGeGYnh6wtYmJ3D+SMxnLN6wJtfvCLFmWwwp+Uo1GoVyfqGAw==)format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<link rel=alternate type=application/rss+xml title="Interconnected RSS feed" href=https://interconnected.org/home/feed>
+<meta name=twitter:card content=summary>
+<meta name=twitter:creator content=@genmon>
+<meta property=og:url content=https://interconnected.org/home/2021/08/12/notation>
+<meta property=og:title content="Collecting my thoughts about notation and user interfaces">
+<meta property=og:description content="Posted on Thursday 12 Aug 2021. 1,807 words, 9 links. By Matt Webb.">
+<meta property=og:image content="https://interconnected.org/home/2021/08/12/notation.png?v=1">
+<meta property=og:image:alt content="An abstract, procedurally generated image which looks busier when there are more words.">
+<meta property=og:type content=article>
+<meta property=og:site_name content="Interconnected, a blog by Matt Webb">
+<meta property=og:updated_time content=2021-08-12T12:34:00>
+<meta name=referrer content=no-referrer><link rel=canonical href=https://interconnected.org/home/2021/08/12/notation><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"></head>
+ <body class="container blog">
+ 
+ <main class=content>
+ 
+<div class="mw9-l center ph3-ns pt4">
+<div class="cf ph2-ns">
+ <div class="fl w-100 w5-l ph2">
+ &nbsp;
+ </div>
+ <div class="fl w-100 w-70-l ph3-l ph2">
+ <div>
+ <h1 class="f-subheadline-l f1-m f2 mt0 mb0 pb1 pb0-ns"><a href=https://interconnected.org/home/ class="link white hover-orange">Interconnected</a></h1>
+ </div>
+ </div>
+</div>
+</div>
+<div class="mw9-l center ph3-ns">
+<div class="cf ph2-ns">
+ <div class="fl w-100 w5-l ph2 sticky-l">
+ <aside>
+ <h5 class="f6-l f7 ttu tracked black-50 mt1 mb0 dib">
+ A blog by Matt Webb
+ </h5>
+ <ul class="list pl0 mt1 mb0 dib mb4-l">
+ <li class="f5-l f6 lh-title dib"><a href=https://interconnected.org/ class="link underline black-50 hover-bg-white">About</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=#archive class="link underline black-50 hover-bg-white">Archive</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://www.actsnotfacts.com/ class="link underline black-50 hover-bg-white">Work</a></li>
+ </ul>
+ </aside>
+ <aside>
+ <h5 class="f6-l f7 ttu tracked black-50 normal mt0 mb0 dib">
+ Subscribe for $0
+ </h5>
+ <ul class="list pl0 mt0 mt1-l mb0 dib mb4-l">
+ <li class="f5-l f6 lh-title dib"><a href=https://buttondown.com/genmon class="link underline black-50 hover-bg-white">Email</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://interconnected.org/home/feed class="link underline black-50 hover-bg-white">RSS feed</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://aboutfeeds.com/ class="link underline black-50 hover-bg-white">(What is a feed?)</a></li>
+ </ul>
+ </aside>
+ <aside>
+ <h5 class="f6-l f7 ttu tracked black-50 normal mt0 mb0 dib">
+ Unoffice Hours
+ </h5>
+ <ul class="list pl0 mt0 mt1-l mb0 dib mb4-l">
+ <li class="f5-l f6 lh-title dib"><a href=https://calendly.com/mwie/30min class="link underline black-50 hover-bg-white">Book a call</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://interconnected.org/home/2020/09/24/unoffice_hours class="link underline black-50 hover-bg-white">(What is this?)</a></li>
+ </ul>
+ </aside>
+ <aside>
+ <h5 class="f6-l f7 ttu tracked black-50 normal mt0 mb0 dib">
+ a.k.a. genmon
+ </h5>
+ <ul class="list pl0 mt0 mt1-l mb0 dib mb4-l">
+ <li class="f5-l f6 lh-title dib"><a href=https://bsky.app/profile/genmon.org class="link underline black-50 hover-bg-white">Bluesky</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://x.com/genmon class="link underline black-50 hover-bg-white">X/Twitter</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://www.instagram.com/genmon/ class="link underline black-50 hover-bg-white">Insta</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://mastodon.social/@genmon class="link underline black-50 hover-bg-white">Mastodon</a></li>
+ <li class="f5-l f6 lh-title dib"><a href=https://www.linkedin.com/in/genmon/ class="link underline black-50 hover-bg-white">LinkedIn</a></li>
+ </ul>
+ </aside>
+ <aside>
+ <h5 class="f6-l f7 ttu tracked black-50 normal mt0 mb0 dib">
+ Building the AI clock
+ </h5>
+ <ul class="list pl0 mt0 mt1-l mb4 dib">
+ <li class="f5-l f6 lh-title dib"><a href=https://poem.town/ class="link underline black-50 hover-bg-white">Check out Poem/1</a></li>
+ </ul>
+ </aside>
+ </div>
+ <div class="fl w-100 w-70-l ph3-l ph2">
+ 
+<article id=post>
+ 
+ <h2 class="f-subheadline-l f1-m f2 lh-solid mt0 pb1 pb4-ns black-40 mw6-m mb3 mb5-ns">Collecting my thoughts about notation and user interfaces</h2>
+ 
+ <h5 class="f5-l f6 black-50 normal mb2 lh-title mt0 mt3-ns">
+ 12.34, Thursday 12 Aug 2021
+ <span class=nowrap>
+ <a href=https://interconnected.org/home/2021/08/12/notation class="link underline black-50 hover-bg-white" id=permalink>Link to this post</a>
+ </span>
+ </h5>
+ 
+ <div class="f5 f4-l measure-wide" id=social-select-root data-highlights>
+ <p class="measure-wide f6 f5-l lh-copy black-80">I’m circling something to do with <strong>notation</strong> and <strong>software user interfaces</strong> and what connects them. And things aren’t quite cohering for me yet, so this is me just collecting my thoughts…</p>
+<p class="measure-wide f6 f5-l lh-copy black-80"><em>(I’m designing user-composable interfaces this week, so long term the goal is to figure out some principles.)</em></p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">A good starting point is <em>pirate maps,</em> those sketched maps with minimal detail that can none-the-less lead you to the X that marks the spot on the right treasure island.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Or to be more specific, urbanist Kevin Lynch’s city maps from his 1960 book <em>The Image of the City.</em> <a href=https://interconnected.org/home/2021/03/31/maps>I’ve described his approach here (March 2021)</a> <em>(where I also pick at the possible neurological underpinnings)</em> so to briefly summarise:</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Lynch puts forward five primitive elements: paths (e.g. streets); edges (e.g. uncrossable rivers); districts; nodes (e.g. street corners); landmarks (e.g. a recognisable building). Each element has an intuitive way to sketch it, as if on the back of a napkin.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">The map of Boston (his first example) is immediately recognisable. Ask a person to sketch a city, or a route to a place, and they’ll automatically use something very like Lynch’s system.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">So Lynch’s five primitives comprise a <strong>notation.</strong></p>
+<p class="measure-wide f6 f5-l lh-copy black-80">It’s <strong>composable.</strong> A small number of simple elements can be combined, according to their own grammar, for more complex descriptions. There’s no cap on complexity; this isn’t paint by numbers. The city map can be infinitely large.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Compositions are <strong>shareable.</strong> And what’s more, they’re <strong>degradable:</strong> a partial map still functions as a map; one re-drawn from memory on a whiteboard still carries the gist. So shareable, and pragmatically shareable.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Not only are maps in this notation functional for communication, but it’s possible to look at a sketched city map and deconstruct it into its primitive elements (without knowing Lynch’s system) and see how to use those elements to extend or correct the map, or create a whole new one. So the notation is <strong>learnable.</strong></p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">The idea of composability is worth digging into.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">A pirate map is a drawing, and drawings are compositions of dots and lines and textures: <q>A drawing is simply a line going for a walk</q> (<a href=https://www.paulklee.net/paul-klee-quotes.jsp>Paul Klee</a>). But these would be poor primitives. Why?</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">A good, composable notation has primitives which are <strong>semantic.</strong> A line doesn’t mean anything, it’s too abstract – but a <em>path</em> or an <em>edge</em> (in Lynch’s system) refer to qualities of things in the real world. I’m also going to say that a notation must be <strong>grammatical,</strong> which is to say that there are rules about how primitives can be combined. </p>
+<p class="measure-wide f6 f5-l lh-copy black-80">There are also <em>not too many</em> primitives. You want a system which is <strong>efficiently expressive.</strong> Like, you can say complex things with the minimum of vocabulary. Why? Because then the person using the notation can hold it in their head.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Adam Wiggins is the co-founder of Heroku, the prescient cloud-based technology platforms. It was ahead of its time, incredibly simple to use, but powerful – with an almost toy-like interface <em>(I say that as a compliment)</em> the complexity of hosting, scaling and managing servers was almost completely hidden.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Here is Wiggins relating his philosophy:</p>
+<blockquote cite=https://gist.github.com/adamwiggins/5687294 class="quoteback bl bw2 pl2 b--orange ml0 italic i" data-author="Adam Wiggins" data-title="My Heroku values">
+<p class="measure-wide f6 f5-l lh-copy black-80"><u>The value of a product is the number of problems it can solve divided by the amount of complexity the user needs to keep in their head to use it.</u> Consider an iPhone vs a standard TV remote: an iPhone touchscreen can be used for countless different functions, but there’s very little to remember about how it works (tap, drag, swipe, pinch). With a TV remote you have to remember what every button does; the more things you can use the remote for, the more buttons it has. We want to create iPhones, not TV remotes.</p>
+<footer class="measure f6 f5-l lh-copy black-80">– Adam Wiggins, <cite><a href=https://gist.github.com/adamwiggins/5687294>My Heroku values</a></cite></footer>
+</blockquote>
+<p class="measure-wide f6 f5-l lh-copy black-80"><em>(Via Simon Willison <a href=https://simonwillison.net/2020/Dec/3/adam-wiggins-heroku-values/>who picked out this quote</a>.)</em></p>
+<p class="measure-wide f6 f5-l lh-copy black-80">It matters what you can hold in your head because then the notation becomes a tool for the imagination. It is <strong>suggestive.</strong> Lego is suggestive. If you sit down and compose with the bricks, aimlessly, you will come up with <em>new ideas</em> that you wouldn’t have reached otherwise. The studs on the bricks are a grammar; the shapes are the semantics. You don’t get lost in complexity because the bricks are right there on the floor, so you play and, o ho!, there’s a novel kind of house you can build, you hadn’t thought of that.</p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">At this point I’m slip-sliding between notation and interface, and this is maybe one of the things I’m trying to figure out. Perhaps a notation is <em>always</em> an interface to <em>something?</em></p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Think of Feynman diagrams from physics. These are diagrams of particle interactions, like an electron hits a positron and both disappear while emitting a photon. <a href=https://en.wikipedia.org/wiki/Feynman_diagram>The Wikipedia page shows examples.</a></p>
+<p class="measure-wide f6 f5-l lh-copy black-80">But the lines, arrows, and squiggles have a grammar to them. And Feynman diagrams directly map to the fearsomely complex mathematics of quantum field theory. Manipulating the diagram <em>is the same as</em> performing the calculations.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">So Feynman diagrams, as a notation, exist on the boundary of two realms; the interface between the scientific model (a representation of physical reality) and the imagination of the physicist.</p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">Software user interfaces: let me try to draw the parallel.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">I’ve been reading Steven Sinofsky’s first-person account of the rise of the Microsoft and the PC, which is astounding – it’s technology and strategy and history from someone who was right in the thick of it, at a pivotal time. Sinofsky is serialising the whole story as <a href=https://hardcoresoftware.learningbyshipping.com/about>Hardcore Software</a>: <em>Inside the Rise and Fall of the PC Revolution.</em></p>
+<p class="measure-wide f6 f5-l lh-copy black-80">He has this to say about the complexity of Microsoft Office (the first and much successful office software suite), and specifically about the <q>buttons, menus, and commands,</q> and <q>every icon, command name, tooltip, menu string, and keyboard accelerator</q>…</p>
+<blockquote cite=https://hardcoresoftware.learningbyshipping.com/p/041-scaling-the-office-infrastructure class="quoteback bl bw2 pl2 b--orange ml0 italic i" data-author="Steven Sinofsky" data-title="041. Scaling the Office Infrastructure and Platform (Hardcore Software)">
+<p class="measure-wide f6 f5-l lh-copy black-80">One of the most significant differences between Office and most other tools is the sheer breadth and simultaneous depth of features, something that would become even more apparent as web pages came to the forefront. Each application had over 1000 commands (buttons, menus, etc.) with something over 2500 unique commands in Office96.</p>
+<footer class="measure f6 f5-l lh-copy black-80">– Steven Sinofsky, <cite><a href=https://hardcoresoftware.learningbyshipping.com/p/041-scaling-the-office-infrastructure>041. Scaling the Office Infrastructure and Platform (Hardcore Software)</a></cite></footer>
+</blockquote>
+<p class="measure-wide f6 f5-l lh-copy black-80">That was 25 years ago. I can only imagine that complexity has increased since.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Compare with the Xerox Star (1981) which introduced the desktop interface in the first place, together with the underlying metaphor of <em>objects.</em> Like, you could select a file or a paragraph or a printer and choose what do to with it, and that’s the ancestral idea behind our graphical user interfaces today.</p>
+<blockquote cite=https://guidebookgallery.org/articles/thexeroxstararetrospective class="quoteback bl bw2 pl2 b--orange ml0 italic i" data-author="IEEE Computer" data-title="The Xerox Star: A retrospective (Sept 1989)">
+<p class="measure-wide f6 f5-l lh-copy black-80">One way to simplify a computer system is to reduce the number of commands. Star achieves simplicity without sacrificing functionality by having a small set of generic commands apply to all types of data: Move, Copy, Open, Delete, Show Properties, and Same (Copy Properties). Dedicated function keys on Star’s keyboard invoke these commands.</p>
+<footer class="measure f6 f5-l lh-copy black-80">– IEEE Computer, <cite><a href=https://guidebookgallery.org/articles/thexeroxstararetrospective>The Xerox Star: A retrospective (Sept 1989)</a></cite></footer>
+</blockquote>
+<p class="measure-wide f6 f5-l lh-copy black-80">As an example of this flexibility:</p>
+<blockquote class="bl bw2 pl2 b--orange ml0 italic i">
+<p class="measure-wide f6 f5-l lh-copy black-80">In Star, users simply Copy to a printer icon whatever they want to print. Similarly, the Move command is used to invoke Send Mail by moving a document to the out-basket.</p>
+</blockquote>
+<p class="measure-wide f6 f5-l lh-copy black-80">…which is powerful! But only works because the user can see, on the desktop, the icon of a printer and the icon of an out-basket.</p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">I’m stretching the definition of <em>“notation”</em> now, but let’s say that both Xerox Star and Microsoft Office present the user with a notation to their internals, made out of commands and also graphical components: windows, icons, menus, pointers.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">There’s a quality to this “notation” which is suggestive, as with Lego bricks, in that you can experiment with trying different commands.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">But I’ll go further as say that there’s a quality which is that the notation is <strong>intentional</strong> and that is essential to a good notation or a good interface.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">That is, you can imagine a goal (being it printing your document or drawing a map of Boston), and you know the available primitives, and you can figure out a sequence or a composition to get from A to B.</p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">Related to all of these points, a notation or an interface must be <strong>legible.</strong></p>
+<p class="measure-wide f6 f5-l lh-copy black-80">It’s no good with a desktop interface, say, if icons are draggable and buttons are clickable, but the user doesn’t <em>know</em> that these operations are possible. So we design icons and buttons with <em>visual affordances:</em> they <em>look</em> as if they are pick-up-able, press-able, and so on.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Legibility, consistency, and affordances: all of these contribute to creating a <em>mental model</em> of the notation system in the mind of the user, and that seems like a prerequisite for many of the other qualities above.</p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">Perhaps HTML is a notation? (Or rather, maybe it was in the early days.)</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">When I wrote about the <a href=https://interconnected.org/home/2021/02/01/golems>original ideas behind files and icons</a> (back in February), it felt important that the file was a <em>boundary object:</em></p>
+<blockquote class="bl bw2 pl2 b--orange ml0 italic i">
+<p class="measure-wide f6 f5-l lh-copy black-80">Files are meaningful to computers, but they are also meaningful to users, and <em>both</em> can manipulate the same object. The two of you inhabit different worlds, but you’re talking about the same thing.</p>
+</blockquote>
+<p class="measure-wide f6 f5-l lh-copy black-80">So HTML, the language for making web pages, is a “notation” on an interesting boundary. It has a small number of primitive elements, and a grammar to compose with them. And it is…</p>
+<ul class="list ph0 ph0-ns bulleted-list">
+<li class="measure-wide f6 f5-l lh-copy black-80">Easy to write: the creator can describe something simple or infinitely complex, with the same small set of rules. And given the set of rules is simple, it’s also good to imagine with.</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Machine-readable: the browser application uses the exact same notation to display the webpage.</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Obvious to interact with: buttons are clickable, hyperlinks are followable.</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Good for reading and sharing: a user may <em>View Source</em> with their browser and read the code behind a webpage, and from there they are able to copy, tweak, and learn.</li>
+</ul>
+<p class="measure-wide f6 f5-l lh-copy black-80">(Those last points were more true in the early days of the web…)</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">HTML sits on a boundary between the machine, the creator, and the reader.</p>
+<hr class="xh1 bg-white w3 ml0 mv5 bb-0 bl-0 br-0 bt-1 b--black">
+<p class="measure-wide f6 f5-l lh-copy black-80">To summarise those desirable qualities, a good notation is:</p>
+<ul class="list ph0 ph0-ns bulleted-list">
+<li class="measure-wide f6 f5-l lh-copy black-80">Composable</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Shareable</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Degrabable</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Learnable</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Semantic</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Grammatical</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Efficiently expressive</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Suggestive</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Intentional</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">Legible</li>
+</ul>
+<p class="measure-wide f6 f5-l lh-copy black-80">I can’t quite tell whether I’m trying to force together two concepts (notation and user interface) which are fundamentally different, or whether there is something fruitful in seeing them as aspects of the same thing. </p>
+<p class="measure-wide f6 f5-l lh-copy black-80">And I’m still not quite sure whether there are indeed lessons here for designing a composable user interface, or a design system, or whatever it is I’m working on.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">But since I’m working on something where</p>
+<ul class="list ph0 ph0-ns bulleted-list">
+<li class="measure-wide f6 f5-l lh-copy black-80">engineers are building reusable components (which is the way of modern software and web development)</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">users need to understand how to use, navigate, and achieve tasks with the interface they see</li>
+<li class="measure-wide f6 f5-l lh-copy black-80">and creators will compose these interfaces.</li>
+</ul>
+<p class="measure-wide f6 f5-l lh-copy black-80">Then it seems like this is the right territory to be exploring.</p>
+<p class="measure-wide f6 f5-l lh-copy black-80">Any recommended reading is appreciated.</p>
+ </div>
+ </article>
+ <hr class=invisible>
+ 
+ <h5 class="f6-l f7 ttu tracked black-50 normal mb2 lh-title mt5">
+ More posts tagged:
+ </h5>
+ <ul class="list ph0 ph0-ns bulleted-list">
+ 
+ <li class="measure f6 f5-l lh-copy black-50">
+ <a class="link underline black-50 hover-orange" href=https://interconnected.org/home/tagged/20-most-popular-in-2021>20-most-popular-in-2021</a>
+ (20 posts)
+ </li>
+ 
+ </ul>
+ 
+ 
+ <h5 class="f6-l f7 ttu tracked black-50 normal mb2 lh-title mt5">
+ Follow-up posts:
+ </h5>
+ <ul class="list ph0 ph0-ns bulleted-list">
+ 
+ <li class="measure f6 f5-l lh-copy black-40">
+ <a class="link underline black-50 hover-orange" href=https://interconnected.org/home/2021/12/09/primitive_design>Primitive design and how I’m spending my week</a>
+ (9 Dec 2021)
+ </li>
+ 
+ </ul>
+ 
+ 
+ <h5 class="f6-l f7 tracked ttu black-50 normal mb2 lh-title mt5">
+ Auto-calculated kinda related posts:
+ </h5>
+ <ul class="list ph0 ph0-ns bulleted-list">
+ 
+ <li class="measure f6 f5-l lh-copy black-40">
+ <a class="link underline black-50 hover-orange" href=https://interconnected.org/home/2026/03/28/architecture>An appreciation for (technical) architecture</a>
+ (28 Mar 2026)
+ </li>
+ 
+ </ul>
+ 
+ 
+ 
+ 
+ <div class="mt6 mb3"></div>
+ 
+ </div>
+</div>
+</div>
+ </main>
+ <footer class="bg-black-90 white-40 pv5 mt3" id=archive>
+ <div class="mw9-l center ph3-ns">
+ <div class="cf ph2-ns">
+ <div class="fl w-100 w5-l ph3-l ph2">
+ &nbsp;
+ </div>
+ <div class="fl w-100 w-70-l ph3-l ph2">
+ <div>
+ 
+ 
+ <h2 class="lh-title f1-m f2 mt0 mb0">Most recent posts</h2>
+ <ul class="list ph0 lh-body">
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/08/01/firmware class="link underline white-70 hover-orange">If you have a Poem/1, pls run this firmware update</a>
+ <span class=nowrap>1 Aug 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/07/24/podcasts class="link underline white-70 hover-orange">Please let me phone my podcasts app</a>
+ <span class=nowrap>24 Jul 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/07/17/frozen class="link underline white-70 hover-orange">Frozen 2 should be rated R</a>
+ <span class=nowrap>17 Jul 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/07/11/on-task class="link underline white-70 hover-orange">Examples from sci-fi of voice interfaces that stay on task</a>
+ <span class=nowrap>11 Jul 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/07/03/factories class="link underline white-70 hover-orange">Factories are just rooms</a>
+ <span class=nowrap>3 Jul 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/06/27/filtered class="link underline white-70 hover-orange">Filtered for that which motivates form</a>
+ <span class=nowrap>27 Jun 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/06/19/signs class="link underline white-70 hover-orange">I am obsessed with these two ads</a>
+ <span class=nowrap>19 Jun 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/06/12/wet class="link underline white-70 hover-orange">Wet thoughts</a>
+ <span class=nowrap>12 Jun 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/06/05/splitbody class="link underline white-70 hover-orange">Self-driving legs to walk me to the office</a>
+ <span class=nowrap>5 Jun 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/05/30/fedex class="link underline white-70 hover-orange">How global logistics got me over my fear of personal agents</a>
+ <span class=nowrap>30 May 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/05/20/resident class="link underline white-70 hover-orange">Resident: vibe coding firmware (our new sandbox library for ESP32 devices)</a>
+ <span class=nowrap>20 May 2026</span>
+ 
+ </li>
+ 
+ <li class="b f5">
+ 
+ <a href=https://interconnected.org/home/2026/05/15/filtered class="link underline white-70 hover-orange">Filtered for bad addresses and good emotions</a>
+ <span class=nowrap>15 May 2026</span>
+ 
+ </li>
+ 
+ </ul>
+ 
+ <p class="b f5">
+ Continue reading:
+ <a href=https://interconnected.org/home/2026 class="link underline white-70 hover-orange">All in 2026</a>
+ </p>
+ 
+ 
+ <p class="lh-solid b f5">
+ <span class="f6 ttu tracked orange">streak</span>
+ <span class=nowrap>
+ New posts for <span class="streak-badge bg-orange black nb2 nb0-ns">331</span> consecutive weeks
+ </span>
+ <span class=nowrap>
+ (see: <a href=https://interconnected.org/home/2020/09/10/streak class="link underline white-70 hover-orange">blogging tips</a>)
+ </span>
+ </p>
+ 
+ <p class="b f5 lh-title">
+ New? Start here:
+ <a href=https://interconnected.org/home/2026/01/03/top-posts class="link underline white-70 hover-orange">Best of 2025</a>
+ (also
+ <a href=https://interconnected.org/home/2024/12/30/top-posts class="link underline white-70 hover-orange">2024</a>,
+ <a href=https://interconnected.org/home/2023/12/22/top-posts class="link underline white-70 hover-orange">2023</a>,
+ <a href=https://interconnected.org/home/2022/12/21/top_posts class="link underline white-70 hover-orange">2022</a>,
+ <a href=https://interconnected.org/home/2021/12/23/top_posts class="link underline white-70 hover-orange">2021</a>,
+ <a href=https://interconnected.org/home/2020/12/17/top_posts class="link underline white-70 hover-orange">2020</a>)
+ <br>
+ Or explore the archives:
+ <a href=https://interconnected.org/home/on-this-day class="link underline white-70 hover-orange">On this day</a>
+ </p>
+ 
+ 
+ <hr class=invisible>
+ 
+ 
+ <h2 class="lh-title f1-m f2 mt4 mb0">Archive</h2>
+ 
+ <ul class="list pl0">
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2026 class="link underline white-70 hover-orange">2026</a>
+ 32 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2025 class="link underline white-70 hover-orange">2025</a>
+ 61 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2024 class="link underline white-70 hover-orange">2024</a>
+ 60 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2023 class="link underline white-70 hover-orange">2023</a>
+ 68 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2022 class="link underline white-70 hover-orange">2022</a>
+ 96 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2021 class="link underline white-70 hover-orange">2021</a>
+ 128 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2020 class="link underline white-70 hover-orange">2020</a>
+ 118 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2019 class="link underline white-70 hover-orange">2019</a>
+ 23 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2018 class="link underline white-70 hover-orange">2018</a>
+ 47 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2017 class="link underline white-70 hover-orange">2017</a>
+ 22 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2016 class="link underline white-70 hover-orange">2016</a>
+ 48 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2015 class="link underline white-70 hover-orange">2015</a>
+ 88 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2014 class="link underline white-70 hover-orange">2014</a>
+ 30 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2013 class="link underline white-70 hover-orange">2013</a>
+ 6 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2012 class="link underline white-70 hover-orange">2012</a>
+ 27 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2011 class="link underline white-70 hover-orange">2011</a>
+ 76 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2010 class="link underline white-70 hover-orange">2010</a>
+ 2 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2009 class="link underline white-70 hover-orange">2009</a>
+ 2 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2008 class="link underline white-70 hover-orange">2008</a>
+ 59 posts
+ </li>
+ 
+ 
+ 
+ <li class="b f3">
+ <a href=https://interconnected.org/home/2007 class="link underline white-70 hover-orange">2007</a>
+ 20 posts
+ </li>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </ul>
+ 
+ 
+ </div>
+ 
+ <hr class=invisible>
+ 
+ 
+ <form action=https://duckduckgo.com target=_blank rel=noopener class="mt4 mb0">
+ <input class="input-reset f4 pa2" name=q id=search type=text placeholder="e.g. weather" aria-label=Search size=12 value>
+ 
+ 
+ 
+ 
+ 
+ 
+ <button class="button-reset f4 pa2" type=submit>Search</button>
+ </form> 
+ 
+ <p class="mt5 mb2">
+ Since February 2000. Copyright © 2026 Matt Webb.
+ </p>
+ <p class=mt2>
+ p.s. here’s <a class="white-70 hover-orange link underline" href=https://interconnected.org/home/blogroll>my blogroll</a> and the <a class="white-70 hover-orange link underline" href=https://interconnected.org/home/2024/10/28/colophon>colophon</a>.
+ </p>
+ </div>
+ </div>
+ </div> 
+</footer>
+<div class=cursors-root><div style=position:absolute;inset:0px;overflow:clip;pointer-events:none;visibility:visible></div><div style="opacity:0;transition:opacity 0.5s ease-in-out;pointer-events:none"><div style='box-sizing:border-box;padding:8px;height:calc(16px + 1.5rem);position:fixed;top:12px;right:18px;border-radius:24px;min-width:4.4em;background-color:rgb(255,255,255);border:1px solid rgb(0,0,0);color:black;display:flex;justify-content:end;align-items:center;gap:8px;font-family:system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-weight:320'><label style=display:inline-flex;align-items:center;gap:0.5rem;cursor:pointer><span style=margin-left:0.5rem;font-size:0.875rem;font-weight:500;color:rgb(17,24,39)>Quiet mode</span><input type=checkbox style=position:absolute;width:1px;height:1px;padding:0px;margin:-1px;overflow:hidden;clip:rect(0px,0px,0px,0px);white-space:nowrap;border-width:0px value=on><div style="position:relative;width:2.75rem;height:1.5rem;background-color:rgb(229,231,235);border-radius:9999px;transition:background-color 0.2s ease-in-out"><div style='content:"";position:absolute;top:2px;left:2px;background-color:rgb(255,255,255);border-color:rgb(209,213,219);border-width:1px;border-radius:50%;height:1.25rem;width:1.25rem;transition:transform 0.2s ease-in-out'></div></div></label></div></div><div style='box-sizing:border-box;padding:8px calc(8px + 0.5rem);height:calc(16px + 1.5rem);position:fixed;bottom:12px;right:18px;border-radius:24px;min-width:4.4em;border:1px solid rgb(168,162,158);color:rgb(168,162,158);display:flex;justify-content:center;align-items:center;font-family:system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:0.875rem;font-weight:500;pointer-events:none;user-select:none;visibility:visible;z-index:1000'>Here: 1</div></div>
+ 
