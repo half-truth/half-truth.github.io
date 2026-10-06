@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UJM 全景｜gh 旅程图 P0～P10 + 支撑层（合并版）</title>
+<style>
+  :root{
+    --bg:#0f1420; --panel:#171e2e; --line:#2c3a55;
+    --ink:#e8eef8; --sub:#9db0cc; --mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;
+    --c-entry:#4ade80; --c-check:#60a5fa; --c-warn:#fbbf24; --c-hard:#fb7185;
+    --t1:#f472b6; --t2:#22d3ee; --t3:#a78bfa; --t4:#fbbf24; --t5:#fb7185;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;display:flex}
+
+  /* ---------- 侧边导航 ---------- */
+  nav{position:fixed;left:0;top:0;bottom:0;width:200px;background:#0b1020;border-right:1px solid var(--line);
+    padding:18px 0;overflow-y:auto;z-index:10}
+  nav h2{font-size:13.5px;padding:0 16px 12px;color:var(--ink);border-bottom:1px solid var(--line);margin-bottom:10px}
+  nav a{display:block;padding:7px 16px;font-size:12.5px;color:var(--sub);text-decoration:none;border-left:3px solid transparent}
+  nav a:hover{color:var(--ink);background:rgba(255,255,255,.04)}
+  nav a.active{color:var(--ink);border-left-color:var(--c-entry);background:rgba(74,222,128,.08)}
+  nav a span{color:#64748b;font-family:var(--mono);margin-right:6px;font-size:11px}
+  nav .grp{font-size:10px;color:#475569;padding:10px 16px 4px;letter-spacing:1px}
+
+  /* ---------- 主体 ---------- */
+  main{margin-left:200px;flex:1;padding:38px 34px;max-width:1060px}
+  section{display:none}
+  section.show{display:block}
+  h1{font-size:23px;margin-bottom:6px}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:12px;line-height:1.75}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;font-size:12px;color:var(--sub)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .tl{position:relative;padding-left:36px}
+  .tl::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:var(--line)}
+  .node{position:relative;margin-bottom:22px}
+  .node::before{content:'';position:absolute;left:-31px;top:22px;width:12px;height:12px;border-radius:50%;
+    background:var(--panel);border:3px solid var(--c,#4ade80);z-index:1}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .card-h{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.5px;padding:3px 8px;border-radius:6px;color:#0b1020;flex-shrink:0}
+  .card-h h3{font-size:14.5px}
+  .card-h h3.mono{font-family:var(--mono)}
+  .card-b{padding:13px 16px}
+  .card-b p{font-size:13px;color:var(--sub);margin-bottom:7px;line-height:1.7}
+  code.cmd{display:block;background:#0b1020;border:1px solid var(--line);border-radius:8px;
+    padding:9px 12px;font-family:var(--mono);font-size:12.5px;color:#c9e3ff;margin:7px 0;white-space:pre-wrap}
+  code.cmd b{color:#7dd3fc;font-weight:600}
+  code.cmd i{color:#64748b;font-style:normal}
+  code.inl{font-family:var(--mono);font-size:12px;color:#93c5fd}
+  .note{border-left:3px solid var(--c-warn);background:rgba(251,191,36,.07);
+    padding:8px 12px;font-size:12px;color:#d7c08a;border-radius:0 6px 6px 0;margin-top:9px;line-height:1.7}
+  .note b{color:var(--c-warn)}
+  .note.red{border-left-color:var(--c-hard);background:rgba(251,113,133,.07);color:#e8a5ae}
+  .note.red b{color:var(--c-hard)}
+  .entry .card{border-color:var(--c-entry)} .entry::before{border-color:var(--c-entry)}
+  .exit  .card{border-color:var(--c-exit)}  .exit::before{border-color:var(--c-exit)}
+  .center{text-align:center}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));gap:14px;margin:8px 0}
+  .grid>div{height:100%} .grid .card{height:100%}
+  .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .pill{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
+  footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub);line-height:1.8}
+  .wait{display:inline-flex;align-items:center;gap:8px;background:rgba(96,165,250,.1);border:1px dashed var(--c-check);
+    color:#93c5fd;font-size:12px;padding:6px 14px;border-radius:999px;margin-top:8px}
+  .boundary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+  .boundary div{border:1px dashed var(--line);border-radius:8px;padding:10px 12px;font-size:12px;line-height:1.7;color:var(--sub)}
+  .boundary b{display:block;font-size:12px;margin-bottom:4px}
+  .boundary .no b{color:var(--c-hard)} .boundary .yes b{color:var(--c-entry)}
+  .scope{font-size:11px;color:var(--sub);padding:4px 10px 10px;border-bottom:1px dashed var(--line);font-family:var(--mono)}
+  .scope b{color:#93c5fd;font-weight:600}
+  .topbtn{position:fixed;right:22px;bottom:22px;background:var(--panel);border:1px solid var(--line);color:var(--sub);
+    border-radius:8px;padding:8px 14px;font-size:12px;cursor:pointer;display:none;z-index:20}
+  .topbtn:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <h2>UJM 全景导航</h2>
+  <div class="grp">基础层</div>
+  <a href="#p0"><span>P0</span>SSH Key 管理</a>
+  <a href="#p1"><span>P1</span>工具环境个性化</a>
+  <div class="grp">核心任务链</div>
+  <a href="#p2"><span>P2</span>发现与定位</a>
+  <a href="#p3"><span>P3</span>获取与接入</a>
+  <a href="#p4"><span>P4</span>内容创造与完善</a>
+  <a href="#p5"><span>P5</span>协作推进</a>
+  <a href="#p6"><span>P6</span>组织与分类</a>
+  <a href="#p7"><span>P7</span>状态感知</a>
+  <a href="#p8"><span>P8</span>自动化配置与执行</a>
+  <a href="#p9"><span>P9</span>验证与治理</a>
+  <a href="#p10"><span>P10</span>维护与终结</a>
+  <div class="grp">横切层</div>
+  <a href="#sup"><span>—</span>支撑层</a>
+</nav>
+
+<main id="main">
+
+<!-- ================= P0 ================= -->
+<section id="p0">
+<h1>UJM｜用 gh 管理 SSH Key：从入口到出口</h1>
+<div class="meta"><b>在干嘛</b>：P0 是整条旅程的地基——<b>身份与凭据</b>。没有它，后面 P1～P10 的每一条命令都会被 401/403 拦住。这一环节管理的是 SSH 密钥（以及同属身份范畴的 GPG 签名密钥、OAuth 授权）的<b>生成、登记、验证与退役</b>。特征：<b>低频、高风险、全局影响</b>——一次配置长期生效，配错或误删影响所有仓库。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>环境检查</span>
+  <span><i class="dot" style="background:var(--t1)"></i>生成与登记</span>
+  <span><i class="dot" style="background:var(--t2)"></i>验证</span>
+  <span><i class="dot" style="background:var(--t3)"></i>轮换与退役</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："我要让这台机器能安全地连上 GitHub"</h3></div>
+<div class="card-b"><p>典型触发：新装机器/新系统首次使用 gh；clone 时报 Permission denied (publickey)；换了电脑要把旧密钥带过来或重建；安全要求轮换密钥；组织要求 commit 签名。</p></div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">检查</span><h3>先看现状：登录状态与已有密钥</h3></div>
+<div class="card-b">
+<code class="cmd"><b>$</b> gh auth status          <i># 是否已登录、scope 是否健康</i>
+<b>$</b> gh ssh-key list          <i># 账号下已登记的 SSH 公钥</i>
+<b>$</b> gh gpg-key list          <i># 已登记的 GPG 签名密钥</i></code>
+<div class="note"><b>注意</b>：① <b>gh ssh-key list 列的是"已上传到 GitHub 的公钥"</b>，本地 ~/.ssh 里的私钥它管不到；② auth status 显示的 token scope 决定了后面哪些命令能用，缺 scope 用 <code class="inl">gh auth refresh -s …</code> 补。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 三条支线 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">支线 ①</span><h3>生成与登记</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> ssh-keygen -t ed25519 -C "you@example.com"
+<b>$</b> gh ssh-key add ~/.ssh/id_ed25519.pub \
+    --title "workbook-2026"</code>
+<code class="cmd"><i># 顺手完成 gh 登录（浏览器 OAuth 流程）</i>
+<b>$</b> gh auth login</code>
+<div class="note"><b>注意</b>：① 算法选 <b>ed25519</b>（短、快、安全），别再用 RSA 旧参数；② 公钥要带 <b>--title</b> 标明设备，否则日后轮换时分不清哪把钥匙是哪台机器；③ <b>私钥永不离开本机</b>——要上传的只有 .pub；④ passphrase 强烈建议设置，配合 ssh-agent 免重复输入。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">支线 ②</span><h3>验证连通</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> ssh -T git@github.com
+<i># Hi yourname! You've successfully authenticated.</i>
+<b>$</b> gh repo clone owner/repo   <i># 真实场景试一把</i></code>
+<div class="note"><b>注意</b>：① <code class="inl">ssh -T git@github.com</code> 是标准自检，报 Permission denied 时先确认 <code class="inl">ssh-add -l</code> 里 agent 有没有加载私钥；② clone 走 SSH 协议要求仓库地址是 <code class="inl">git@github.com:…</code> 形态，HTTPS 形态走的是 token 而非 SSH key——<b>分清两种通道</b>。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">支线 ③</span><h3>轮换与退役</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh ssh-key list                 <i># 找到要退役的 key ID</i>
+<b>$</b> gh ssh-key delete &lt;key-id&gt;     <i># 从 GitHub 移除公钥</i>
+<b>$</b> gh gpg-key delete &lt;key-id&gt;     <i># GPG 同理</i></code>
+<div class="note"><b>注意</b>：① 换机器的正确姿势是<b>先 add 新 key、验证通过、再 delete 旧 key</b>，避免真空期；② <b>delete 是全旅程安全敏感度最高的删除操作</b>——删错当前在用的 key 会导致所有仓库立即失联（P10 已明确把凭据删除划归本环节，不在 P10 做）；③ 离职/退役设备：删除公钥 + 本机销毁私钥。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>目标达成：身份通道就绪，P1～P10 全部畅通</h3></div>
+<div class="card-b"><p>验证 <code class="inl">ssh -T</code> 通过、<code class="inl">gh auth status</code> 健康。P0 之后的所有环节都默认这个前提成立——任何时候 P1～P10 突然出现 403/Permission denied，<b>先回 P0 排查</b>，这是旅程的"回炉入口"。</p>
+<div class="pill-row"><span class="pill">低频、高风险、全局影响</span><span class="pill">凭据类删除动作全部归此，不归 P10</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① ed25519 优先　② 公钥加 --title 标设备　③ ssh -T 自检后再干活　④ 换机先加新后删旧　⑤ delete key 前 triple-check——删错即全站失联。</footer>
+</section>
+
+<!-- ================= P1 ================= -->
+<section id="p1">
+<h1>UJM｜P1 工具环境个性化：让 gh 顺手起来</h1>
+<div class="meta"><b>在干嘛</b>：P1 调教的是<b>gh 工具本身</b>——默认编辑器、命令别名、扩展插件。它同样低频、且作用于"每一次后续操作"：P4 的 <code class="inl">gh gist edit</code>、P5 的 review 描述、P8 的 copilot 扩展，全都依赖 P1 的配置质量。P1 与 P0 并列为基础层：<b>P0 解决"能不能用"，P1 解决"顺不顺手"</b>。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--t1)"></i>编辑器</span>
+  <span><i class="dot" style="background:var(--t2)"></i>别名</span>
+  <span><i class="dot" style="background:var(--t3)"></i>扩展</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："gh 能用了，但用起来别扭"</h3></div>
+<div class="card-b"><p>典型触发：gh 命令弹出的编辑器是 nano 想换 vim/vscode；常用命令太长想造别名；想要 copilot、metrics 这类官方没有的子命令。</p></div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 三条支线 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">支线 ①</span><h3>编辑器配置</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh config set editor "code --wait"
+<b>$</b> gh config set editor "vim"          <i># 按口味选</i>
+<b>$</b> gh config list                      <i># 查看当前配置</i></code>
+<div class="note"><b>注意</b>：① <b>--wait（或等效阻塞参数）不可少</b>——VSCode 默认立即返回，gh 会以为你写完了，导致内容为空；② 受影响的命令：gist edit、issue/pr create 的 body、pr review 等，凡是"弹出编辑器"的场景都吃这个配置。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">支线 ②</span><h3>别名</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh alias set co "pr checkout"
+<b>$</b> gh alias set myissues "issue list --assignee @me --state open"
+<b>$</b> gh alias list
+<b>$</b> gh alias delete co                  <i># 删除别名归 P1，不归 P10</i></code>
+<div class="note"><b>注意</b>：① 别名是把支撑层的高频组合（如 <code class="inl">--json --jq</code> 查询）固化的<b>唯一正确归宿</b>——P7 判读逻辑定型后就来这里造别名；② 命名用短助记（co / ci / myissues），造完实际跑一遍验证；③ 别名存于 gh 配置文件，跟机器走，换机器要重建。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">支线 ③</span><h3>扩展</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh extension search copilot
+<b>$</b> gh extension install github/gh-copilot
+<b>$</b> gh extension list
+<b>$</b> gh extension remove github/gh-copilot   <i># 移除归 P1</i></code>
+<div class="note"><b>注意</b>：① 扩展本质是 git 仓库里的可执行脚本，<code class="inl">gh ext upgrade --all</code> 定期升级；② <b>extension remove / alias delete 均属"工具配置"操作，归 P1 不归 P10</b>（P10 只管工作产物）——这是本次边界修正的重要一环；③ 安装第三方扩展前看一眼源码，扩展以你的 token 权限运行。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>目标达成：工具链顺手，后续环节零摩擦</h3></div>
+<div class="card-b"><p>判据很简单：<b>接下来一周里，每当你想在 P3～P10 干什么，不再因为工具别扭而停顿</b>。P1 可随时重入（新别名、新扩展都是新入口），配置的长期清理也在这里而不是 P10。</p>
+<div class="pill-row"><span class="pill">P0 管能不能用，P1 管顺不顺手</span><span class="pill">extension/alias 的增删都归 P1</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① code 编辑器必须带 --wait　② 高频组合查询固化为 alias　③ 扩展以你的 token 权限运行，装前看源码　④ 换机器别名/编辑器配置要重建。</footer>
+</section>
+
+<!-- ================= P2 ================= -->
+<section id="p2">
+<h1>UJM｜P2 发现与定位：在海量资源里找到目标</h1>
+<div class="meta"><b>在干嘛</b>：P2 的对象是<b>未知的资源</b>——不知道仓库在哪、不知道某功能有没有现成实现、不知道某个报错的出处。它与 P7 的分界与 P9 同理：<b>P7 查已知资源的状态，P2 找未知资源的位置</b>。出口判据：拿到一个明确的"目标坐标"（仓库 URL / issue 编号 / 文件路径），移交 P3～P6 处理。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--t1)"></i>全局搜索</span>
+  <span><i class="dot" style="background:var(--t2)"></i>查看定位</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："这个东西在哪 / 有没有现成的"</h3></div>
+<div class="card-b"><p>典型触发：找某语言的轮子；查某报错是否已有 issue；调研组织里有哪些同类服务；接手陌生项目想先看看全貌。</p></div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 搜索 → 查看 → 定位 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">动作 ①</span><h3>全局搜索</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh search repos "cli tool" --language go --sort stars --limit 10
+<b>$</b> gh search issues "ECONNREFUSED" --repo owner/repo --state open
+<b>$</b> gh search code "TODO: refactor" --owner my-org
+<b>$</b> gh search prs --author @me --state merged</code>
+<div class="note"><b>注意</b>：① search 系列都支持 <code class="inl">--json --jq</code>（支撑层④），结果可直接编程；② code 搜索需要登录且只搜默认分支；③ <b>搜到自己收藏里</b>用 <code class="inl">--starred --owner @me</code>（P6 star 的召回入口就在这）。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">动作 ②</span><h3>查看与确认</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh repo view owner/repo           <i># README 全貌</i>
+<b>$</b> gh issue view &lt;n&gt; -R owner/repo --comments
+<b>$</b> gh repo view owner/repo --web      <i># 跳网页细看（支撑层②）</i></code>
+<div class="note"><b>注意</b>：① view 是"确认这是不是你要的目标"，别在这一步做接入动作；② 复杂的图形化比较（分支图、依赖图）跳 --web。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>目标达成：拿到明确坐标，移交下游</h3></div>
+<div class="card-b"><p>仓库 → P3 接入；issue/PR → P5 参与；灵感/缺口 → P4 创造；候选目标多起来 → P6 收藏归档。P2 每次产出都是"坐标"，不产生任何资源变更。</p>
+<div class="pill-row"><span class="pill">P2 找未知的，P7 查已知的</span><span class="pill">产出 = 坐标，无副作用</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① search 结果配 --json --jq 可编程　② code search 只搜默认分支　③ 确认目标用 view，别混入接入动作。</footer>
+</section>
+
+<!-- ================= P3 ================= -->
+<section id="p3">
+<h1>UJM｜P3 获取与接入：把"远方的资源"变成"手边的工作台"</h1>
+<div class="meta"><b>在干嘛</b>：前提是<b>对象已知</b>（来自 P2 或别人给的链接）。选择一个<b>接入方式</b>，让它变成可直接操作的东西。出口判据：<b>动作结束后，你手里出现了一个能立刻开始工作的入口</b>。核心决策是接入方式<b>四选一</b>。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>方式决策</span>
+  <span><i class="dot" style="background:var(--t1)"></i>本地接入</span>
+  <span><i class="dot" style="background:var(--t2)"></i>云端接入</span>
+  <span><i class="dot" style="background:var(--t3)"></i>产物下载</span>
+  <span><i class="dot" style="background:var(--t4)"></i>内容读取</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："目标确定了，我要开始干活"</h3></div>
+<div class="card-b"><p>典型触发：P2 搜到了目标仓库；同事说"看下这个 PR"；要装某个项目的发布包；CI 挂了要拿产物排查；别人分享了一个 Gist 链接。</p></div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">决策</span><h3>接入方式四选一（关键问题：你要"做什么"）</h3></div>
+<div class="card-b">
+<code class="cmd"><i>① 本地读写代码、跑构建、改代码      → 本地接入（clone / fork / pr checkout）</i>
+<i>② 代码重、本机环境装不了、要算力     → 云端接入（codespace）</i>
+<i>③ 只要成品不要源码（安装包/构建产物）→ 产物下载（release / run download）</i>
+<i>④ 只想看一段文本/配置/脚本          → 内容读取（gist view --raw）</i></code>
+<div class="note"><b>注意</b>：本地 vs 云端是本环节<b>最大的分水岭</b>——本地快但受限于本机环境，云端重但环境开箱即用。repo 大（&gt;1GB）、依赖奇怪、需要 Linux 环境时优先考虑云端。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 按接入方式选择分支 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">分支 ①</span><h3>本地接入</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh repo clone owner/repo
+<b>$</b> gh repo fork owner/repo --clone   <i># 贡献他人项目</i>
+<b>$</b> gh pr checkout &lt;number&gt;           <i># 本地验证他人 PR（需已在仓库目录内）</i></code>
+<div class="note"><b>注意</b>：① clone 报 publickey 错误 → 回 <b>P0</b>，SSH 通道没通；② fork --clone 会建立 your-fork/上游 的标准结构，push 推到 fork、PR 对上游；③ pr checkout 后本地处于他人分支，<b>验证完记得 checkout 回自己的分支</b>。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">分支 ②</span><h3>云端接入（Codespaces）</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh cs create -R owner/repo
+<b>$</b> gh cs list                 <i># 看有哪些环境（也归 P7/P10 巡检）</i>
+<b>$</b> gh cs ssh -c &lt;name&gt;        <i># 终端进入</i>
+<b>$</b> gh cs stop -c &lt;name&gt;       <i># 用完先停（省钱，详见 P10）</i></code>
+<div class="note"><b>注意</b>：① <b>Codespaces 是唯一持续计费的接入方式</b>（机器 × 挂机时长）——用完即 stop 的习惯从 P3 就要建立；② cs create 首次启动要几分钟，别误以为卡死；③ 环境里未 push 的代码只存在于云端，删除环境前先推回远端。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">分支 ③</span><h3>产物下载</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh release download v1.2.0 -R owner/repo --pattern '*.tar.gz'
+<b>$</b> gh run download &lt;run-id&gt; -n build-artifacts   <i># CI 产物</i>
+<b>$</b> gh attestation verify ./app.tar.gz -R owner/repo  <i># 来源校验（衔接 P9）</i></code>
+<div class="note"><b>注意</b>：① <b>下载的二进制先验证来源再运行</b>（P9 的 attestation verify），这是供应链安全的基本动作；② run download 需要 workflow 声明了 upload-artifact，否则列表为空；③ release 产物与源码包（Source code zip）是两回事，按 pattern 精确取。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t4)">分支 ④</span><h3>内容读取</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh gist view &lt;id&gt; --raw &gt; script.sh
+<b>$</b> gh gist view &lt;id&gt; --files        <i># 多文件 gist 先看清单</i></code>
+<div class="note"><b>注意</b>：① --raw 重定向拿到纯文本，可直接执行前<b>先读内容再跑</b>别人的脚本；② gist 无版本依赖关系，取完即用，来源更新需自行 re-fetch。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>目标达成：工作入口就绪</h3></div>
+<div class="card-b"><p>本地目录 / 云端环境 / 下载产物 / 文本文件——四者任一就绪即出口。去向：改代码 → <b>P4</b>；参与讨论 → <b>P5</b>；产物部署运行前 → <b>P9 验证</b>；闲置接入物（停掉的 cs、过时产物）→ 日后 <b>P10</b>。</p>
+<div class="pill-row"><span class="pill">出口判据唯一：能立刻开始工作</span><span class="pill">云端接入引入计费，用完即停</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① publickey 报错回 P0　② cs 用完 stop，别挂着计费　③ 二进制先 attestation verify 再跑　④ pr checkout 完记得切回自己分支。</footer>
+</section>
+
+<!-- ================= P4 ================= -->
+<section id="p4">
+<h1>UJM｜P4 内容创造与完善：从无到有，单边打磨</h1>
+<div class="meta"><b>在干嘛</b>：全旅程中<b>唯一"从无到有"制造资源</b>的环节——建仓库、发版本、写 Gist、搭看板、提 issue/PR。核心特征是<b>单边维护</b>：不需要等任何人回应就能持续推进。通用节奏是<b>"创建 → 打磨 → 达到可用形态"</b>的循环，五类资源共享同一骨架。<b>关键切分</b>：issue/PR 的 create 归 P4，提出后的流转归 P5。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>对象决策</span>
+  <span><i class="dot" style="background:var(--t1)"></i>仓库</span>
+  <span><i class="dot" style="background:var(--t3)"></i>发布/工作项</span>
+  <span><i class="dot" style="background:var(--t2)"></i>Gist/看板</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："我要产出点东西"</h3></div>
+<div class="card-b"><p>典型触发：有了新项目想法要开仓库；代码写完要发版；攒了个好用的脚本想分享；项目要立项建看板；发现 bug / 写完功能要提 issue 或 PR。</p></div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">决策</span><h3>要产出的是什么类型的资源？</h3></div>
+<div class="card-b">
+<code class="cmd"><i>① 一个新项目的家（容器）        → 仓库 repo create</i>
+<i>② 一版正式成品                  → 发布 release create</i>
+<i>③ 一段值得分享的文本/脚本        → 代码片段 gist create</i>
+<i>④ 规划框架（组织级）            → 看板 project create</i>
+<i>⑤ 一个问题或一次贡献            → 工作项 issue/ pr create</i></code>
+<div class="note"><b>注意</b>：五类资源有<b>依赖关系</b>——release/gist/issue/PR 挂在仓库下，看板可收 issue。首次做新项目顺序 ①→（④⑤ 可选）→②；在已有仓库里工作直接从 ②③⑤ 进入。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 按资源类型选择分支（每条 = 创建→打磨循环）┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">分支 ①</span><h3>仓库｜创建容器</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh repo create my-project \
+    --public --clone --add-readme</code>
+<code class="cmd"><b>$</b> gh repo create my-project --private   <i># 先私有后公开</i>
+<b>$</b> gh repo create org-name/my-project --public</code>
+<div class="note"><b>注意</b>：① <b>--clone 建完直接拉到本地</b>，省一步 P3；② <b>--add-readme</b> 让仓库立即有初始提交；③ 可见性随时可改；④ 组织仓库需要权限，403 是权限问题。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">分支 ②</span><h3>发布｜产出 + 迭代完善</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh release create v1.0.0 --generate-notes ./dist/app.tar.gz
+<b>$</b> gh release upload v1.0.0 ./dist/app.zip --clobber
+<b>$</b> gh release edit v1.0.0 --notes "修正后的说明"</code>
+<div class="note"><b>注意</b>：① <b>--generate-notes</b> 自动汇总变更；② upload 覆盖要 <b>--clobber</b>；③ tag 已存在时 create 失败，先 list 看冲突；④ 大量下载后别改产物，发新 tag。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">分支 ③</span><h3>Gist｜产出 + 修订</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh gist create deploy.sh --desc "一键部署脚本" --public
+<b>$</b> gh gist edit &lt;id&gt;
+<b>$</b> gh gist rename &lt;id&gt; --filename "v2-deploy.sh"</code>
+<div class="note"><b>注意</b>：① edit 调用 P1 配好的 editor；② <b>secret Gist ≠ 私密</b>——拿到 URL 就能看，别放密钥；③ gist 有版本历史。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t4)">分支 ④</span><h3>看板｜建立规划框架</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh project create --owner my-org --title "2026 Q4 路线图"
+<b>$</b> gh project edit &lt;number&gt; --owner my-org --title "…v2"</code>
+<div class="note"><b>注意</b>：① 组织级看板需要 scope，<code class="inl">gh auth refresh -s project</code> 补授权（回 P0）；② 看板 CLI 能力<b>官方子命令中最弱</b>，字段值更新用 <code class="inl">gh api graphql</code>（支撑层兜底）；③ issue 纳入看板是 item-add，归 P6。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t5)">分支 ⑤</span><h3>工作项｜首次提出</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh issue create --title "登录页在 Safari 下白屏" \
+    --body "复现步骤：…" --label bug
+<b>$</b> gh pr create --fill   <i># 用首个 commit 信息自动填</i></code>
+<div class="note"><b>注意</b>：① pr create 前提是<b>分支已 push</b>，报 no commits 就是忘了 push 或基分支错；② <b>--fill 只做初稿</b>；③ <b>到此为止是 P4 终点</b>——提出后的评论/审阅/合并是 P5。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">汇合验证</span><h3>达到"可用形态"了吗？</h3></div>
+<div class="card-b">
+<code class="cmd"><i>仓库：   gh repo view my-project --web 自查：他人能否仅凭 URL 理解项目？</i>
+<i>发布：   gh release view v1.0.0　产物齐全、说明完整？</i>
+<i>Gist：   gh gist view &lt;id&gt; --web　内容自解释？</i>
+<i>看板：   gh project view &lt;n&gt; --owner my-org --web　结构满足规划？</i>
+<i>工作项： gh issue view &lt;n&gt;　标题能让人 3 秒看懂？</i></code>
+<div class="note"><b>注意</b>：统一判据——<b>"交给一个毫不知情的人，他能否直接使用/继续？"</b>达不到就回分支打磨。</div>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>目标达成：资源达到可用形态</h3></div>
+<div class="card-b"><p>去向：issue/PR 提出 → <b>P5</b>；release/Gist → 交付他人（进入他们的 P3）；看板/仓库长期存活，清理归 <b>P10</b>。打磨循环随时重入——<b>edit 命令都是重新进入 P4 的入口</b>。</p>
+<div class="pill-row"><span class="pill">create 归 P4，流转归 P5</span><span class="pill">edit 即重入入口</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① repo create 记得 --clone --add-readme　② upload 覆盖要 --clobber　③ secret gist 不私密　④ pr create 报 no commits = 忘 push　⑤ issue/PR 的 create 与流转的分界线 = P4 与 P5 的分界线。</footer>
+</section>
+
+<!-- ================= P5 ================= -->
+<section id="p5">
+<h1>UJM｜P5 协作推进：在别人的回合之间走棋</h1>
+<div class="meta"><b>在干嘛</b>：P5 处理<b>已存在、状态机不由你一个人掌控</b>的工作项（issue/PR）。节奏与 P4 截然不同：<b>你走一步 → 球在别人那边 → 等待 → 看别人做了什么 → 决定下一步</b>。因此 P5 的 UJM 是<b>"检查状态 → 依状态行动 → 等待 → 再检查"的循环</b>，而非直线。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>状态检查</span>
+  <span><i class="dot" style="background:var(--t1)"></i>回应/元数据</span>
+  <span><i class="dot" style="background:var(--t2)"></i>审阅/合并</span>
+  <span><i class="dot" style="background:var(--t5)"></i>终点</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："有个工作项在等我，或该我出手了"</h3></div>
+<div class="card-b">
+<code class="cmd"><b>$</b> gh status            <i># 全局聚合：分配给我的 / 提及我的 / 我 review 的</i>
+<b>$</b> gh pr list --assignee @me
+<b>$</b> gh issue list --assignee @me</code>
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">循环起点</span><h3>检查状态：球现在在谁那边？</h3></div>
+<div class="card-b">
+<code class="cmd"><b>$</b> gh pr view &lt;n&gt; --comments
+<b>$</b> gh pr checks &lt;n&gt;
+<b>$</b> gh pr view &lt;n&gt; --json state,reviewDecision \
+    --jq '"\(.state) | review: \(.reviewDecision)"'
+<b>$</b> gh issue view &lt;n&gt; --comments</code>
+<div class="note"><b>注意</b>：① <b>P5 第一动作永远是"看"</b>；② 关键字段 <b>state</b> 与 <b>reviewDecision</b>——后者决定你该改代码还是该催合并；③ issue 主要看最后一条评论方向和 label。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 依状态选择你的"这一手" ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">状态 A</span><h3>回应讨论 / 补充信息</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh issue comment &lt;n&gt; --body "已确认，是 Safari 特有的 CSP 问题"
+<b>$</b> gh pr comment &lt;n&gt; --body "这版已修复，请再看"
+<b>$</b> git push origin my-branch   <i># 改完 push，PR 自动更新</i></code>
+<div class="note"><b>注意</b>：① 评论是永久公开记录；② 回应 review 的惯例是<b>改完代码 + 评论指出改了什么</b>；③ 长内容用 <code class="inl">--body-file note.md</code> 免 shell 转义。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">状态 B</span><h3>调整元数据 / 调度资源</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh pr edit &lt;n&gt; --add-reviewer alice,bob
+<b>$</b> gh issue edit &lt;n&gt; --add-label "priority:high"
+<b>$</b> gh issue edit &lt;n&gt; --add-assignee @me
+<b>$</b> gh issue edit &lt;n&gt; --milestone "v2.0"</code>
+<div class="note"><b>注意</b>：① 打 label 需 <b>triage 及以上权限</b>；② label 是协作的"调度语言"，遵循仓库既有体系（衔接 P6）；③ 指派 reviewer 后你会出现在对方 gh status 里，别乱点将。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">状态 C</span><h3>审阅表态</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh pr checkout &lt;n&gt;   <i># 先本地看真实效果</i>
+<b>$</b> npm test
+<b>$</b> gh pr review &lt;n&gt; --approve
+<b>$</b> gh pr review &lt;n&gt; --request-changes --body "第 42 行有越界风险"
+<b>$</b> gh pr review &lt;n&gt; --comment --body "先问个问题"</code>
+<div class="note"><b>注意</b>：① <b>request-changes 有阻断力</b>，小问题用 comment；② approve 自己的 PR 无效；③ 批准前先跑测试——批准了没验证的代码你也在责任链上。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">状态 D</span><h3>合并落地（通常不可逆）</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh pr checks &lt;n&gt;                    <i># 三条全绿才动手</i>
+<b>$</b> gh pr merge &lt;n&gt; --squash --delete-branch
+<b>$</b> gh pr merge &lt;n&gt; --auto               <i># 条件没齐？挂自动合并</i></code>
+<div class="note"><b>注意</b>：① 合并方式由仓库统一约定；② <b>--squash + --delete-branch</b> 最常用，本地分支自己删；③ <b>--auto</b> 代替干等，最易忽略的省心功能；④ <b>merge 后历史封存</b>，revert 是新增反向提交不是撤销。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t5)">状态 E</span><h3>终点：关闭（仍可逆）</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh issue close &lt;n&gt; --comment "已修复于 #45"
+<b>$</b> gh pr close &lt;n&gt;
+<b>$</b> gh issue reopen &lt;n&gt; / gh pr reopen &lt;n&gt;</code>
+<div class="note"><b>注意</b>：① 关 issue 留关联引用（fixed by #45）；② issue 由提出者或维护者关，别随手关别人的；③ PR close 后想复活需分支还在。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">等待与循环</span><h3>出手之后：球在别人那边——离开，下次再回来</h3></div>
+<div class="card-b">
+<p>A～C 每个动作后<b>都回到等待状态</b>。不要原地轮询刷新——让通知和 gh status 在下次会话告诉你有什么变了。</p>
+<div class="wait">⏳ 等待他人动作 → 下次从"循环起点"重新进入</div>
+<div class="note"><b>注意</b>：<b>"什么都不做"也是正确操作</b>——频繁催促不推进状态机，用 --auto 和通知机制替你盯着。</div>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>状态机走到 merged 或 closed</h3></div>
+<div class="card-b"><p>merged → 代码进主干，关联 issue 自动关闭；closed → 归档。都可 reopen。合并产生的下一个 release 回到 <b>P4</b>；长期清理归 <b>P10</b>。</p>
+<div class="pill-row"><span class="pill">循环体：检查→行动→等待→再检查</span><span class="pill">merge 不可逆，其余终点可逆</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① 先 gh status 再动手　② request-changes 是阻断性表态　③ --auto 挂机等 CI　④ squash 后本地分支自己删　⑤ 关 issue 留关联　⑥ 别人回合时"不动"也是一手。<br><b>产品视角</b>：通知驱动的任务收件箱；<b>操作的 UI 重量应与其可逆性成正比</b>。</footer>
+</section>
+
+<!-- ================= P6 ================= -->
+<section id="p6">
+<h1>UJM｜P6 组织与分类：先建体系，再挂内容</h1>
+<div class="meta"><b>在干嘛</b>：资源多到看不过来时，<b>建立分类体系</b>——label 定义维度、Project 搭规划结构、star 做个人收藏。与 P5 的根本区别：<b>P6 不改变任何协作状态</b>，只做"归置"，服务未来的 P2（检索）和 P5（路由）。正确节奏：<b>先定义体系、再批量挂内容</b>。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>体系盘点</span>
+  <span><i class="dot" style="background:var(--t1)"></i>Label</span>
+  <span><i class="dot" style="background:var(--t3)"></i>Project</span>
+  <span><i class="dot" style="background:var(--t2)"></i>Star</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："东西多了，找不到了"</h3></div>
+<div class="card-b"><p>典型触发：issue 积了几十条没优先级；新仓库默认 label 不够用；团队要按季度规划；想把优质仓库攒起来日后回访。</p></div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">盘点</span><h3>先看现状，再定体系（这步省不得）</h3></div>
+<div class="card-b">
+<code class="cmd"><b>$</b> gh label list --repo owner/repo
+<b>$</b> gh project list --owner my-org
+<b>$</b> gh project field-list &lt;number&gt; --owner my-org</code>
+<div class="note"><b>注意</b>：① label 被大量使用后再改名成本极高，<b>盘点防返工</b>；② 仓库多时优先 clone 现成体系而非自建。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 三条独立支线 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">支线 A</span><h3>Label 体系｜定义分类维度</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh label create "priority:high" --color "d73a4a" \
+    --description "两周内必须处理"
+<b>$</b> gh label clone owner/template-repo --repo my-new-repo</code>
+<code class="cmd"><i>命名惯例：priority:high / type:bug / area:api（维度前缀分组）</i></code>
+<div class="note"><b>注意</b>：① <b>先定命名规范再动手</b>——"bug"与"type:bug"混用是体系腐烂的开始；② clone 是整套复制，先 list 再搬；③ label 描述务必写——它是协作者理解体系的唯一说明书。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">支线 B</span><h3>Project 规划｜搭结构、挂内容</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh project create --owner my-org --title "Q4 路线图"
+<b>$</b> gh project field-create &lt;n&gt; --owner my-org \
+    --data-type SINGLE_SELECT --name 状态 \
+    --single-select-options "未开始,进行中,已完成"
+<b>$</b> gh project item-add &lt;n&gt; --owner my-org \
+    --url https://github.com/owner/repo/issues/123
+<b>$</b> gh project field-list &lt;n&gt; --owner my-org</code>
+<div class="note"><b>注意</b>：① item-add 用<b>完整 URL</b> 不是编号；② 字段<b>值更新 CLI 做不了</b>，用 <code class="inl">gh api graphql</code> 兜底；③ Project 是组织/用户级资源，权限跟 owner 走。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">支线 C</span><h3>Star 收藏｜个人化标记</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh repo star owner/repo / gh repo unstar owner/repo
+<b>$</b> gh search repos --starred --owner @me --language rust   <i># 收藏要能召回</i></code>
+<div class="note"><b>注意</b>：① star 是<b>纯个人行为</b>，不影响仓库状态；② <b>star ≠ watch</b>：star 是收藏，watch 是收通知（gh status 里那堆 Repository Activity 动态的来源就是 watch，别搞混）；③ 收藏多了靠 search 召回，别翻页。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">汇合验证</span><h3>用体系跑通一次真实的检索/规划</h3></div>
+<div class="card-b">
+<code class="cmd"><i>Label：   gh issue list --label "priority:high"  → 筛得出结果？</i>
+<i>Project： gh project item-list &lt;n&gt; --owner my-org → 挂上了？可分组？</i>
+<i>Star：    gh search repos --starred --owner @me   → 关键词能召回？</i></code>
+<div class="note"><b>注意</b>：最大陷阱是<b>过度设计</b>——从 3~5 个 label 和一个字段开始，体系是长出来的，空转的 label 会变成噪音。</div>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>分类骨架可用，资源已归位</h3></div>
+<div class="card-b"><p>之后转入后台维护态：日常由 P4/P5 的工作项自动流入，P2 检索按维度召回。重入触发：体系迭代、积压重整；失效体系清理归 <b>P10</b>。</p>
+<div class="pill-row"><span class="pill">不改变任何协作状态</span><span class="pill">服务 P2 检索 / P5 路由</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① label 命名先定规范　② clone 先 list 再搬　③ item-add 要完整 URL　④ Project 字段值用 gh api graphql　⑤ <b>star ≠ watch</b>　⑥ 从最小可用开始。</footer>
+</section>
+
+<!-- ================= P7 ================= -->
+<section id="p7">
+<h1>UJM｜P7 状态感知：只看不动，看完决定去哪</h1>
+<div class="meta"><b>在干嘛</b>：<b>每次打开终端的固定起点</b>——全局扫一眼"世界发生了什么变化"，再决定这次会话去哪个 Purpose。三个硬性特征：<b>只读</b>、<b>面向已知资源</b>（非 P2 的大海捞针）、<b>输出是决策依据</b>（看完必须产生"下一步去哪"的结论，否则就是刷屏式无效感知）。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>全局扫描/判读</span>
+  <span><i class="dot" style="background:var(--t1)"></i>工作项/CI</span>
+  <span><i class="dot" style="background:var(--t2)"></i>环境/发布/缓存</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>会话起点："我回来了，世界有什么变化？"</h3></div>
+<div class="card-b"><p>不带具体任务来，先看全局——<b>让状态决定今天做什么</b>。</p>
+<div class="pill-row"><span class="pill">触发频率：全旅程最高频</span><span class="pill">P5 的"等待"在此被唤醒</span></div>
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">第一层</span><h3>全局聚合扫描</h3></div>
+<div class="card-b">
+<code class="cmd"><b>$</b> gh status            <i># 全景：Assigned / Review / Mentions / Repo Activity</i>
+<b>$</b> gh status -o my-org  <i># 收窄到某组织</i>
+<b>$</b> gh org list          <i># 确认归属（冷启动时）</i>
+<b>$</b> gh auth status</code>
+<div class="note"><b>注意</b>：① 四区块各有含义——Assigned 是"欠别人的"，Review Requests 是"别人求你的"，Mentions 是"有人叫你"，<b>Repository Activity 是 watch 的仓库动态，不是你参与的</b>；② gh status 为空 ≠ 没事干，例行巡检（CI/缓存/环境）要主动查。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 第二层：定向深查 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">深查 A</span><h3>工作项与 CI 进展</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh issue list --assignee @me
+<b>$</b> gh pr list --author @me --state open
+<b>$</b> gh run view &lt;id&gt; --watch     <i># 阻塞式盯到结束</i>
+<b>$</b> gh pr checks &lt;n&gt;
+<b>$</b> gh run list --limit 5 --branch main
+<b>$</b> gh run view &lt;id&gt; --log-failed</code>
+<div class="note"><b>注意</b>：① <b>--watch 阻塞终端</b>，CI 长时用定时回查；② checks 红 → P4 修，绿+review 过 → P5 合；③ run list 加 --branch 收窄噪音。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">深查 B</span><h3>环境 / 发布 / 缓存</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh cs list / gh cs view -c &lt;name&gt;
+<b>$</b> gh release list --repo owner/repo
+<b>$</b> gh release view v1.2.0
+<b>$</b> gh cache list --repo owner/repo --sort size_at_created</code>
+<div class="note"><b>注意</b>：① <b>Stopped/闲置环境就是 P10 的活</b>——记下来稍后清理；② cache 有<b>总容量配额</b>，占满拖慢 CI，异常就去 P10（gh cache delete）；③ release view 常用于发版前对照上一版（P4 的输入）。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">判读</span><h3>把观察翻译成路由决策（P7 的真正产出）</h3></div>
+<div class="card-b">
+<code class="cmd"><i>有要我 review 的 / PR 被要求改   → P5 协作推进</i>
+<i>CI 红了 / 要修 bug 写功能        → P4 修改代码、提交</i>
+<i>要拉仓库 / 装产物               → P3 获取与接入</i>
+<i>工作项积压、label 混乱           → P6 组织与分类</i>
+<i>闲置环境 / 缓存超配额            → P10 清理收尾</i>
+<i>一切正常                        → 今天没有我的活，正常离开 ✓</i></code>
+<div class="note"><b>注意</b>：最大反模式是<b>"只刷不决"</b>——每个查询都应以"所以我接下来去……"收尾；连续两次没结论就该离开终端。</div>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>决策依据到手，路由到对应 Purpose</h3></div>
+<div class="card-b"><p>P7 不产出资源、不改状态，是<b>所有其他 Purpose 的调度器</b>。日常心跳：<b>感知 → 行动 → 等待 → 再感知</b>。</p>
+<div class="pill-row"><span class="pill">全程只读、零风险</span><span class="pill">出口 = 一条路由决策，而非一屏查询结果</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① Repository Activity 是 watch 动态不是参与记录　② --watch 阻塞终端　③ Stopped 环境记下来去 P10　④ cache 占满拖慢 CI　⑤ 每次查询以"所以我去……"收尾。<br><b>产品视角</b>：P7 必须是<b>默认首页</b>，每张卡片内嵌下一步动作按钮，把"感知→路由"压到一次点击。</footer>
+</section>
+
+<!-- ================= P8 ================= -->
+<section id="p8">
+<h1>UJM｜P8 自动化配置与执行：今天定规矩，机器替你干活</h1>
+<div class="meta"><b>在干嘛</b>：P8 的独特之处在于<b>受益者是未来</b>——此刻每个动作都是为了"某次自动触发的流程"能正确运转：备凭据、点火验证、开关规则、失败重跑。与 P7 分工：P7 管"看"，P8 管"配置与点火"。安全敏感度最高的环节之一（secret）。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>前置/验证</span>
+  <span><i class="dot" style="background:var(--t1)"></i>凭据</span>
+  <span><i class="dot" style="background:var(--t2)"></i>触发/开关</span>
+  <span><i class="dot" style="background:var(--t4)"></i>重跑</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："这件事不该我每次手动做"</h3></div>
+<div class="card-b"><p>典型触发：部署想自动化；CI 需要密钥但不想写进代码；某 workflow 半夜老挂想先禁用；deploy 失败只需重跑失败 job。</p></div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">前置</span><h3>盘点自动化资产现状</h3></div>
+<div class="card-b">
+<code class="cmd"><b>$</b> gh workflow list
+<b>$</b> gh secret list       <i># 只见名字不见值——正常的安全设计</i>
+<b>$</b> gh variable list</code>
+<div class="note"><b>注意</b>：① secret 值一旦设置<b>无法读取</b>；② workflow yml 文件的增改走 git 提交流程（P4），P8 只管"运行层面"。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 四个动作 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">动作 ①</span><h3>凭据准备</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh secret set AWS_KEY                <i># 交互式，值不进 shell 历史</i>
+<b>$</b> gh secret set AWS_KEY &lt; key.txt
+<b>$</b> gh secret set AWS_KEY --env production  <i># 环境级（可配审批）</i>
+<b>$</b> gh variable set DEPLOY_REGION --body "ap-east-1"</code>
+<div class="note"><b>注意</b>：① <b>secret ≠ variable 的分界线是"泄露了会出事吗"</b>；② 生产凭据强烈推荐 <b>--env 环境级</b>+审批保护，fork 的 PR 拿不到；③ <code class="inl">echo "值" | gh secret set</code> 会留 shell history，用交互式或文件重定向。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">动作 ②</span><h3>手动触发验证</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh workflow run deploy.yml -f environment=production -f version=v1.2.0
+<b>$</b> gh run list --workflow=deploy.yml --limit 1
+<b>$</b> gh run view &lt;run-id&gt; --log-failed</code>
+<div class="note"><b>注意</b>：① workflow 必须声明 <b>workflow_dispatch</b> 触发器；② <b>run 是异步的</b>——触发成功 ≠ 执行成功，必须接 run list/view 确认；③ 生产首触发先对 staging 验证。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">动作 ③</span><h3>规则开关管控</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh workflow disable deploy.yml   <i># 止血：密钥待换/误触发</i>
+<b>$</b> gh workflow enable deploy.yml</code>
+<div class="note"><b>注意</b>：① disable 是<b>全局开关</b>（手动/定时/push 全失效）；② 禁用超 60 天的定时 workflow 会被 GitHub 自动停用；③ 谁关的最好留 issue 记录。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t4)">动作 ④</span><h3>失败重跑</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh run rerun &lt;id&gt; --failed   <i># 只重跑失败的 job</i>
+<i>✓ 偶发失败（网络抖动/flaky）→ rerun 合理</i>
+<i>✗ 必然失败（bug/配置错）    → rerun 无效，先去 P4 修</i></code>
+<div class="note"><b>注意</b>：① rerun 用<b>当时的代码快照</b>——期间改过的不会生效，改完应重新触发；② 连续失败三次请认真看日志，反复 rerun 是浪费。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">汇合验证</span><h3>自动化处于受控状态了吗？</h3></div>
+<div class="card-b">
+<code class="cmd"><i>凭据：gh secret list → 在列且更新时间符合预期？</i>
+<i>运行：gh run list    → 最新触发成功完成？</i>
+<i>开关：gh workflow list → 该开的开、该关的关？</i></code>
+<div class="note"><b>注意</b>：P8 的事故特征是<b>"静默失败"</b>——不在场时挂掉没人知道，验证后确认通知渠道能触达你是最后一块拼图。</div>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>机器接管，未来自动触发无需到场</h3></div>
+<div class="card-b"><p>日常监控交 <b>P7</b>；workflow 文件修改走 <b>P4</b>；废弃清理归 <b>P10</b>。回访触发：凭据轮换、失败告警、季度巡检。</p>
+<div class="pill-row"><span class="pill">受益者是未来而非当下</span><span class="pill">secret 只写不读，安全敏感度最高</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① secret 忘了只能重设　② 生产凭据用 --env+审批　③ workflow_dispatch 不声明触发不了　④ 触发≠成功　⑤ rerun 用旧快照　⑥ disable 60 天自动停用　⑦ 通知渠道必须验证。<br><b>产品视角</b>：自动化控制台视图，secret 区域只写不读，rerun 按钮预选失败 job。</footer>
+</section>
+
+<!-- ================= P9 ================= -->
+<section id="p9">
+<h1>UJM｜P9 验证与治理：它可信吗？它合规吗？</h1>
+<div class="meta"><b>在干嘛</b>：回答两个与"进展"无关的问题——<b>真实性</b>（产物真来自它声称的构建流程吗）与<b>合规性</b>（符合组织规则吗）。与 P7 分界：<b>P7 看时间轴（跑到哪了），P9 看资格（够不够格）</b>。唯一"结论只有通过/不通过"的环节——它不推动流程，但结论<b>决定别的流程有没有资格继续</b>。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>疑问分流</span>
+  <span><i class="dot" style="background:var(--t1)"></i>产物溯源</span>
+  <span><i class="dot" style="background:var(--t3)"></i>规则巡检</span>
+  <span><i class="dot" style="background:var(--t5)"></i>不通过处置</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>用户意图："我凭什么信它？"</h3></div>
+<div class="card-b"><p>典型触发：生产前确认二进制来源；接手团队仓库确认分支保护到位；安全审计要求证明产物未篡改。</p></div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">分流</span><h3>你的疑问属于哪一类？（操作者视角不同）</h3></div>
+<div class="card-b">
+<code class="cmd"><i>① 文件真是这个仓库构建的？→ 产物溯源（任何使用者）</i>
+<i>② 分支能按规则合并/推送？→ 规则符合性（贡献者）</i>
+<i>③ 组织规则配置健全吗？  → 治理巡检（管理者）</i></code>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 三条支线，结论都是二元判定 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">支线 ①</span><h3>产物溯源（供应链安全）</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh attestation verify ./app.tar.gz -R owner/repo
+<b>$</b> gh attestation verify ./app.tar.gz -R owner/repo \
+    --signer-workflow owner/repo/.github/workflows/release.yml
+<i># 推荐顺序：release download → attestation verify → 执行</i></code>
+<div class="note"><b>注意</b>：① 报 no attestations found 是<b>产物没带证</b>，不是你操作错；② 加 <b>--signer-workflow 才是严格验证</b>；③ 这是 P3"下载二进制先校验"的落地动作。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">支线 ②</span><h3>分支规则符合性检查</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh ruleset check --branch feature/my-work
+<i>缺 required checks → 回 P7 看 CI、P4 修</i>
+<i>缺 required review → 回 P5 找人 approve</i></code>
+<div class="note"><b>注意</b>：① check 是<b>只读预检</b>，把"会被拒"提前到 push/merge 之前；② <b>P9 只诊断，开药在别处</b>；③ ruleset 与旧式 branch protection 并存时 check 会汇总两者。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">支线 ③</span><h3>组织级治理巡检</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh ruleset list --org my-org
+<i>巡检清单：关键仓库是否被 ruleset 覆盖？</i>
+<i>管理员豁免是否滥用？required checks 是否指向活着的 CI？</i></code>
+<div class="note"><b>注意</b>：① 需<b>组织管理员权限</b>；② 规则创建走网页端或 <code class="inl">gh api</code>（REST rulesets 端点），巡检（读）与修规（写）分开；③ 周期性动作，发现问题建 issue 跟踪（P4）。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--t5)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--t5)">关键分支</span><h3>不通过怎么办？（只诊断，处置移交）</h3></div>
+<div class="card-b">
+<code class="cmd"><i>attestation 失败/无证 → 别运行！查下载渠道或向上游质询（P4/P5）</i>
+<i>check 缺 CI          → P7 查 run、P4 修代码</i>
+<i>check 缺 review      → P5 请求审阅</i>
+<i>巡检发现规则空洞      → 建 issue 提案（P4）</i></code>
+<div class="note red"><b>⚠ P9 最大的纪律："不通过就不继续"</b>——没过的二进制再像正常也别跑；不过的合并别硬豁免。破坏这层纪律它就形同虚设。</div>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>拿到明确的二元结论</h3></div>
+<div class="card-b"><p><b>通过</b> → 带信任凭证继续（产物运行、分支合并、巡检归档）；<b>不通过</b> → 按分支处置移交。周期巡检构成治理心跳。</p>
+<div class="pill-row"><span class="pill">结论只有通过/不通过</span><span class="pill">只诊断不开药</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① no attestations found 是产物没证　② 严格验证加 --signer-workflow　③ check 缺什么去哪修　④ ruleset list 需管理员　⑤ <b>不通过就停手</b>。<br><b>产品视角</b>：门卫型功能——做成<b>关键动作旁的轻量检查点</b>（绿标/红横幅），常驻但不打扰，与 P7 的"默认首页"正相反。</footer>
+</section>
+
+<!-- ================= P10 ================= -->
+<section id="p10">
+<h1>UJM｜P10 工作产物维护与终结：收尾，省钱，减负 ✏️</h1>
+<div class="meta"><b>在干嘛</b>：让 P2～P9 产出的资源<b>停止活跃或彻底消失</b>，回收三类成本：<b>真金白银（Codespaces 计费）、存储配额（cache/release）、注意力（无关通知）</b>。核心心智是一根标尺：<b>可逆的"停"优先，不可逆的"删"最后</b>。</div>
+<div class="boundary">
+  <div class="yes"><b>✅ 归 P10：P2～P9 链路产出的工作资源</b>仓库、release、gist、run 记录、Codespace、cache、star——核心任务链路中诞生的东西。</div>
+  <div class="no"><b>❌ 不归 P10：身份与本地工具（本次修正的核心边界）</b><code class="inl">ssh-key / gpg-key delete → P0</code>；<code class="inl">extension remove / alias delete → P1</code>。删除它们是身份/环境管理，不是收尾。</div>
+</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--c-entry)"></i>入口/出口</span>
+  <span><i class="dot" style="background:var(--c-check)"></i>盘点/验证</span>
+  <span><i class="dot" style="background:var(--t2)"></i>软终结（可逆）</span>
+  <span><i class="dot" style="background:var(--c-hard)"></i>硬删除（不可逆）</span>
+  <span><i class="dot" style="background:var(--t4)"></i>轻量清理</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">入口</span><h3>"有东西该结束了"或"账单怎么又超了"</h3></div>
+<div class="card-b"><p><b>被动触发</b>：账单异常、cache 告警、P7 巡检发现闲置；<b>主动触发</b>：项目完结归档、试验结束、季度例行清理。</p></div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">盘点</span><h3>列资产清单，算清谁在花钱/占地方</h3></div>
+<div class="card-b">
+<code class="cmd"><b>$</b> gh cs list                                <i># 持续烧钱的大头，先查</i>
+<b>$</b> gh cache list --repo owner/repo --sort size_at_created
+<b>$</b> gh release list --repo owner/repo
+<b>$</b> gh run list --repo owner/repo --limit 20
+<b>$</b> gh repo list my-org</code>
+<div class="note"><b>注意</b>：① 盘点输出应是<b>"处置清单"</b>（每项标"停/删/不动"）；② <b>Codespaces 是唯一持续烧钱的项</b>；③ 删前想清依赖方——release 可能被别人引用。</div>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 三类动作 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">动作 A</span><h3>软终结（可恢复）</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh cs stop -c &lt;name&gt;        <i># 最常用的省钱动作</i>
+<b>$</b> gh run cancel &lt;run-id&gt;      <i># 挂死的 CI 止血</i>
+<b>$</b> gh repo archive owner/old-project   <i># 退役但只读可查</i></code>
+<div class="note"><b>注意</b>：① <b>cs stop 只停计费不停存储</b>，长期不用才 delete；② <b>archive 可逆</b>（unarchive），是项目退役的<b>默认正确姿势</b>；③ cancel 只对进行中的 run 有效。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--c-hard)">动作 B</span><h3>硬删除（不可恢复）</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh cs delete -c &lt;name&gt; / gh cs delete --all
+<b>$</b> gh run delete &lt;run-id&gt;
+<b>$</b> gh release delete v0.9-beta --cleanup-tag
+<b>$</b> gh gist delete &lt;id&gt;
+<b>$</b> gh cache delete --all --repo owner/repo</code>
+<div class="note red"><b>⚠ 不可逆红线</b>：① <b>cs delete 连未 push 的代码一起删</b>——先推回远端（P10 最大数据丢失点）；② release delete 加 <b>--cleanup-tag</b> 才连 tag 删，否则悬空；③ 公共 release 有下游依赖，确认无引用再删；④ 删除命令无回收站，回车前再读一遍命令。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t4)">动作 C</span><h3>轻量清理（注意力）</h3></div><div class="card-b">
+<code class="cmd"><b>$</b> gh repo unstar owner/repo
+<b>$</b> gh api -X PUT repos/owner/repo/subscription -f ignored=true
+<i># watch 调整为 participating，清掉 gh status 噪音</i></code>
+<div class="note"><b>注意</b>：计费有账单提醒，但"每天被无关动态刷屏"没有告警——<b>通知噪音是注意力成本</b>，只能靠你对 gh status 的体感触发清理。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">汇合验证</span><h3>成本真的回收了吗？</h3></div>
+<div class="card-b">
+<code class="cmd"><i>计费：gh cs list  → 没有意外 Running 的环境？</i>
+<i>配额：gh cache list → 降到合理水位？</i>
+<i>噪音：gh status → Activity 只剩真正相关的？</i>
+<i>安全：cs delete 前 → 未 push 分支都推回了？</i></code>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">出口</span><h3>成本已回收，回到干净基线</h3></div>
+<div class="card-b"><p>边界铁律：<b>删凭据是 P0、删工具配置是 P1</b>——"清理"冲动误伤身份资产（删了 ssh-key 全部仓库失联）是新手最惨痛的事故。</p>
+<div class="pill-row"><span class="pill">可逆的停优先，不可逆的删最后</span><span class="pill">cs delete 前 push 分支是第一红线</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① cs stop 不省存储　② <b>cs delete 前先 push</b>　③ release delete 记得 --cleanup-tag　④ 公共 release 删前确认　⑤ archive 优于删除　⑥ 删 ssh-key 归 P0，别在这里动。<br><b>产品视角</b>：软硬双档按钮，删除档二次确认并<b>列出丢失内容清单</b>；P7 巡检一键跳转 P10 处置——"发现→终结"是成本闭环的最后一公里。</footer>
+</section>
+
+<!-- ================= 支撑层 ================= -->
+<section id="sup">
+<h1>UJM｜支撑层：不构成旅程的一段，却衬着每一段</h1>
+<div class="meta"><b>在干嘛</b>：支撑层<b>不是旅程中的一个环节</b>——没有独立生命周期，嵌在 P0～P10 任何位置随时被调用。触发模式高度一致：<b>"官方子命令到这儿就不够用了"</b>。五个工具对应五种"破局"方向，用完<b>立即回到原 Purpose 继续</b>。唯一红线：gh api 写操作失去子命令层的参数校验和防呆，误操作成本更高。</div>
+<div class="legend">
+  <span><i class="dot" style="background:var(--t1)"></i>万能接口</span>
+  <span><i class="dot" style="background:var(--t2)"></i>跳转网页</span>
+  <span><i class="dot" style="background:var(--t3)"></i>脱离目录绑定</span>
+  <span><i class="dot" style="background:var(--t4)"></i>输出可编程化</span>
+  <span><i class="dot" style="background:var(--t5)"></i>命令辅助</span>
+</div>
+<div class="tl">
+
+<div class="node entry"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">进入</span><h3>触发信号："子命令到这儿不够用了"</h3></div>
+<div class="card-b">
+<code class="cmd"><i>· 没有子命令？              → gh api / graphql</i>
+<i>· CLI 看配置太费劲？        → gh browse</i>
+<i>· 不想 cd 才能操作仓库？    → -R / --repo</i>
+<i>· 表格输出没法写脚本？      → --json + --jq</i>
+<i>· 命令怎么写记不清？        → gh copilot</i></code>
+<p>最常见组合是 <b>-R + --json + --jq</b>（跨仓库 + 可编程），以及 <b>gh api</b> 兜底一切。</p>
+</div></div></div>
+
+<div class="node" style="--c:#64748b"><div class="card" style="background:transparent;border:none">
+<div class="card-h center"><h3 style="color:var(--sub)">┈┈┈ 五个工具，五个破局方向 ┈┈┈</h3></div>
+<div class="grid">
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t1)">工具 ①</span><h3 class="mono">gh api / gh api graphql</h3></div><div class="scope">方向：<b>能力兜底</b>　最常切入：<b>P6</b>，其次 P9/P10</div><div class="card-b">
+<code class="cmd"><i># 经典案例：P6 中更新 Project item 字段值（CLI 做不到）</i>
+<b>$</b> gh api graphql -f query='
+mutation { updateProjectV2ItemFieldValue(
+  input: {projectId: "…", itemId: "…", fieldId: "…",
+          value: {text: "高"}}) { projectV2Item { id } } }'
+<i># REST 同样直接：P10 调整 watch 订阅</i>
+<b>$</b> gh api -X PUT repos/owner/repo/subscription -f ignored=true</code>
+<div class="note"><b>注意</b>：① <b>graphql 是瑞士军刀</b>——Project 高级操作几乎全靠它；② 写操作前<b>先用 query 查目标 ID</b>（查改两步走）；③ 复杂查询先在网页端 GraphQL Explorer 调通；④ 缺 scope 用 <code class="inl">gh auth refresh -s …</code> 补（回 P0）。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t2)">工具 ②</span><h3 class="mono">gh browse</h3></div><div class="scope">方向：<b>跳转网页端</b>　最常切入：<b>P9</b>，其次 P2/P4</div><div class="card-b">
+<code class="cmd"><b>$</b> gh browse / gh browse -R owner/repo / gh browse &lt;sha&gt;
+<i>典型：P9 看规则集图形化配置、P4 预览 README 渲染</i></code>
+<div class="note"><b>注意</b>：① browse 是<b>"接力棒"不是"逃跑出口"</b>——做完事要回来；② 与 view 类命令的 <code class="inl">--web</code> 后缀功能重叠，哪种顺手用哪种；③ 带着任务跳，别漂在浏览器里失焦。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t3)">工具 ③</span><h3 class="mono">-R &lt;owner/repo&gt;</h3></div><div class="scope">方向：<b>脱离目录绑定</b>　切入：<b>所有仓库级命令</b></div><div class="card-b">
+<code class="cmd"><b>$</b> gh pr list -R owner/repo
+<b>$</b> for repo in $(gh repo list my-org --json name --jq '.[].name'); do
+  gh issue list -R "my-org/$repo" --label bug --json number --jq 'length'
+done</code>
+<div class="note"><b>注意</b>：① <b>忘加 -R 是最高频报错</b>；② 批量<b>读</b>随便跑，批量<b>写</b>极度克制——先对单个仓库 dry-run；③ -R 要写全名 owner/repo。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t4)">工具 ④</span><h3 class="mono">--json + --jq</h3></div><div class="scope">方向：<b>输出可编程化</b>　最常切入：<b>P7</b>，其次 P6/P10</div><div class="card-b">
+<code class="cmd"><b>$</b> gh pr list --json number,title,reviewDecision \
+    --jq '.[] | select(.reviewDecision=="APPROVED") | "\(.number) \(.title)"'
+<i># ↑ P7 判读路由的自动化版本</i>
+<b>$</b> gh cs list --json name,state --jq '.[] | select(.state!="Shutdown") | .name'
+<i># ↑ P10 清理清单的生成器</i></code>
+<div class="note"><b>注意</b>：① <b>--jq 是 gh 内置的</b>，无需本机装 jq，但语法一致值得学；② 先裸跑 --json 看可用字段名；③ 这是"感知→行动"自动化的枢纽，定型逻辑写成别名（P1）。</div>
+</div></div></div>
+
+<div><div class="card" style="height:100%"><div class="card-h"><span class="tag" style="background:var(--t5)">工具 ⑤</span><h3 class="mono">gh copilot</h3></div><div class="scope">方向：<b>命令辅助</b>　切入：<b>贯穿所有 Purpose</b></div><div class="card-b">
+<code class="cmd"><b>$</b> gh copilot suggest "查找组织里最近一周更新的python仓库"
+<b>$</b> gh copilot suggest "解释这个命令" -t shell "gh api graphql -f query='…'"
+<i># suggest（生成）/ explain（解释）两种模式</i></code>
+<div class="note"><b>注意</b>：① <b>生成的命令先读再跑</b>——AI 建议不背你的责任，尤其 api 写操作；② explain 模式是读懂别人脚本的最佳工具；③ 安装与授权归 P1。</div>
+</div></div></div>
+
+</div></div></div>
+
+<div class="node" style="--c:var(--c-check)"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-check)">进阶</span><h3>组合拳：支撑层的真实使用形态</h3></div>
+<div class="card-b">
+<code class="cmd"><i># 组合 1：跨仓库 + 可编程 —— 组织级 issue 盘点（P6/P7）</i>
+<b>$</b> gh search issues --org my-org --label bug --state open \
+    --json repository,title,url --jq '.[] | "\(.repository.nameWithOwner)  \(.title)"'</code>
+<code class="cmd"><i># 组合 2：可编程 + 万能接口 —— 查出再改（P6，两步走）</i>
+<b>$</b> ITEM_ID=$(gh project item-list 1 --owner my-org --format json --jq '.items[0].id')
+<b>$</b> gh api graphql -f query="mutation { … itemId: \"$ITEM_ID\" … }"</code>
+<div class="note"><b>注意</b>：通用范式是<b>"--jq 结果塞进变量，再喂给 gh api"</b>——从"用 gh"到"用 gh 做自动化"的分水岭；批量前先单对象验证。</div>
+</div></div></div>
+
+<div class="node exit"><div class="card"><div class="card-h"><span class="tag" style="background:var(--c-entry)">退出</span><h3>破局完成：带着结果回到原 Purpose</h3></div>
+<div class="card-b"><p>支撑层的完成态就是<b>被打断的 Purpose 得以继续</b>。每次返回时问一句：<b>"这个问题下次还会遇到吗？"</b>——会，就固化成脚本/别名（定义归 P1），这是支撑层唯一会"沉淀"下来的东西。</p>
+<div class="pill-row"><span class="pill">无独立生命周期</span><span class="pill">gh api 写操作查改两步走</span><span class="pill">反复查询 → 固化为脚本/别名（P1）</span></div>
+</div></div></div>
+
+</div>
+<footer><b>易踩坑速记</b>：① 忘加 -R 最高频　② graphql 查改两步走　③ --json 先裸跑看字段　④ copilot 先读再跑　⑤ 批量写先 dry-run　⑥ 补 scope 回 P0。<br><b>产品视角</b>：支撑层是<b>逃生舱设计原则</b>——API 入口、跨端跳转、全局搜索、结构化导出、AI 助手。逃生舱不必被多数用户看见，但<b>必须在高级用户卡住的地方恰好出现</b>——这层决定产品天花板。</footer>
+</section>
+
+</main>
+
+<button class="topbtn" id="topBtn">回到本页顶部</button>
+
+<script>
+  const links = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('section');
+  const topBtn = document.getElementById('topBtn');
+
+  function show(id, push){
+    sections.forEach(s => s.classList.toggle('show', s.id === id));
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    window.scrollTo({top: 0});
+    if(push) history.replaceState(null, '', '#' + id);
+  }
+
+  links.forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    show(a.getAttribute('href').slice(1), true);
+  }));
+
+  // 支持 #hash 直接打开对应章节
+  const hash = location.hash.slice(1);
+  if(hash && document.getElementById(hash)) show(hash);
+  else show('p0');
+
+  topBtn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+  window.addEventListener('scroll', () => {
+    topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+</script>
+
+</body>
+</html>
