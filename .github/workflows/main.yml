@@ -1,0 +1,185 @@
+name: Download and Release File
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '要下载的文件 URL'
+        required: true
+        type: string
+      release_tag:
+        description: '上传到哪个 Release（tag），不存在会自动创建'
+        required: false
+        default: 'v0.1'
+        type: string
+      filename:
+        description: '保存的文件名（留空则自动从 URL 提取）'
+        required: false
+        default: ''
+        type: string
+      split_threshold_mb:
+        description: '超过该大小（MB）自动切分，默认 500'      # <<< CHANGED
+        required: false
+        default: '500'
+        type: string
+      part_size_mb:
+        description: '每个分片大小（MB），不超过 500，默认 500' # <<< CHANGED
+        required: false
+        default: '500'
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Resolve filename
+        id: filename
+        env:
+          INPUT_URL: ${{ inputs.url }}
+          INPUT_FILENAME: ${{ inputs.filename }}
+        run: |
+          set -e
+          if [ -n "$INPUT_FILENAME" ]; then
+            FILE="$INPUT_FILENAME"
+          else
+            FILE="${INPUT_URL%%\?*}"   # strip query string
+            FILE="${FILE##*/}"         # take last path segment
+          fi
+          if [ -z "$FILE" ] || [ "$FILE" = "/" ]; then
+            echo "无法从 URL 中提取文件名，请手动指定 filename" >&2
+            exit 1
+          fi
+          echo "file=$FILE" >> "$GITHUB_OUTPUT"
+          echo "目标文件名: $FILE"
+
+      - name: Create release if not exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+        run: |
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "$TAG" --notes "Downloaded from: ${{ inputs.url }}"
+          fi
+
+      - name: Download and upload file
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.release_tag }}
+          URL: ${{ inputs.url }}
+          FILE: ${{ steps.filename.outputs.file }}
+          SPLIT_THRESHOLD_MB: ${{ inputs.split_threshold_mb }}   # <<< CHANGED
+          PART_SIZE_MB: ${{ inputs.part_size_mb }}
+        run: |
+          set -e
+
+          # ==========================================================
+          # Defaults & validation (edge cases)
+          # ==========================================================
+          # Split when the file exceeds this many MB (default 500 MB)  # <<< CHANGED
+          if ! [[ "${SPLIT_THRESHOLD_MB:-500}" =~ ^[0-9]+$ ]]; then
+            echo "split_threshold_mb 无效，回退为 500" >&2
+            SPLIT_THRESHOLD_MB=500
+          fi
+          THRESHOLD=$(( SPLIT_THRESHOLD_MB * 1024 * 1024 ))
+
+          # Each chunk must NOT exceed 500 MB. Fallback if invalid.    # <<< CHANGED
+          if ! [[ "${PART_SIZE_MB:-500}" =~ ^[0-9]+$ ]] || [ "${PART_SIZE_MB:-500}" -gt 500 ]; then
+            echo "part_size_mb 无效或 > 500，回退为 500" >&2
+            PART_SIZE_MB=500
+          fi
+          PART=$(( PART_SIZE_MB * 1024 * 1024 ))
+
+          PART_PREFIX="${FILE}.part"
+
+          # Idempotency: skip if the file or its chunks were already uploaded
+          if gh release view "$TAG" --json assets --jq '.assets[].name' | grep -qx "$FILE" || \
+             gh release view "$TAG" --json assets --jq '.assets[].name' | grep -qx "${PART_PREFIX}000"; then
+            echo "$FILE 或其分片已存在于 release 中，跳过"
+            exit 0
+          fi
+
+          # ==========================================================
+          # Download with wget (robust against flaky networks)
+          # ==========================================================
+          echo "==== 下载 $FILE ===="
+          wget \
+            --tries=10 \
+            --waitretry=10 \
+            --timeout=60 \
+            --read-timeout=60 \
+            --continue \
+            --retry-connrefused \
+            --retry-on-http-error=429,500,502,503,504 \
+            --no-check-certificate \
+            --show-progress \
+            -O "$FILE" "$URL"
+
+          # Flush to disk so checksums are computed against the real content
+          sync
+
+          if [ ! -s "$FILE" ]; then
+            echo "下载失败：文件为空" >&2
+            exit 1
+          fi
+
+          # ==========================================================
+          # Checksum of the ORIGINAL file — used later to prove the
+          # merged file is byte-for-byte identical (no corruption)
+          # ==========================================================
+          echo "==== 计算原始文件 SHA256 ===="
+          sha256sum "$FILE" > "${FILE}.sha256"
+          cat "${FILE}.sha256"
+
+          SIZE=$(stat -c%s "$FILE")
+          echo "文件大小: $SIZE 字节"
+
+          # ==========================================================
+          # Split if larger than the threshold (default 500 MB)
+          # --numeric-suffixes with zero-padding guarantees the chunks
+          # sort in the correct order for `cat` (no corruption on merge)
+          # ==========================================================
+          if [ "$SIZE" -gt "$THRESHOLD" ]; then
+            echo "==== 文件超过 ${SPLIT_THRESHOLD_MB}MB，切分为 ≤${PART_SIZE_MB}MB 分片 ===="
+            # --suffix-length=3 supports up to 1000 chunks;
+            # 1000 x 500 MB = 500 GB max covered, far beyond typical needs.
+            split --bytes="$PART" --numeric-suffixes=0 --suffix-length=3 \
+                  "$FILE" "${PART_PREFIX}"
+
+            # Verify each chunk on disk BEFORE uploading (catch disk write errors)
+            for p in "${PART_PREFIX}"*; do
+              echo "$p : $(sha256sum "$p" | cut -d' ' -f1)"
+            done
+            sha256sum "${PART_PREFIX}"* > "${PART_PREFIX}sha256.txt"
+
+            # Instructions for the end user to reassemble the file losslessly
+            {
+              echo "# How to merge the chunks back into the original file"
+              echo "#"
+              echo "# 1) Put this file, ALL ${PART_PREFIX}* chunks and"
+              echo "#    ${FILE}.sha256 in the SAME directory."
+              echo "# 2) Merge (chunks are zero-padded numbered, cat order is correct):"
+              echo "      cat ${PART_PREFIX}* > \"${FILE}\""
+              echo "# 3) Verify integrity (MUST print OK, otherwise re-download):"
+              echo "      sha256sum -c ${FILE}.sha256"
+              echo "#"
+              echo "# Windows PowerShell equivalent:"
+              echo "#   cmd /c copy /b ${PART_PREFIX}* \"${FILE}\""
+            } > MERGE_INSTRUCTIONS.txt
+
+            echo "==== 上传分片到 release $TAG ===="
+            gh release upload "$TAG" \
+              "${PART_PREFIX}"* "${PART_PREFIX}sha256.txt" "${FILE}.sha256" MERGE_INSTRUCTIONS.txt \
+              --clobber
+          else
+            echo "==== 文件小于 ${SPLIT_THRESHOLD_MB}MB，直接上传 ===="
+            gh release upload "$TAG" "$FILE" "${FILE}.sha256" --clobber
+          fi
+
+          # Clean up local disk space
+          rm -f "$FILE" "${PART_PREFIX}"* "${PART_PREFIX}sha256.txt" "${FILE}.sha256" MERGE_INSTRUCTIONS.txt
